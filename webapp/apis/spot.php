@@ -5,7 +5,7 @@
   // alloww Methods
   header('Access-Control-Allow-Methods: GET, PUT');
 
-  require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/spot.php');
+  require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/spot.php');
 
   // GET
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {

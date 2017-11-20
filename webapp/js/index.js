@@ -1,19 +1,19 @@
-function init() 
+function init()
 {
 	console.log('Getting brands...');
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/apis/brand.php', true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			//show buildings
 			fillBrands(x.responseText);
@@ -24,16 +24,16 @@ function init()
 	//create request
 	var x2 = new XMLHttpRequest();
 	//prepare request
-	x2.open('GET', 'http://localhost:8080/apis/apis/country.php', true);
+	x2.open('GET', 'http://localhost/sharemycar/webapp/apis/country.php', true);
 	//send request
 	x2.send();
 	//handle readyState change event
-	x2.onreadystatechange = function() 
+	x2.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x2.status == 200 && x2.readyState == 4) 
+		if (x2.status == 200 && x2.readyState == 4)
 		{
 			//show buildings
 			fillCountry(x2.responseText);
@@ -47,11 +47,11 @@ function fillCountry(data)
 {
 	var select = document.getElementById('countries');
 	//console.log(data);
-	var JSONdata = JSON.parse(data); 
+	var JSONdata = JSON.parse(data);
 	//get buildings array
-	var countries = JSONdata.countries; 
+	var countries = JSONdata.countries;
 	//read buildings
-	for(var i = 0; i < countries.length; i++) 
+	for(var i = 0; i < countries.length; i++)
 	{
 		//console.log(brands[i]);
 		var option = document.createElement('option');
@@ -76,27 +76,27 @@ function fillStates()
 	var x = new XMLHttpRequest();
 	var idCountry = document.getElementById('countries').value;
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/apis/state.php?idAll=' + idCountry, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var select = document.getElementById('states');
 			select.innerHTML = '';
 			var select2 = document.getElementById('cities');
 			select2.innerHTML = '';
 			//console.log(x.responseText);
-			var JSONdata = JSON.parse(x.responseText); 
+			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
-			var states = JSONdata.states; 
+			var states = JSONdata.states;
 			//read buildings
-			for(var i = 0; i < states.length; i++) 
+			for(var i = 0; i < states.length; i++)
 			{
 				//console.log(models[i]);
 				var option = document.createElement('option');
@@ -123,25 +123,25 @@ function fillCities()
 	var x = new XMLHttpRequest();
 	var idState = document.getElementById('states').value;
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/apis/city.php?idAll=' + idState, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var select = document.getElementById('cities');
 			select.innerHTML = '';
 			//console.log(x.responseText);
-			var JSONdata = JSON.parse(x.responseText); 
+			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
-			var cities = JSONdata.cities; 
+			var cities = JSONdata.cities;
 			//read buildings
-			for(var i = 0; i < cities.length; i++) 
+			for(var i = 0; i < cities.length; i++)
 			{
 				//console.log(models[i]);
 				var option = document.createElement('option');
@@ -168,25 +168,25 @@ function fillUniversities()
 	var x = new XMLHttpRequest();
 	var idCity = document.getElementById('cities').value;
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/apis/university.php?idAll=' + idCity, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var select = document.getElementById('universities');
 			select.innerHTML = '';
 			//console.log(x.responseText);
-			var JSONdata = JSON.parse(x.responseText); 
+			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
-			var universities = JSONdata.universities; 
+			var universities = JSONdata.universities;
 			//read buildings
-			for(var i = 0; i < universities.length; i++) 
+			for(var i = 0; i < universities.length; i++)
 			{
 				//console.log(models[i]);
 				var option = document.createElement('option');
@@ -209,23 +209,23 @@ function latlon()
 {
 	var x = new XMLHttpRequest();
 	var university = document.getElementById('universities').value;
-	x.open('GET', 'http://localhost:8080/apis/apis/university.php?id=' + university, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?id=' + university, true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var latitude = document.getElementById('latitude');
 			var longitude = document.getElementById('longitude');
 			//console.log(x.responseText);
-			var JSONdata = JSON.parse(x.responseText); 
+			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
-			var university = JSONdata.university; 
+			var university = JSONdata.university;
 			//read buildings
 			latitude.innerHTML = university.location.latitude;
 			longitude.innerHTML = university.location.longitude;
@@ -238,11 +238,11 @@ function fillBrands(data)
 {
 	var select = document.getElementById('brands');
 	//console.log(data);
-	var JSONdata = JSON.parse(data); 
+	var JSONdata = JSON.parse(data);
 	//get buildings array
-	var brands =JSONdata.brands; 
+	var brands =JSONdata.brands;
 	//read buildings
-	for(var i = 0; i < brands.length; i++) 
+	for(var i = 0; i < brands.length; i++)
 	{
 		//console.log(brands[i]);
 		var option = document.createElement('option');
@@ -267,25 +267,25 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/apis/model.php?idAll=' + idBrand, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
-	x.onreadystatechange = function() 
+	x.onreadystatechange = function()
 	{
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var select = document.getElementById('models');
 			select.innerHTML = '';
 			//console.log(x.responseText);
-			var JSONdata = JSON.parse(x.responseText); 
+			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
-			var models =JSONdata.models; 
+			var models =JSONdata.models;
 			//read buildings
-			for(var i = 0; i < models.length; i++) 
+			for(var i = 0; i < models.length; i++)
 			{
 				//console.log(models[i]);
 				var option = document.createElement('option');

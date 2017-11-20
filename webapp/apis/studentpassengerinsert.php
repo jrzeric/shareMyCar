@@ -5,9 +5,9 @@
 	//allow methods
 	header('Access-Control-Allow-Methods: POST');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/studentpassenger.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/university.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/studentpassenger.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
 
 	//POST
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,11 +26,11 @@
 				//validation
 				$errorU = false;
 
-				try 
+				try
 				{
 					$u = new University($_POST['university']);
 				}
-				catch(RecordNotFoundException $ex) 
+				catch(RecordNotFoundException $ex)
 				{
 					$errorU = true; //found error
 					echo json_encode(array(
@@ -39,7 +39,7 @@
 					));
 				}
 
-				if (!$errorU) 
+				if (!$errorU)
 				{
 					$sp = new StudentPassenger();
 
@@ -75,9 +75,9 @@
 							'status' => 3,
 							'errorMessage' => 'Could not add user'
 						));
-						
+
 					}
-						
+
 				}
 			}
 		else
@@ -85,8 +85,8 @@
 				'status' => 1,
 				'errorMessage' => 'Missing Parameters'
 			));
-			
-		
+
+
 	}
-	
+
 ?>

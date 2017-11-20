@@ -5,12 +5,12 @@
 	//allow methods
 	header('Access-Control-Allow-Methods: POST');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/studentdriver.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/university.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/brand.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/model.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/car.php');
-		require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/studentdriver.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
 
 	//POST
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -36,11 +36,11 @@
 				$errorU = false;
 				$errorB = false;
 				//building type
-				try 
+				try
 				{
 					$m = new Model($_POST['model']);
 				}
-				catch(RecordNotFoundException $ex) 
+				catch(RecordNotFoundException $ex)
 				{
 					$error = true; //found error
 					echo json_encode(array(
@@ -49,11 +49,11 @@
 					));
 				}
 
-				try 
+				try
 				{
 					$b = new Model($_POST['brand']);
 				}
-				catch(RecordNotFoundException $ex) 
+				catch(RecordNotFoundException $ex)
 				{
 					$errorB = true; //found error
 					echo json_encode(array(
@@ -62,11 +62,11 @@
 					));
 				}
 
-				try 
+				try
 				{
 					$u = new University($_POST['university']);
 				}
-				catch(RecordNotFoundException $ex) 
+				catch(RecordNotFoundException $ex)
 				{
 					$errorU = true; //found error
 					echo json_encode(array(
@@ -75,7 +75,7 @@
 					));
 				}
 
-				if (!$error && !$errorU && !$errorB) 
+				if (!$error && !$errorU && !$errorB)
 				{
 					//create building object
 					$sd = new StudentDriver();
@@ -121,9 +121,9 @@
 							'status' => 3,
 							'errorMessage' => 'Could not add user'
 						));
-						
+
 					}
-						
+
 				}
 			}
 		else
@@ -131,8 +131,8 @@
 				'status' => 1,
 				'errorMessage' => 'Missing Parameters'
 			));
-			
-		
+
+
 	}
-	
+
 ?>

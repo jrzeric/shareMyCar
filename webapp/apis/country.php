@@ -1,26 +1,23 @@
 <?php
-	
 	//access control
 	//allow access from outside the server
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
 	header('Access-Control-Allow-Methods: GET');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/state.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/country.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET') 
-	{
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['id'])) 
-		{
+		if (isset($_GET['id'])) {
 			try {
 				//create object
-				$s = new State($_GET['id']);
+				$c = new Brand($_GET['id']);
 				//display
 				echo json_encode(array(
 					'status' => 0,
-					'state' => json_decode($s->toJson())
+					'country' => json_decode($c->toJson())
 				));
 			}
 			catch (RecordNotFoundException $ex) {
@@ -30,16 +27,10 @@
 				));
 			}
 		}
-		else if(isset($_GET['idAll']))
-		{
-			echo State::getAllSJson($_GET['idAll']);
+		else {
+			echo Country::getAllJson();
 		}
-		else 
-		{
-			echo json_encode(array(
-					'status' => 1,
-					'errorMessage' => 'Missing parameters'
-				));
-		}
-		}
+
+	}
+
 ?>

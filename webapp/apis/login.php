@@ -7,11 +7,11 @@
 	header('Access-Control-Allow-Headers: email, password');
 	//read headers
 	$headers = getallheaders();
-	
+
 	//use user class
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
 	//use security
-	require_once($_SERVER['DOCUMENT_ROOT'].'/apis/security/security.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/security/security.php');
 	//check if headers were received
 	if (isset($headers['email']) && isset($headers['password'])) {
 		//authenticate user
