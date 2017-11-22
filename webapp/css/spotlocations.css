@@ -1,0 +1,24 @@
+.block {
+  float:left;
+  margin: 20px;
+  padding: 10px;
+  width: calc((100% / 5));
+  height: auto;
+  border: 1px solid black;
+}
+h3 {
+  text-align: center;
+  font-size: 14pt;
+}
+p {
+  margin: 0px;
+  text-align: center;
+}
+button {
+  float: right;
+  margin-top: 20px;
+  padding: 3px;
+}
+input {
+  width: calc(100% / 2);
+}
