@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>ShareMyCar - Travel</title>
-	<link rel="stylesheet" href="css/travels.css">
+	<title>Register Driver - ShareMyCar</title>
+	<link rel="stylesheet" href="css/register.css">
 	<link rel="icon" type="image/png" href="img/smc.png">
+	<script src="js/index.js"></script>
 </head>
-<body>
+<body onload="init()">
 	<div id="empty">
 		<header>
 			<div class="menu">
@@ -24,40 +25,51 @@
 		</header>
 	</div>
 	<div id="content">
-    <div class="form">
-    <label for="">FirstName: </label>
-    <input type="text" name="firstname" placeholder="FirstName">
-    <label for="">LastName: </label>
-    <input type="text" name="lastname" placeholder="LastName">
-    <label for="">Date Of Birth: </label>
-    <input type="text" name="dateofbirth" placeholder="DateOfBirth">
-    <label for="">E-mail: </label>
-    <input type="text" name="email" placeholder="E-Mail">
-    <label for="">CellPhone: </label>
-    <input type="text" name="cellphone" placeholder="CellPhone">
-    <select id="countries" onchange="fillStates()">
-      <option value="Select Country...">Select Country...</option>
-    </select>
-    <select id="states" onchange="fillCities()">
-      <option value="Select State...">Select State...</option>
-    </select>
-    <select id="cities" onchange="fillUniversities()">
-      <option value="Select City...">Select City...</option>
-    </select>
-    <select id="universities" onclick="latlon()">
-      <option value="Select university...">Select University...</option>
-    </select>
-<p id="latitude">Latitude</p>
-<p id="longitude">Longitude</p>
-</div>
-      <div class="formmessage">
-				<label id="message"></label>
-			</div>
-			<div class="formbuttons">
-				<button class="ok">Ok</button><br><br>
-				<button class="cancel">Cancel</button>
-			</div>
+			<h1>Register as Driver</h1>
+			<h2>Drive, Help, Earn Earnings.</h2>
+        <div class="form">
+          <input type="text" name="firstname" placeholder="First Name">
+          <input type="text" name="lastname" placeholder="Last Name">
+          <input type="date" name="dateofbirth" placeholder="Date Of Birth: dd/mm/yy">
+          <input type="email" name="email" placeholder="Email: example@email.com">
+          <input type="tel" name="phonenumber" placeholder="Phone Number: In The Form xxx-xxx-xxxx"required
+           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+    			<span class="validity"></span>
+					<select id="countries" onchange="fillStates()">
+						<option value="Select Country...">Select Country...</option>
+					</select>
+					<select id="states" onchange="fillCities()">
+						<option value="Select State...">Select State...</option>
+					</select>
+					<select id="cities" onchange="fillUniversities()">
+						<option value="Select City...">Select City...</option>
+					</select>
+					<select id="universities" onclick="latlon()">
+						<option value="Select university...">Select University...</option>
+					</select>
+					<p id="latitude">Latitude</p>
+					<p id="longitude">Longitude</p>
+					<h2>Login information</h2>
+					<input type="text" name="username" placeholder="Username">
+					<input type="password" name="firstname" placeholder="Password">
+					<input type="password" name="firstname" placeholder="Confirm Password">
+					<h2>Car Information</h2>
+					<select id="brands" onchange="fillModels()">
+						<option>Select Brand...</option>
+					</select>
+					<select id="models">
+						<option>Select Model...</option>
+					</select>
+					<input type="date" name="year" placeholder="Year">
+					<input type="text" name="username" placeholder="License Plate: XXX-XX-XX">
+					<input type="text" name="username" placeholder="Driver License">
+					<div class="formbuttons">
+						<button class="ok">Register</button>
+					</div>
+				</div>
   </div>
-	<footer></footer>
+	<footer>
+
+	</footer>
 </body>
 </html>
