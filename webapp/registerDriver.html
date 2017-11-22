@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>ShareMyCar - Travel</title>
+	<link rel="stylesheet" href="css/travels.css">
+	<link rel="icon" type="image/png" href="img/smc.png">
+</head>
+<body>
+	<div id="empty">
+		<header>
+			<div class="menu">
+				<div class="logo">
+					<a href="index.html"><img src="img/logo.png" alt="ShareMyCar Logo"/></a>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="travels.html">Travels</a></li>
+						<li><a href="#">Community</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+	</div>
+	<div id="content">
+    <div class="form">
+    <label for="">FirstName: </label>
+    <input type="text" name="firstname" placeholder="FirstName">
+    <label for="">LastName: </label>
+    <input type="text" name="lastname" placeholder="LastName">
+    <label for="">Date Of Birth: </label>
+    <input type="text" name="dateofbirth" placeholder="DateOfBirth">
+    <label for="">E-mail: </label>
+    <input type="text" name="email" placeholder="E-Mail">
+    <label for="">CellPhone: </label>
+    <input type="text" name="cellphone" placeholder="CellPhone">
+    <select id="countries" onchange="fillStates()">
+      <option value="Select Country...">Select Country...</option>
+    </select>
+    <select id="states" onchange="fillCities()">
+      <option value="Select State...">Select State...</option>
+    </select>
+    <select id="cities" onchange="fillUniversities()">
+      <option value="Select City...">Select City...</option>
+    </select>
+    <select id="universities" onclick="latlon()">
+      <option value="Select university...">Select University...</option>
+    </select>
+<p id="latitude">Latitude</p>
+<p id="longitude">Longitude</p>
+</div>
+      <div class="formmessage">
+				<label id="message"></label>
+			</div>
+			<div class="formbuttons">
+				<button class="ok">Ok</button><br><br>
+				<button class="cancel">Cancel</button>
+			</div>
+  </div>
+	<footer></footer>
+</body>
+</html>
