@@ -13,7 +13,7 @@
 		if (isset($_GET['id'])) {
 			try {
 				//create object
-				$c = new Brand($_GET['id']);
+				$c = new Country($_GET['id']);
 				//display
 				echo json_encode(array(
 					'status' => 0,

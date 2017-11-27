@@ -30,7 +30,9 @@
 			isset($_POST['year']) &&
 			isset($_POST['licensePlate']) &&
 			isset($_POST['password']) &&
-			isset($_POST['driverLicense'])) {
+			isset($_POST['driverLicense'])&&
+			isset($_POST['latitude']) && 
+			isset($_POST['longitude'])) {
 				//validation
 				$error = false;
 				$errorU = false;
@@ -100,6 +102,8 @@
 
 					$us = new User();
 					$us->setPassword($_POST['password']);
+
+					$sd->setLocation(new Location($_POST['latitude'], $_POST['longitude']));
 
 					//add
 					if ($sd->add())
