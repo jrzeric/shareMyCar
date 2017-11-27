@@ -1,7 +1,7 @@
 function login() {
 	console.log('Getting token...');
 	var x = new XMLHttpRequest();
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/login.php', true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/login.php', true);
 	x.setRequestHeader('email', document.getElementById('email').value);
 	x.setRequestHeader('password', document.getElementById('password').value);
 	x.send();
@@ -10,7 +10,7 @@ function login() {
 			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 			if (JSONdata.status == 0) {
 				sessionStorage.authenticated = true;
-				if (JSONdata.user.id.role.id == 'P') 
+				if (JSONdata.user.id.role.id == 'P')
 				{
 					sessionStorage.userId = JSONdata.user.id.id;
 					sessionStorage.userRole = JSONdata.user.id.role.name;
@@ -54,5 +54,5 @@ function login() {
 			}
 		}
 	}
-	
+
 }

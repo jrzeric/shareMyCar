@@ -4,7 +4,7 @@ function init()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -24,7 +24,7 @@ function init()
 	//create request
 	var x2 = new XMLHttpRequest();
 	//prepare request
-	x2.open('GET', 'http://localhost/sharemycar/webapp/apis/country.php', true);
+	x2.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/country.php', true);
 	//send request
 	x2.send();
 	//handle readyState change event
@@ -76,7 +76,7 @@ function fillStates()
 	var x = new XMLHttpRequest();
 	var idCountry = document.getElementById('countries').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -123,7 +123,7 @@ function fillCities()
 	var x = new XMLHttpRequest();
 	var idState = document.getElementById('states').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -168,7 +168,7 @@ function fillUniversities()
 	var x = new XMLHttpRequest();
 	var idCity = document.getElementById('cities').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -209,7 +209,7 @@ function latlon()
 {
 	var x = new XMLHttpRequest();
 	var university = document.getElementById('universities').value;
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?id=' + university, true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/university.php?id=' + university, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -267,7 +267,7 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
+	x.open('GET', 'http://45.32.169.22/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
