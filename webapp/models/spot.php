@@ -86,10 +86,10 @@
       //get connection
 			$connection = MySqlConnection::getConnection();
 
-			$query = 'insert into spotlocations (student, slot, latitude, longitude, updated_at) values(?, ?, ?, ?, ?)';
+			$query = 'insert into spotlocations (student, slot, latitude, longitude) values(?, ?, ?, ?)';
 			$command = $connection->prepare($query);
 
-      $command->bind_param('iidds', $this->student->getId(), $this->slot, $this->location->getLatitude(), $this->location->getLongitude(), $this->dateTime);
+      $command->bind_param('iidd', $this->student->getId(), $this->slot, $this->location->getLatitude(), $this->location->getLongitude());
       $result = $command->execute();
 
 			mysqli_stmt_close($command);
