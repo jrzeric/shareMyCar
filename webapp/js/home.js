@@ -18,7 +18,7 @@ function init()
       ['Tu universidad ' + sessionStorage.userUniversity, sessionStorage.userUniversityLat, sessionStorage.userUniversityLon],
       ['Tu casa', sessionStorage.userLocationLat, sessionStorage.userLocationLon]
     ];
-	if (sessionStorage.userRole == 'Driver') 
+	if (sessionStorage.userRole == 'Driver')
 	{
 		var b = document.getElementById('brand');
 		var m = document.getElementById('model');
@@ -33,7 +33,7 @@ function init()
 		dl.innerHTML = sessionStorage.userDriverLicense;
 	}//if
 
-	var map = new google.maps.Map(document.getElementById('map'), 
+	var map = new google.maps.Map(document.getElementById('map'),
 	{
       zoom: 10,
       center: new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon),
@@ -44,8 +44,8 @@ function init()
 
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) 
-    {  
+    for (i = 0; i < locations.length; i++)
+    {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
