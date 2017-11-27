@@ -109,7 +109,7 @@ function registerSpots()
     var x = new XMLHttpRequest();
     //prepare request
     console.log(sessionStorage.userId);
-    x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/spot.php', true);
+    x.open('POST', 'http://localhost/sharemycar/webapp/apis/spot.php', true);
     //form data
     var fd = new FormData();
     //values
