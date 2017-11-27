@@ -1,6 +1,6 @@
 {
 	"server" : "localhost",
-	"database" : "sharemycar2",
-	"user" : "root",
-	"password" : "toor"
+	"database" : "shareMyCar",
+	"user" : "webapp",
+	"password" : "ppabew"
 }
