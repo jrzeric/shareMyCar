@@ -1,5 +1,5 @@
 {
-	"server" : "localhost",
+	"server" : "45.32.169.22",
 	"database" : "shareMyCar",
 	"user" : "webapp",
 	"password" : "ppabew"
