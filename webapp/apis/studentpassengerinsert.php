@@ -8,6 +8,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/studentpassenger.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/location.php');
 
 	//POST
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,7 +23,9 @@
 			isset($_POST['controlNumber']) &&
 			isset($_POST['studentId']) &&
 			isset($_POST['password']) &&
-			isset($_POST['payAccount'])) {
+			isset($_POST['payAccount']) &&
+			isset($_POST['latitude']) && 
+			isset($_POST['longitude'])) {
 				//validation
 				$errorU = false;
 
@@ -58,6 +61,8 @@
 					$us = new User();
 					$us->setPassword($_POST['password']);
 
+					$sp->setLocation(new Location($_POST['latitude'], $_POST['longitude']));
+
 					//add
 					if ($sp->add())
 					{
@@ -67,6 +72,8 @@
 							'status' => 0,
 							'errorMessage' => 'User added successfully'
 						));
+
+						$us->add();
 
 					}
 					else
