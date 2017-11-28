@@ -1,6 +1,9 @@
 <?php
 
 	require_once('mysqlconnection.php');
+	require_once('studentdriver.php');
+	require_once('studentpassenger.php');
+	require_once('mysqlconnection.php');
 	require_once('exceptions/invaliduserexception.php');
 	
 	/**
@@ -10,13 +13,13 @@
 	{
 
 		private $iduser;
+		private $user;
 		private $password;
 		private $email;
 
 
 		//Setters & Getter brand
-		public function getIdUser() { return $this->iduser; }
-		public function setIdUser($value) { $this->iduser = $value; }
+		public function getUser() { return $this->iduser; }
 
 		//Setters & Getter model
 		public function getPassword() { return $this->password; }
@@ -30,7 +33,7 @@
 		{
 			if (func_num_args() == 0)
 			{
-				$this->iduser = '';
+				$this->user = '';
 				$this->password = '';
 				$this->email = '';
 
@@ -45,7 +48,7 @@
 				//get connection
 				$connection = MySQLConnection::getConnection();
 				//query
-				$query = 'select s.email, s.id from students as s 
+				$query = 'select s.email, s.id, s.profile from students as s 
 							inner join users as u on s.id = u.student
 							where s.email = ? AND u.password = sha1(?)';//the ? is a param
 				//command
@@ -55,7 +58,7 @@
 				//execute
 				$command->execute();
 				//bind results
-				$command->bind_result($this->email, $this->iduser);//asign the results to the atributes
+				$command->bind_result($email1, $idu, $pro);//asign the results to the atributes
 				//fetch
 				$found = $command->fetch();
 				//close command
@@ -63,7 +66,22 @@
 				//close connection
 				$connection->close();
 				//throw exception if record not found
-				if (!$found) throw new InvalidUserException($email);;
+				if ($found)
+				{
+
+					if ($pro == 'P') 
+					{
+						$this->email = $email1;
+						$this->user = new StudentPassenger($idu);
+					}
+					else
+					{
+						$this->email = $email1;
+						$this->user = new StudentDriver($idu);
+					}
+				}
+				else
+					throw new InvalidUserException($email);
 			}
 		}//constructor
 
@@ -73,7 +91,7 @@
 		{
 			return json_encode(array(
 				'email' => $this->email,
-				'id' => $this->iduser));
+				'id' => json_decode($this->user->toJson())));
 		}//toJson
 
 		public function add()

@@ -3,6 +3,7 @@
 	require_once('mysqlconnection.php');
 	require_once('university.php');
 	require_once('role.php');
+	require_once('location.php');
 	require_once('exceptions/recordnotfoundexception.php');
 	/**
 	*  Student Class
@@ -21,11 +22,11 @@
 		private $role;
 		private $controlNumber;
 		private $payAcount;
+		private $location;
 
 
 		//Setters & Getter id
 		public function getId() { return $this->id; }
-		public function setId($value) { $this->id = $value; }
 
 		//Setters & Getter Name
 		public function getName() { return $this->name; }
@@ -71,6 +72,9 @@
 		public function getStudentId() { return $this->studentId; }
 		public function setStudentId($value) { $this->studentId = $value; }
 
+		public function getLocation() { return $this->location; }
+		public function setLocation($value) { $this->location = $value; }
+
 
 
 		function __construct()
@@ -99,7 +103,7 @@
 				//get connection
 				$connection = MySQLConnection::getConnection();
 				//query
-				$query = "select id, profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, payAccount from students where id = ? and profile = 'P'";
+				$query = "select id, profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, payAccount, latitude, longitude from students where id = ? and profile = 'P'";
 				//command
 				$command = $connection->prepare($query);
 				//params
@@ -108,7 +112,7 @@
 
 				$command->execute();
 				//bind results
-				$command->bind_result($id, $profile, $lastName, $secondLastName, $name, $birthDate, $email, $cellphone, $university, $controlNumber, $payAcount);//asign the results to the atributes
+				$command->bind_result($id, $profile, $lastName, $secondLastName, $name, $birthDate, $email, $cellphone, $university, $controlNumber, $payAcount, $latitude, $longitude);//asign the results to the atributes
 				//fetch
 				$found = $command->fetch();
 				//close command
@@ -116,7 +120,6 @@
 				//close connection
 				$connection->close();
 				//throw exception if record not found
-				echo 'profile : '.$profile;
 				if ($found)
 				{
 					$this->id = $id;
@@ -130,13 +133,13 @@
 					$this->university = new University($university);
 					$this->controlNumber = $controlNumber;
 					$this->payAcount = $payAcount;
-
+					$this->location = new Location($latitude, $longitude);
 				}
 				else
 					throw new RecordNotFoundException();
 			}
 
-			if (func_num_args() == 11)
+			if (func_num_args() == 13)
 			{
 				$arguments = func_get_args();
 				$this->id = $arguments[0];
@@ -150,6 +153,7 @@
 				$this->university = new University($arguments[8]);
 				$this->controlNumber = $arguments[9];
 				$this->payAcount = $arguments[10];
+				$this->location = new Location($arguments[11], $arguments[12]);
 			}//if
 
 		}//Constructor
@@ -161,12 +165,12 @@
 			//get connection
 			$connection = MySQLConnection::getConnection();
 			//query
-			$query = "INSERT INTO students (profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, studentId, payAccount, status) VALUES ('P', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'UP');";
+			$query = "INSERT INTO students (profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, studentId, payAccount, status, latitude, longitude) VALUES ('P', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'UP', ?, ?);";
 			//command
 			$command = $connection->prepare($query);
 			//parameters
 			/*echo "INSERT INTO students (profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, studentId, payAccount, status) VALUES ('D',". $this->lastName .", ". $this->secondLastName .",".$this->name ."," .$this->birthDate .",".$this->email.",".$this->cellphone.",".$this->university->getId().",".$this->controlNumber.",".$this->studentId.",".$this->payAcount." 'UP');";*/
-			$command->bind_param('ssssssdssd', $this->lastName, $this->secondLastName, $this->name, $this->birthDate, $this->email, $this->cellphone, $this->university->getId(), $this->controlNumber, $this->studentId, $this->payAcount);
+			$command->bind_param('ssssssdssddd', $this->lastName, $this->secondLastName, $this->name, $this->birthDate, $this->email, $this->cellphone, $this->university->getId(), $this->controlNumber, $this->studentId, $this->payAcount, $this->location->getLatitude(), $this->location->getLongitude());
 			//execute
 			$result = $command->execute();
 			//close statement
@@ -183,12 +187,12 @@
 			//get connection
 			$connection = MySQLConnection::getConnection();
 			//query
-			$query = "UPDATE students SET surname = ?, secondSurname = ?, name = ?, birthDate = ?, email = ?, cellPhone = ?, university = ?, controlNumber = ?, studentId = ?, payAccount = ? WHERE id = ?;";
+			$query = "UPDATE students SET surname = ?, secondSurname = ?, name = ?, birthDate = ?, email = ?, cellPhone = ?, university = ?, controlNumber = ?, studentId = ?, payAccount = ?, latitude = ?, longitude = ?  WHERE id = ?;";
 			//command
 			$command = $connection->prepare($query);
 			//parameters
 			/*echo "INSERT INTO students (profile, surname, secondSurname, name, birthDate, email, cellPhone, university, controlNumber, studentId, payAccount, status) VALUES ('D',". $this->lastName .", ". $this->secondLastName .",".$this->name ."," .$this->birthDate .",".$this->email.",".$this->cellphone.",".$this->university->getId().",".$this->controlNumber.",".$this->studentId.",".$this->payAcount." 'UP');";*/
-			$command->bind_param('ssssssdssdd', $this->lastName, $this->secondLastName, $this->name, $this->birthDate, $this->email, $this->cellphone, $this->university->getId(), $this->controlNumber, $this->studentId, $this->payAcount, $this->id);
+			$command->bind_param('ssssssdssdddd', $this->lastName, $this->secondLastName, $this->name, $this->birthDate, $this->email, $this->cellphone, $this->university->getId(), $this->controlNumber, $this->studentId, $this->payAcount,$this->location->getLatitude(), $this->location->getLongitude(), $this->id);
 			//execute
 			$result = $command->execute();
 			//close statement
@@ -212,7 +216,8 @@
 				'email' => $this->email,
 				'cellphone' => $this->cellphone,
 				'university' => json_decode($this->university->toJson()),
-				'controlNumber' => $this->controlNumber
+				'controlNumber' => $this->controlNumber,
+				'location' => json_decode($this->location->toJson())
 				));
 		}//toJson
 	}
