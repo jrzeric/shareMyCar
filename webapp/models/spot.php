@@ -43,7 +43,8 @@
         $this->dateTime = "";
       }
       // object with data from database
-      if(func_num_args() == 1) {
+      if(func_num_args() == 1) 
+      {
 
 				$id = func_get_arg(0);
 
@@ -69,6 +70,18 @@
 
 				} else  throw new RecordNotFoundException();
       }
+
+            // object with data from arguments
+      if(func_num_args() == 3) 
+      {
+        // get arguments
+        $arguments = func_get_args();
+        // pass arguments to attributes
+        $this->slot = $arguments[0];
+        $this->location = $arguments[1];
+        $this->description = $arguments[2];
+      }
+
       // object with data from arguments
       if(func_num_args() == 4) {
         // get arguments
@@ -129,8 +142,11 @@
 			return $list;
 		}
 
+
+
     //get all in JSON format
-		public static function getAllJson() {
+		public static function getAllJson() 
+    {
 			$list = array();
 
 			foreach(self::getAll() as $item) {
@@ -139,6 +155,51 @@
 
 			return json_encode(array('spotLocations' => $list));
 		}
+
+
+    public function toJsonS() {
+      return json_encode(array(
+        'slot' => $this->slot,
+        'location' => json_decode($this->location->toJson()),
+        'dateTime' => $this->dateTime
+      ));
+    }
+
+
+    public static function getAllS($idStudent) 
+    {
+       $list = array();
+       $connection = MySqlConnection::getConnection();
+
+        $query = 'select student, slot, latitude, longitude, updated_at from spotLocations where student = ?';
+        $command = $connection->prepare($query);
+        $command->bind_param('i', $idStudent);
+        $command->execute();
+        $command->bind_result($id, $slot, $latitude, $longitude, $dateTime);
+        while ($command->fetch()) 
+        {
+          $location = new Location($latitude, $longitude);
+          array_push($list, new Spot($slot, $location, $dateTime));
+      }
+
+        mysqli_stmt_close($command);
+        $connection->close();
+
+        return $list;
+    }
+
+    //get all in JSON format
+    public static function getAllSJson($idStudent) 
+    {
+      $list = array();
+
+      foreach(self::getAllS($idStudent) as $item) 
+      {
+        array_push($list, json_decode($item->toJsonS()));
+      }//foreach
+
+      return json_encode(array('spotLocations' => $list));
+    }//getAllJson
 
   }
 
