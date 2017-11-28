@@ -71,10 +71,9 @@
 				mysqli_stmt_close($command);
 				//close connection
 				$connection->close();
-				echo $model."--";
 				//throw exception if record not found
 				if ($found)
-				{echo "n..n";
+				{
 					$this->brand = new Brand($brand);
 					$this->model = new Model($model);
 					$this->year = $year;
