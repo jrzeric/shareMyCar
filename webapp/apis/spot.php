@@ -26,7 +26,13 @@
           'errorMessage' => $ex->get_message()
         ));
       }
-    } else {
+    }
+    else if(isset($_GET['idAll']))
+    {
+      echo Spot::getAllSJson($_GET['idAll']);
+    }
+    else 
+    {
       echo Spot::getAllJson();
     }
 
