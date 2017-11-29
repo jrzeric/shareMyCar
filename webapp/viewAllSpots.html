@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Register Driver - ShareMyCar</title>
+	<link rel="stylesheet" href="css/register.css">
+	<link rel="icon" type="image/png" href="img/smc.png">
+	<!--<script src="js/register.js"></script>-->
+	<script src="js/viewAllSpot.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
+</head>
+<body onload="init()">
+	<div id="empty">
+		<header>
+			<div class="menu">
+				<div class="logo">
+					<a href="index.html"><img src="img/logo.png" alt="ShareMyCar Logo"/></a>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="travels.html">Travels</a></li>
+						<li><a href="#">Community</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+	</div>
+	<div id="content">
+			<h1>Register as Driver</h1>
+			<h2>Drive, Help, Earn Earnings.</h2>
+        <div class="form" align="center">
+    		<div id="map" style="width: 500px; height: 400px;"></div>
+    		<input type="button" onclick="registerSpots()" value="Register Spots">
+		</div>
+  </div>
+	<footer>
+
+	</footer>
+</body>
+</html>
