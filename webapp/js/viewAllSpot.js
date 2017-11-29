@@ -23,7 +23,7 @@ function init()
 
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/spot.php?idAll='+sessionStorage.userId, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/spot.php', true);
 	x.send();
 	//handle readyState change event
 	x.onreadystatechange = function() 
@@ -38,9 +38,11 @@ function init()
 			for(var i = 0; i < spots.length; i++) 
 			{
 				var spot = new google.maps.LatLng(spots[i].location.latitude, sessionStorage.userLocationLon);
+				var texto = spots[i].student.name + spots[i].student.lastName;
+				console.log(texto);
 				console.log(spot);
 				console.log(spots[i]);
-				addMarker(spot, i);
+				addMarker(spot, texto);
 			
 			}//for
 		}	
@@ -54,7 +56,7 @@ function addHome(location)
 	var marker = new google.maps.Marker(
 	{
 	    position: location,
-	    icon: 'http://localhost:8080/sharemycar/webapp/img/h.png',
+	     icon: 'http://localhost:8080/sharemycar/webapp/img/h.png',
 	    map: map
 	 });
 
@@ -81,7 +83,7 @@ function addMarker(location, texto)
 	  map: map
 	});
 
-    var contentString = 'Parada numero: ' + (texto + 1);
+    var contentString = texto + '<div class="buttons"><button class="ok" onClick="perron()">Order that shit</button></div>';
     var infowindow = new google.maps.InfoWindow({
           	content: contentString
         });
@@ -90,3 +92,8 @@ function addMarker(location, texto)
           infowindow.open(map, marker);
         });
 }//addMarker
+
+function perron() 
+{
+	alert('Ya jala');
+}

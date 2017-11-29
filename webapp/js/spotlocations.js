@@ -34,5 +34,5 @@ function showCoordenates(data, slot) {
   console.log('Latitude: ' + latitude);
   console.log('Longitude: ' + lontigude);
   console.log('Slot: ' + slot)
-
+  
 }
