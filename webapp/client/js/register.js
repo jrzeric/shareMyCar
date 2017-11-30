@@ -2,23 +2,9 @@ var map;
 var markers = [];
 var latitude = 0;
 var longitude = 0;
-/*function initMap() 
-{
 
-        // This event listener will call addMarker() when the map is clicked.
-        map.addListener('click', function(event) {
-          addMarker(event.latLng);
-          console.log(event.latLng);
-        });
-
-
-
-        // Adds a marker at the center of the map.
-}
-      */
-
-      // Adds a marker to the map and push to the array.
-function addMarker(map, location) 
+// Adds a marker to the map and push to the array.
+function addMarker(map, location)
 {
         var marker = new google.maps.Marker({
           position: location,
@@ -34,7 +20,7 @@ function addMarker(map, location)
       }));
       }
 
-function setMapOnAll(map) 
+function setMapOnAll(map)
 {
     for (var i = 0; i < markers.length; i++) { markers[i].setMap(map); }
 }
@@ -47,7 +33,7 @@ function showMarkers() { setMapOnAll(map); }
 
 function deleteMarkers() { clearMarkers(); markers = []; }
 
-function getAddress(slot) 
+function getAddress(slot)
 {
   var s = document.getElementById('slot' + slot);
   var address = s.value;
@@ -55,7 +41,7 @@ function getAddress(slot)
   getCoordenates(address, slot);
 }
 
-function getCoordenates(address, slot) 
+function getCoordenates(address, slot)
 {
   // Create request
 	var x = new XMLHttpRequest();
@@ -75,7 +61,7 @@ function getCoordenates(address, slot)
 	}
 }
 
-function showCoordenates(data, slot) 
+function showCoordenates(data, slot)
 {
   // Parse to JSON
   deleteMarkers();
@@ -97,7 +83,7 @@ function showCoordenates(data, slot)
     });
   addMarker(map, myLatlng);
 
-  
+
 }
 
 
@@ -109,7 +95,7 @@ function init()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -129,7 +115,7 @@ function init()
 	//create request
 	var x2 = new XMLHttpRequest();
 	//prepare request
-	x2.open('GET', 'http://localhost/sharemycar/webapp/apis/country.php', true);
+	x2.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/country.php', true);
 	//send request
 	x2.send();
 	//handle readyState change event
@@ -157,8 +143,8 @@ function init()
 
     var marker, i;
 
-    for (i = 0; i < markers.length; i++) 
-    {  
+    for (i = 0; i < markers.length; i++)
+    {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(markers[i][0], markers[i][1]),
         map: map
@@ -209,7 +195,7 @@ function fillStates()
 	var x = new XMLHttpRequest();
 	var idCountry = document.getElementById('countries').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -256,7 +242,7 @@ function fillCities()
 	var x = new XMLHttpRequest();
 	var idState = document.getElementById('states').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -301,7 +287,7 @@ function fillUniversities()
 	var x = new XMLHttpRequest();
 	var idCity = document.getElementById('cities').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -342,7 +328,7 @@ function latlon()
 {
 	var x = new XMLHttpRequest();
 	var university = document.getElementById('universities').value;
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?id=' + university, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/university.php?id=' + university, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -400,7 +386,7 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -461,7 +447,7 @@ function miniMap()
 
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) {  
+    for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
@@ -479,13 +465,13 @@ function miniMap()
 
 
 /*POST Passenger*/
-function postPassenger() 
+function postPassenger()
 {
 	console.log('POSTING passenger...');
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://localhost/sharemycar/webapp/apis/studentpassengerinsert.php', true);
+	x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/studentpassengerinsert.php', true);
 	//form data
 	var fd = new FormData();
 	//values
@@ -512,7 +498,7 @@ function postPassenger()
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 			if(JSONdata.status == 0)
@@ -530,13 +516,13 @@ function postPassenger()
 }
 
 /*POST Passenger*/
-function postDriver() 
+function postDriver()
 {
 	console.log('POSTING passenger...');
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://localhost/sharemycar/webapp/apis/studentdriverinsert.php', true);
+	x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/studentdriverinsert.php', true);
 	//form data
 	var fd = new FormData();
 	//values
@@ -568,7 +554,7 @@ function postDriver()
 		// check status
 		// status : 200=OK, 404=Page not found, 500=server denied access
 		// readyState : 4=Back with data
-		if (x.status == 200 && x.readyState == 4) 
+		if (x.status == 200 && x.readyState == 4)
 		{
 			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 			if(JSONdata.status == 0)

@@ -1,25 +1,62 @@
-function init() 
+var map;
+
+function initPassenger() 
 {
 
-	var fn = document.getElementById('firstname');
-	var ln = document.getElementById('lastname');
-	var sn = document.getElementById('secondlastname');
+	var fn = document.getElementById('name');
 	var u = document.getElementById('university');
 	var r = document.getElementById('role');
-	var cn = document.getElementById('controlNumber');
+	var c = document.getElementById('cellphone');
+	var e = document.getElementById('email');
+	//var ci = document.getElementById('city');
 	fn.value = sessionStorage.userName;
-	ln.value = sessionStorage.userLastName;
-	sn.value = sessionStorage.userSecondLastName;
 	u.value = sessionStorage.userUniversity;
 	r.value = sessionStorage.userRole;
-	cn.value = sessionStorage.userControlNumber;
+	c.value = sessionStorage.userCellPhone;
+	e.value = sessionStorage.userEmail;
 	console.log(sessionStorage.userUniversityLon);
-	var locations = [
-      ['Tu universidad ' + sessionStorage.userUniversity, sessionStorage.userUniversityLat, sessionStorage.userUniversityLon],
-      ['Tu casa', sessionStorage.userLocationLat, sessionStorage.userLocationLon]
-    ];
-	if (sessionStorage.userRole == 'Driver') 
+  	var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
+  	var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
+
+	map = new google.maps.Map(document.getElementById('map'),
 	{
+      zoom: 10,
+      center: new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+  	addHome(home);
+  	addUniversity(university);
+
+}
+
+function spotRegister()
+{
+	window.location = 'spots.html';
+}
+
+function initDriver() 
+{
+
+	var fn = document.getElementById('name');
+	var u = document.getElementById('university');
+	var r = document.getElementById('role');
+	var c = document.getElementById('cellphone');
+	var e = document.getElementById('email');
+	document.getElementById('profile').style.backgroundImage = "url('img/default.png')";
+	document.getElementById('profile2').style.backgroundImage = "url('img/default.png')";
+	//var ci = document.getElementById('city');
+	fn.innerHTML = sessionStorage.userName + ' ' + sessionStorage.userLastName + ' ' + sessionStorage.userSecondLastName;
+	u.innerHTML = sessionStorage.userUniversity;
+	r.innerHTML = sessionStorage.userRole;
+	c.innerHTML = sessionStorage.userCellPhone;
+	e.innerHTML = sessionStorage.userEmail;
+	console.log(sessionStorage.userUniversityLon);
+  	var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
+  	var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
+	if (sessionStorage.userRole == 'Driver')
+	{
+		/*
 		var b = document.getElementById('brand');
 		var m = document.getElementById('model');
 		var y = document.getElementById('year');
@@ -31,32 +68,44 @@ function init()
 		y.innerHTML = sessionStorage.userYear;
 		lp.innerHTML = sessionStorage.userLicensePlate;
 		dl.innerHTML = sessionStorage.userDriverLicense;
+		*/
 	}//if
 
-	var map = new google.maps.Map(document.getElementById('map'), 
+	map = new google.maps.Map(document.getElementById('map'),
 	{
       zoom: 10,
       center: new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var infowindow = new google.maps.InfoWindow();
+  	addHome(home);
+  	addUniversity(university);
 
-    var marker, i;
+}
 
-    for (i = 0; i < locations.length; i++) 
-    {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
+function spotRegister()
+{
+	window.location = 'spots.html';
+}
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
+// Adds a marker to the map and push to the array.
+function addHome(location) 
+{
+  var marker = new google.maps.Marker(
+  {
+    position: location,
+    icon: 'http://localhost:8080/sharemycar/webapp/img/h.png',
+    map: map
+  });
+}
 
+// Adds a marker to the map and push to the array.
+function addUniversity(location) 
+{
+  var marker = new google.maps.Marker(
+  {
+    position: location,
+    icon: 'http://localhost:8080/sharemycar/webapp/img/s.png',
+    map: map
+  });
 }

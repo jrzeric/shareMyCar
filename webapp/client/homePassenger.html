@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Home - ShareMyCar</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="icon" type="image/png" href="img/smc.png">
+	<script src="js/index.js"></script>
+	<script src="js/home.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
+</head>
+<body>
+	<header id="header" >
+		<nav>
+			<ul>
+				<li><a href="#"><span class="one"><i class="icon icon-location"></i></span>New Travel</a></li>
+				<li><a href="#"><span class="two"><i class="icon icon-map2"></i></span>My Travels</a></li>
+				<li><a href="#"><span class="three"><i class="icon icon-home"></i></span>Home</a></li>
+				<li><a href="#"><span class="four"><i class="icon icon-phone"></i></span>Support</a></li>
+				<li><a onclick="logout()"><span class="five"><i class="icon icon-exit"></i></span>Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="profile" onclick="showMenu()">
+	</div>
+	<div id="sidemenu">
+		<div id="profile2" onclick="showMenu()">
+		</div>
+		<ul>
+			<li>Martin Galvan</li>
+			<li>Passenger</li>
+			<li>martingalvan3214@gmail.com</li>
+			<li>+52 1 664-386-65-89</li>
+			<li>Tijuana, BC, MX </li>
+			<li>Universidad Tecnlogica <br>de Tijuana</li>
+			<li><a href="#"><i class="icon icon-cog"></i>Edit Profile</a></li>
+			<li><a onclick="logout()"><i class="icon icon-exit"></i>Logout</a></li>
+		</ul>
+	</div>
+</body>
+</html>
