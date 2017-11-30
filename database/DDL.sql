@@ -83,7 +83,6 @@ create table if not exists countries_ctg
 	fullName VARCHAR(60) not null,
 	email VARCHAR(60) not null,
 	PASSWORD VARCHAR(60) not null,
-	remember_token VARCHAR(60) not null,
 	status CHAR(2) not null,
 	PRIMARY KEY (id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
@@ -102,8 +101,9 @@ create table if not exists countries_ctg
 	controlNumber varchar(15) not null,
 	studentId varchar(90) not null,
 	payAccount SMALLINT not null,
-	latitude DECIMAL(10, 7) not null,
-	longitude DECIMAL(10, 7) not null,
+	latitude varchar(18) not null,
+	longitude varchar(18) not null,
+	photo varchar(90) DEFAULT '/default.png',
 	status CHAR(2) not null,
 	created_at TIMESTAMP not null,
 	updated_at TIMESTAMP not null,
@@ -120,12 +120,11 @@ create table if not exists countries_ctg
 	driver SMALLINT not null,
 	brand TINYINT not null,
 	MODEL TINYINT not null,
-	year CHAR(2) not null,
+	year CHAR(4) not null,
 	licensePlate CHAR(7) not null,
 	driverLicense varchar(90) not null,
-	created_at TIMESTAMP not null,
-	updated_at TIMESTAMP not null,
-	validated_at TIMESTAMP,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
 	validated_by tinyint REFERENCES moderators(id),
 	PRIMARY KEY(driver, brand, model),
 	FOREIGN KEY (driver) REFERENcES students(id),
@@ -137,7 +136,6 @@ CREATE TABLE IF NOT EXISTS users
  (
  	student SMALLINT not null,
     PASSWORD varchar(80) not null,
-    remember_token varchar(60) not null,
     PRIMARY KEY (student),
     FOREIGN KEY (student) REFERENCES students(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
@@ -146,8 +144,8 @@ CREATE TABLE IF NOT EXISTS users
  (
  	student SMALLINT REFERENCES students(id),
     slot CHAR(1),
-    latitude DECIMAL(10,7),
-    longitude DECIMAL(10, 7),
+    latitude varchar(18),
+    longitude varchar(18),
     updated_at TIMESTAMP,
     PRIMARY KEY (student, slot),
     FOREIGN KEY (student) REFERENCES students(id)
