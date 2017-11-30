@@ -1,7 +1,7 @@
 function login() {
 	console.log('Getting token...');
 	var x = new XMLHttpRequest();
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/login.php', true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/login.php', true);
 	x.setRequestHeader('email', document.getElementById('email').value);
 	x.setRequestHeader('password', document.getElementById('password').value);
 	x.send();
@@ -10,8 +10,9 @@ function login() {
 			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 			if (JSONdata.status == 0) {
 				sessionStorage.authenticated = true;
-				if (JSONdata.user.id.role.id == 'P') 
+				if (JSONdata.user.id.role.id == 'P')
 				{
+					sessionStorage.userId = JSONdata.user.id.id;
 					sessionStorage.userRole = JSONdata.user.id.role.name;
 					sessionStorage.userName = JSONdata.user.id.name;
 					sessionStorage.userLastName = JSONdata.user.id.lastName;
@@ -22,17 +23,21 @@ function login() {
 					sessionStorage.userLocationLat = JSONdata.user.id.location.latitude;
 					sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
 					sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
+					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
+					sessionStorage.userEmail = JSONdata.user.id.email;
 					sessionStorage.token = JSONdata.token;
+					window.location = 'homePassenger.html';
 				}
 				else
 				{
+					sessionStorage.userId = JSONdata.user.id.id;
 					sessionStorage.userRole = JSONdata.user.id.role.name;
 					sessionStorage.userName = JSONdata.user.id.name;
 					sessionStorage.userLastName = JSONdata.user.id.lastName;
 					sessionStorage.userSecondLastName = JSONdata.user.id.secondLastName;
 					sessionStorage.userUniversity = JSONdata.user.id.university.name;
 					sessionStorage.userUniversityLat = JSONdata.user.id.university.location.latitude;
-					sessionStorage.userUniversityLon = JSONdata.user.id.university.location.lontitude;
+					sessionStorage.userUniversityLon = JSONdata.user.id.university.location.longitude;
 					sessionStorage.userLocationLat = JSONdata.user.id.location.latitude;
 					sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
 					sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
@@ -41,15 +46,18 @@ function login() {
 					sessionStorage.userYear = JSONdata.user.id.car.year;
 					sessionStorage.userLicensePlate = JSONdata.user.id.car.licensePlate;
 					sessionStorage.userDriverLicense = JSONdata.user.id.car.driverLicense;
+					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
+					sessionStorage.userEmail = JSONdata.user.id.email;
 					sessionStorage.token = JSONdata.token;
+					window.location = 'homeDriver.html';
 				}
-				console.log(sessionStorage.userRole);
-				window.location = 'home.html';
+				console.log(sessionStorage.userUniversityLon);
+				console.log(JSONdata.user.id.university.location.longitude);
 			}
 			else{
 				document.getElementById('error').innerHTML = JSONdata.errorMessage;
 			}
 		}
 	}
-	
+
 }
