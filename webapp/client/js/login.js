@@ -1,7 +1,7 @@
 function login() {
 	console.log('Getting token...');
 	var x = new XMLHttpRequest();
-	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/login.php', true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/login.php', true);
 	x.setRequestHeader('email', document.getElementById('email').value);
 	x.setRequestHeader('password', document.getElementById('password').value);
 	x.send();

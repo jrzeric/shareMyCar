@@ -14,6 +14,7 @@ function showMenu(){
 		document.getElementById('sidemenu').style.display = 'none';
 		document.getElementById('header').style.width = '100%';
 		document.getElementById('container').style.width = '98%';
+		document.getElementById('container').style.float = 'left';
 	}
 }
 function logout()
