@@ -4,9 +4,40 @@ var markers = [];
 //Declaracion de variables
 var coordinates = [];
 var valid = 1;
-
 function init() 
 {
+    var fn = document.getElementById('name');
+    var u = document.getElementById('university');
+    var r = document.getElementById('role');
+    var c = document.getElementById('cellphone');
+    var e = document.getElementById('email');
+    document.getElementById('profile').style.backgroundImage = "url('img/default.png')";
+    document.getElementById('profile2').style.backgroundImage = "url('img/default.png')";
+    //var ci = document.getElementById('city');
+    fn.innerHTML = sessionStorage.userName + ' ' + sessionStorage.userLastName + ' ' + sessionStorage.userSecondLastName;
+    u.innerHTML = sessionStorage.userUniversity;
+    r.innerHTML = sessionStorage.userRole;
+    c.innerHTML = sessionStorage.userCellPhone;
+    e.innerHTML = sessionStorage.userEmail;
+    console.log(sessionStorage.userUniversityLon);
+      var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
+      var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
+    if (sessionStorage.userRole == 'Driver')
+    {
+      /*
+      var b = document.getElementById('brand');
+      var m = document.getElementById('model');
+      var y = document.getElementById('year');
+      var lp = document.getElementById('licensePlate');
+      var dl = document.getElementById('DriverLicense');
+
+      b.innerHTML = sessionStorage.userCarBrand;
+      m.innerHTML = sessionStorage.userCarModel;
+      y.innerHTML = sessionStorage.userYear;
+      lp.innerHTML = sessionStorage.userLicensePlate;
+      dl.innerHTML = sessionStorage.userDriverLicense;
+      */
+    }//if
 
   var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
   var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
@@ -35,7 +66,7 @@ function addHome(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost:8080/sharemycar/webapp/img/h.png',
+    icon: 'http://localhost/sharemycar/webapp/client/img/h.png',
     map: map
   });
 }
@@ -46,7 +77,7 @@ function addUniversity(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost:8080/sharemycar/webapp/img/s.png',
+    icon: 'http://localhost/sharemycar/webapp/client/img/s.png',
     map: map
   });
 }
@@ -61,6 +92,7 @@ function addMarker(location)
       var marker = new google.maps.Marker(
     {
       position: location,
+      icon: 'http://localhost/sharemycar/webapp/client/img/car.png',
       map: map
     });
     markers.push(marker);
@@ -114,13 +146,16 @@ function registerSpots()
     var x = new XMLHttpRequest();
     //prepare request
     console.log(sessionStorage.userId);
-    x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/spot.php', true);
+    x.open('POST', 'http://localhost/sharemycar/webapp/apis/spot.php', true);
+    var t = document.getElementById('time').value;
+    console.log(t);
     //form data
     var fd = new FormData();
     fd.append('student', sessionStorage.userId);
     fd.append('slot', i);
     fd.append('latitude', coordinates[i][0]);
     fd.append('longitude', coordinates[i][1]);
+    fd.append('time', t);
     console.log(fd);
     x.send(fd);
     console.log(fd);

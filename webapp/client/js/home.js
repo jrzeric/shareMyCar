@@ -94,7 +94,7 @@ function addHome(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost:8080/sharemycar/webapp/img/h.png',
+    icon: 'http://localhost/sharemycar/webapp/client/img/h.png',
     map: map
   });
 }
@@ -105,7 +105,7 @@ function addUniversity(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost:8080/sharemycar/webapp/img/s.png',
+    icon: 'http://localhost/sharemycar/webapp/client/img/s.png',
     map: map
   });
 }
