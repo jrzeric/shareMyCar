@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS users
     slot CHAR(1),
     latitude varchar(18),
     longitude varchar(18),
+    pass_at time not null,
     updated_at TIMESTAMP,
     PRIMARY KEY (student, slot),
     FOREIGN KEY (student) REFERENCES students(id)
@@ -161,19 +162,25 @@ CREATE TABLE IF NOT EXISTS users
  CREATE TABLE IF NOT EXISTS historicalRides
  (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	beginLatitude DECIMAL(10, 7) not null,
-	beginLongitude DECIMAL(10,7) not null,
 	endLatitude DECIMAL(10, 7) not null,
 	endLongitude DECIMAL(10,7) not null,
 	driver SMALLINT REFERENCES students(id),
-	passenger SMALLINT REFERENCES students(id),
+	arrived_at DATETIME
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
+create table if not exists scheduleTravel
+{
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	idRide INT REFERENCES historicalRides(id),
+	passenger SMALLINT REFERENCES students(id),	
+	beginLatitude DECIMAL(10, 7) not null,
+	beginLongitude DECIMAL(10,7) not null,
 	paymentAmount DECIMAL(5,2),
 	requested_at DATETIME,
 	mettint_at DATETIME,
-	pickedUp_at DATETIME,
-	arrived_at DATETIME,
+	pickedUp_at DATETIME
 	status CHAR(1)
- )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+}
 
 ALTER TABLE historicalRides ADD FOREIGN KEY (STATUS) REFERENCES historicalRides_status_ctg(code);
 ALTER TABLE historicalRides ADD FOREIGN KEY (driver) REFERENCES students(id);
