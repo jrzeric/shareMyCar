@@ -1,7 +1,7 @@
 function login() {
 	console.log('Getting token...');
 	var x = new XMLHttpRequest();
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/login.php', true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/login.php', true);
 	x.setRequestHeader('email', document.getElementById('email').value);
 	x.setRequestHeader('password', document.getElementById('password').value);
 	x.send();
@@ -26,7 +26,11 @@ function login() {
 					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
 					sessionStorage.userEmail = JSONdata.user.id.email;
 					sessionStorage.token = JSONdata.token;
-					window.location = 'homePassenger.html';
+					if (JSONdata.user.id.studentId == "") 
+					{
+						window.location = 'imagen.html';
+					}
+					else window.location = 'homePassenger.html';
 				}
 				else
 				{
@@ -42,14 +46,19 @@ function login() {
 					sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
 					sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
 					sessionStorage.userCarBrand = JSONdata.user.id.car.brand.name;
+					sessionStorage.carImage = JSONdata.user.id.car.brand.photo;
 					sessionStorage.userCarModel = JSONdata.user.id.car.model.name;
 					sessionStorage.userYear = JSONdata.user.id.car.year;
 					sessionStorage.userLicensePlate = JSONdata.user.id.car.licensePlate;
-					sessionStorage.userDriverLicense = JSONdata.user.id.car.driverLicense;
 					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
 					sessionStorage.userEmail = JSONdata.user.id.email;
 					sessionStorage.token = JSONdata.token;
-					window.location = 'homeDriver.html';
+					console.log(JSONdata.user.id.studentId);
+					if (JSONdata.user.id.studentId == "") 
+					{
+						window.location = 'imagesDriver.html';
+					}
+					else window.location = 'homeDriver.html';
 				}
 				console.log(sessionStorage.userUniversityLon);
 				console.log(JSONdata.user.id.university.location.longitude);
