@@ -143,18 +143,18 @@ insert into universities_ctg(city, name, latitude, longitude) VALUES
 insert into universities_ctg(city, name, latitude, longitude) VALUES
 (5, 'UABC Facultad de Ingeniería y Negocios Tecate', 32.568249, -116.626413);
 
-insert into brands_ctg(name) VALUES
-('Ford'),
-('Nissan'),
-('Chevrolet'),
-('Toyota'),
-('Wolkswagen'),
-('Honda'),
-('BMW'),
-('AUDI'),
-('SEAT'),
-('Hyundai'),
-('Mazda');
+insert into brands_ctg(name, image) VALUES
+('Ford', 'img/brands/ford.jpg'),
+('Nissan', 'img/brands/nissan.png'),
+('Chevrolet', 'img/brands/chevrolet.jpg'),
+('Toyota', 'img/brands/toyota.png'),
+('Wolkswagen', 'img/brands/wolkswagen.png'),
+('Honda', 'img/brands/honda.png'),
+('BMW', 'img/brands/fbmw.jpg'),
+('AUDI', 'img/brands/audi.png'),
+('SEAT', 'img/brands/seat.jpg'),
+('Hyundai', 'img/brands/hyundai.jpg'),
+('Mazda', 'img/brands/mazda.jpg');
 
 
 insert into models_ctg (brand, name) VALUES
