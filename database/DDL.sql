@@ -58,6 +58,7 @@ create table if not exists countries_ctg
  (
  	id tinyint AUTO_INCREMENT,
     name VARCHAR(30) not null,
+    image varchar(60) not null,
     PRIMARY KEY (id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
@@ -104,14 +105,16 @@ create table if not exists countries_ctg
 	latitude varchar(18) not null,
 	longitude varchar(18) not null,
 	photo varchar(90) DEFAULT '/default.png',
+	city smallint not null,
 	status CHAR(2) not null,
-	created_at TIMESTAMP not null,
-	updated_at TIMESTAMP not null,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
 	validated_at TIMESTAMP,
 	validated_by tinyint,
 	PRIMARY KEY (id),
 	FOREIGN KEY (profile) REFERENCES profiles_ctg(CODE),
 	FOREIGN KEY (university) REFERENCES universities_ctg(id),
+	FOREIGN KEY (city) REFERENCES cities_ctg(CODE),
 	FOREIGN KEY (validated_by) REFERENCES moderators(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
@@ -169,7 +172,7 @@ CREATE TABLE IF NOT EXISTS users
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 create table if not exists scheduleTravel
-{
+(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	idRide INT REFERENCES historicalRides(id),
 	passenger SMALLINT REFERENCES students(id),	
@@ -178,10 +181,10 @@ create table if not exists scheduleTravel
 	paymentAmount DECIMAL(5,2),
 	requested_at DATETIME,
 	mettint_at DATETIME,
-	pickedUp_at DATETIME
+	pickedUp_at DATETIME,
 	status CHAR(1)
-}
+)engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
-ALTER TABLE historicalRides ADD FOREIGN KEY (STATUS) REFERENCES historicalRides_status_ctg(code);
+ALTER TABLE scheduleTravel ADD FOREIGN KEY (STATUS) REFERENCES historicalRides_status_ctg(code);
 ALTER TABLE historicalRides ADD FOREIGN KEY (driver) REFERENCES students(id);
-ALTER TABLE historicalRides ADD FOREIGN KEY (passenger) REFERENCES students(id);
+ALTER TABLE scheduleTravel ADD FOREIGN KEY (passenger) REFERENCES students(id);
