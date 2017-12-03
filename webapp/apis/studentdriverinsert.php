@@ -10,7 +10,8 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
-		require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/user.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
 
 	//POST
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,16 +24,16 @@
 			isset($_POST['university']) &&
 			isset($_POST['cellphone']) &&
 			isset($_POST['controlNumber']) &&
-			isset($_POST['studentId']) &&
 			isset($_POST['payAccount']) &&
 			isset($_POST['brand']) &&
 			isset($_POST['model']) &&
 			isset($_POST['year']) &&
 			isset($_POST['licensePlate']) &&
 			isset($_POST['password']) &&
-			isset($_POST['driverLicense'])&&
 			isset($_POST['latitude']) && 
-			isset($_POST['longitude'])) {
+			isset($_POST['longitude']) &&
+			isset($_POST['city'])) 
+		{
 				//validation
 				$error = false;
 				$errorU = false;
@@ -79,6 +80,9 @@
 
 				if (!$error && !$errorU && !$errorB)
 				{
+
+					$city = City::getIdCity($_POST['city']);
+
 					//create building object
 					$sd = new StudentDriver();
 					$c = new Car();
@@ -86,7 +90,6 @@
 					$c->setBrand($b);
 					$c->setYear($_POST['year']);
 					$c->setLicensePlate($_POST['licensePlate']);
-					$c->setDriverLicense($_POST['driverLicense']);
 
 					//assign values
 					$sd->setName($_POST['name']);
@@ -97,8 +100,8 @@
 					$sd->setCellphone($_POST['cellphone']);
 					$sd->setUniversity($u);
 					$sd->setControlNumber($_POST['controlNumber']);
-					$sd->setStudentId($_POST['studentId']);
 					$sd->setPayAccount($_POST['payAccount']);
+					$sd->setCity($city);
 
 					$us = new User();
 					$us->setPassword($_POST['password']);
