@@ -54,22 +54,19 @@ function initDriver()
 	console.log(sessionStorage.userUniversityLon);
   	var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
   	var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
-	if (sessionStorage.userRole == 'Driver')
-	{
-		/*
-		var b = document.getElementById('brand');
-		var m = document.getElementById('model');
-		var y = document.getElementById('year');
-		var lp = document.getElementById('licensePlate');
-		var dl = document.getElementById('DriverLicense');
 
-		b.innerHTML = sessionStorage.userCarBrand;
-		m.innerHTML = sessionStorage.userCarModel;
-		y.innerHTML = sessionStorage.userYear;
-		lp.innerHTML = sessionStorage.userLicensePlate;
-		dl.innerHTML = sessionStorage.userDriverLicense;
-		*/
-	}//if
+	var b = document.getElementById('brand');
+	var m = document.getElementById('model');
+	var y = document.getElementById('year');
+	var lp = document.getElementById('lp');
+	
+	document.getElementById('profile3').style.backgroundImage = "url('" + sessionStorage.carImage + "')";
+	document.getElementById('profile4').style.backgroundImage = "url('" + sessionStorage.carImage + "')";
+
+	b.innerHTML = sessionStorage.userCarBrand;
+	m.innerHTML = sessionStorage.userCarModel;
+	y.innerHTML = sessionStorage.userYear;
+	lp.innerHTML = sessionStorage.userLicensePlate;
 
 	map = new google.maps.Map(document.getElementById('map'),
 	{
