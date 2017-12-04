@@ -1,40 +1,41 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Register Passanger - ShareMyCar</title>
+	<title>Home - ShareMyCar</title>
 	<link rel="stylesheet" href="css/register.css">
+	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="icon" type="image/png" href="img/smc.png">
-	<script src="js/register.js"></script>
-	<!--<script src="js/spotlocations.js"></script>-->
+	<script src="js/index.js"></script>
+	<script src="js/updatePassenger.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
 </head>
 <body onload="init()">
-	<div id="empty">
-		<header>
-			<div class="menu">
-				<div class="logo">
-					<a href="index.html"><img src="img/logo.png" alt="ShareMyCar Logo"/></a>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="travels.html">Travels</a></li>
-						<li><a href="#">Community</a></li>
-						<li><a href="#">About</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-	</div>
+	<header id="header" >
+		<div id="back"></div>
+		<nav>
+			<ul>
+				<li><a href="viewAllSpot.html"><span class="one"><i class="icon icon-location"></i></span>View Your Driver</a></li>
+				<li><a href="#"><span class="two"><i class="icon icon-map2"></i></span>My Travels</a></li>
+				<li><a href="homePassenger.html"><span class="three"><i class="icon icon-home"></i></span>Home</a></li>
+				<li><a href="#"><span class="four"><i class="icon icon-phone"></i></span>Support</a></li>
+				<li><a onclick="logout()"><span class="five"><i class="icon icon-exit"></i></span>Logout</a></li>
+			</ul>
+		</nav>
+	</header>
 	<div id="content">
-			<h1>Register As Passenger</h1>
-			<h2>Travel, Meet, Have fun.</h2>
+			<h1>Modify your information</h1>
         <div class="form" align="center">
-          <input type="text" id="firstname" placeholder="First Name">
+        	<form action="../apis/imageprofile.php" method="post" enctype="multipart/form-data">
+        		<img id="image" src="img/brands/audi.png">
+			   <label>Select your profile image: </label>
+			   <input type="file" id="profile" name="profile">
+			   <input type="hidden" name="idForm" id="idForm">
+			   <input type="hidden" name="roleForm" id="roleForm">
+			   <input type="submit" class="submit">
+			</form>
+          <input type="text" id="name" placeholder="First Name">
           <input type="text" id="lastname" placeholder="Last Name">
           <input type="text" id="secondlastname" placeholder="Second Last Name">
-          <input type="date" id="dateofbirth" placeholder="Date Of Birth: yy/mm/dd">
-          <input type="email" id="email" placeholder="Email: example@email.com">
           <input type="tel" id="phonenumber" placeholder="Phone Number: In The Form xxx-xxx-xxxx"required
            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
     			<span class="validity"></span>
@@ -50,6 +51,7 @@
 					<select id="universities" onclick="latlon()">
 						<option value="Select university...">Select University...</option>
 					</select>
+
 					<article id="article1" class="block">
       					<input id="slot1" type="text" name="slot1" value="" placeholder="Address">
       					<div class="formbuttons">
@@ -61,20 +63,15 @@
 
     				<input type="text" id="controlNumber" placeholder="Control Number">
 
-    				<input type="file" id="studentId" placeholder="Student Id">
-
     				<input type="text" id="payAccount" placeholder="Pay Account">
 
 					<h2>Login information</h2>
 					<input type="password" id="password" placeholder="Password">
 					<div class="formbuttons">
-						<button class="ok" onclick="postPassenger()">Register</button>
+						<button class="ok" onclick="postDriver()">Register</button>
 					</div>
 					<label id="message"></label>
-		</div>
+			</div>
   </div>
-	<footer>
-
-	</footer>
 </body>
 </html>

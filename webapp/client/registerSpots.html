@@ -37,10 +37,23 @@
 			<li><a onclick="logout()"><i class="icon icon-exit"></i>Logout</a></li>
 		</ul>
 	</div>
+	<div id="sidemenu2" >
+		<div id="profile4" onclick="showMenu2()">
+		</div>
+			<ul>
+				<li id="brand"></li>
+				<li id="model"></li>
+				<li id="year"></li>
+				<li id="lp"></li>
+				<li><a href="#"><i class="icon icon-cog"></i>Edit Profile</a></li>
+				<li><a onclick="logout()"><i class="icon icon-exit"></i>Logout</a></li>
+			</ul>
+	</div>
 	<div id="container">
-		<div id="map"></div>
+		<div id="map" style="width: 80%; height: 600px;"></div>
       	<button onclick="deleteMarkers();" class="buttonRemove">Delete Markers</button>
     	<button onclick="registerSpots()" class="buttonOK">Register Stops</button>
+    	<br>
     	Time you pass by this spot:
   		<input type="time" id="time">
 	</div>

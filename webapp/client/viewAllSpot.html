@@ -6,16 +6,17 @@
 	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="icon" type="image/png" href="img/smc.png">
 	<script src="js/index.js"></script>
-	<script src="js/home.js"></script>
+	<script src="js/viewAllSpot.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
 </head>
-<body onload="initDriver()">
+<body onload="init()">
 	<header id="header" >
+		<div id="back"></div>
 		<nav>
 			<ul>
 				<li><a href="viewDriverSpot.html"><span class="one"><i class="icon icon-location"></i></span>View Your Stops</a></li>
 				<li><a href="#"><span class="two"><i class="icon icon-map2"></i></span>My Travels</a></li>
-				<li><a href="#"><span class="three"><i class="icon icon-home"></i></span>Home</a></li>
+				<li><a href="homePassenger.html"><span class="three"><i class="icon icon-home"></i></span>Home</a></li>
 				<li><a href="#"><span class="four"><i class="icon icon-phone"></i></span>Support</a></li>
 				<li><a onclick="logout()"><span class="five"><i class="icon icon-exit"></i></span>Logout</a></li>
 			</ul>
@@ -38,8 +39,9 @@
 		</ul>
 	</div>
 	<div id="container">
-		<div id="map" ></div>
+		<div id="map" style="width: 100%; height: 600px"></div>
 	</div>
-	
+	<footer>
+	</footer>
 </body>
 </html>
