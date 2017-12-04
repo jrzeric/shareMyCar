@@ -10,8 +10,8 @@ function init()
     var r = document.getElementById('role');
     var c = document.getElementById('cellphone');
     var e = document.getElementById('email');
-    document.getElementById('profile').style.backgroundImage = "url('img/default.png')";
-    document.getElementById('profile2').style.backgroundImage = "url('img/default.png')";
+    document.getElementById('profile').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
+    document.getElementById('profile2').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
     //var ci = document.getElementById('city');
     fn.innerHTML = sessionStorage.userName + ' ' + sessionStorage.userLastName + ' ' + sessionStorage.userSecondLastName;
     u.innerHTML = sessionStorage.userUniversity;
@@ -21,22 +21,18 @@ function init()
     console.log(sessionStorage.userUniversityLon);
       var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
       var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
-    if (sessionStorage.userRole == 'Driver')
-    {
-      /*
-      var b = document.getElementById('brand');
-      var m = document.getElementById('model');
-      var y = document.getElementById('year');
-      var lp = document.getElementById('licensePlate');
-      var dl = document.getElementById('DriverLicense');
+  var b = document.getElementById('brand');
+  var m = document.getElementById('model');
+  var y = document.getElementById('year');
+  var lp = document.getElementById('lp');
+  
+  document.getElementById('profile3').style.backgroundImage = "url('" + sessionStorage.carImage + "')";
+  document.getElementById('profile4').style.backgroundImage = "url('" + sessionStorage.carImage + "')";
 
-      b.innerHTML = sessionStorage.userCarBrand;
-      m.innerHTML = sessionStorage.userCarModel;
-      y.innerHTML = sessionStorage.userYear;
-      lp.innerHTML = sessionStorage.userLicensePlate;
-      dl.innerHTML = sessionStorage.userDriverLicense;
-      */
-    }//if
+  b.innerHTML = sessionStorage.userCarBrand;
+  m.innerHTML = sessionStorage.userCarModel;
+  y.innerHTML = sessionStorage.userYear;
+  lp.innerHTML = sessionStorage.userLicensePlate;
 
   	var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
   	var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
@@ -56,7 +52,7 @@ function init()
 
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/spot.php?idAll='+sessionStorage.userId, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/spot.php?idAll='+sessionStorage.userId, true);
 	x.send();
 	//handle readyState change event
 	x.onreadystatechange = function() 
@@ -99,7 +95,7 @@ function addHome(location)
 	var marker = new google.maps.Marker(
 	{
 	    position: location,
-	    icon: 'http://localhost/sharemycar/webapp/client/img/h.png',
+	    icon: 'http://localhost:8080/sharemycar/webapp/client/img/h.png',
 	    map: map
 	 });
 
@@ -111,7 +107,7 @@ function addUniversity(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-     icon: 'http://localhost/sharemycar/webapp/client/img/s.png',
+     icon: 'http://localhost:8080/sharemycar/webapp/client/img/s.png',
     map: map
   });
 }

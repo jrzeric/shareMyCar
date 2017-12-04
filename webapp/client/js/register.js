@@ -2,6 +2,7 @@ var map;
 var markers = [];
 var latitude = 0;
 var longitude = 0;
+var city = "";
 
 // Adds a marker to the map and push to the array.
 function addMarker(map, location)
@@ -39,6 +40,7 @@ function getAddress(slot)
   var address = s.value;
   console.log(address);
   getCoordenates(address, slot);
+
 }
 
 function getCoordenates(address, slot)
@@ -66,6 +68,7 @@ function showCoordenates(data, slot)
   // Parse to JSON
   deleteMarkers();
 	var JSONdata = JSON.parse(data);
+	city = JSONdata.results[0].address_components[2].long_name;
   var address = JSONdata.results[0].formatted_address;
   latitude = JSONdata.results[0].geometry.location.lat;
   longitude = JSONdata.results[0].geometry.location.lng;
@@ -95,7 +98,7 @@ function init()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -115,7 +118,7 @@ function init()
 	//create request
 	var x2 = new XMLHttpRequest();
 	//prepare request
-	x2.open('GET', 'http://localhost/sharemycar/webapp/apis/country.php', true);
+	x2.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/country.php', true);
 	//send request
 	x2.send();
 	//handle readyState change event
@@ -195,7 +198,7 @@ function fillStates()
 	var x = new XMLHttpRequest();
 	var idCountry = document.getElementById('countries').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/state.php?idAll=' + idCountry, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -242,7 +245,7 @@ function fillCities()
 	var x = new XMLHttpRequest();
 	var idState = document.getElementById('states').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/city.php?idAll=' + idState, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -287,7 +290,7 @@ function fillUniversities()
 	var x = new XMLHttpRequest();
 	var idCity = document.getElementById('cities').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/university.php?idAll=' + idCity, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -328,7 +331,7 @@ function latlon()
 {
 	var x = new XMLHttpRequest();
 	var university = document.getElementById('universities').value;
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/university.php?id=' + university, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/university.php?id=' + university, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -386,7 +389,7 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/model.php?idAll=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -471,7 +474,7 @@ function postPassenger()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://localhost/sharemycar/webapp/apis/studentpassengerinsert.php', true);
+	x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/studentpassengerinsert.php', true);
 	//form data
 	var fd = new FormData();
 	//values
@@ -484,10 +487,10 @@ function postPassenger()
 	fd.append('cellphone', document.getElementById('phonenumber').value);
 	fd.append('controlNumber', document.getElementById('controlNumber').value);
 	fd.append('password', document.getElementById('password').value);
-	fd.append('studentId', document.getElementById('studentId').value);
 	fd.append('payAccount', document.getElementById('payAccount').value);
 	fd.append('latitude', latitude);
 	fd.append('longitude', longitude);
+	fd.append('city', city);
 
 	console.log(fd);
 	//send
@@ -522,7 +525,7 @@ function postDriver()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://localhost/sharemycar/webapp/apis/studentdriverinsert.php', true);
+	x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/studentdriverinsert.php', true);
 	//form data
 	var fd = new FormData();
 	//values
@@ -535,7 +538,6 @@ function postDriver()
 	fd.append('cellphone', document.getElementById('phonenumber').value);
 	fd.append('controlNumber', document.getElementById('controlNumber').value);
 	fd.append('password', document.getElementById('password').value);
-	fd.append('studentId', document.getElementById('studentId').value);
 	fd.append('payAccount', document.getElementById('payAccount').value);
 	fd.append('latitude', latitude);
 	fd.append('longitude', longitude);
@@ -543,7 +545,7 @@ function postDriver()
 	fd.append('model', document.getElementById('models').value);
 	fd.append('year', document.getElementById('year').value);
 	fd.append('licensePlate', document.getElementById('licensePlate').value);
-	fd.append('driverLicense', document.getElementById('driverLicense').value);
+	fd.append('city', city);
 
 	console.log(fd);
 	//send

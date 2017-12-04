@@ -1,7 +1,63 @@
 var map;
+var lat1 = 0;
+var lon1 = 1;
+
+function setLat(valor) 
+{
+	lat1 = valor;
+	return lat1;
+}
+
+function setLon(valor) 
+{
+	lon = valor;
+	return lat1;
+}
+
+function loadLocation () 
+{
+	//inicializamos la funcion y definimos  el tiempo maximo ,las funciones de error y exito.
+	navigator.geolocation.getCurrentPosition(viewMap,ViewError,{timeout:1000});
+}
+
+//Funcion de exito
+function viewMap (position) 
+{
+	
+	lon = position.coords.longitude;	//guardamos la longitud
+	lat = position.coords.latitude;		//guardamos la latitud
+
+    var marker = new google.maps.Marker(
+    {
+      position: new google.maps.LatLng(lat, lon),
+      map: map
+    });
+
+    var contentString = "Tu posicion actual";
+    var infowindow = new google.maps.InfoWindow({
+          	content: contentString
+        });
+
+    marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+}
+
+
+function ViewError (error) 
+{
+	alert(error.code);
+}	
+
+
+
 
 function initPassenger() 
 {
+
+	console.log("Aqui voy");
+
 
 	var fn = document.getElementById('name');
 	var u = document.getElementById('university');
@@ -9,12 +65,17 @@ function initPassenger()
 	var c = document.getElementById('cellphone');
 	var e = document.getElementById('email');
 	//var ci = document.getElementById('city');
-	fn.value = sessionStorage.userName;
-	u.value = sessionStorage.userUniversity;
-	r.value = sessionStorage.userRole;
-	c.value = sessionStorage.userCellPhone;
-	e.value = sessionStorage.userEmail;
-	console.log(sessionStorage.userUniversityLon);
+	fn.innerHTML = sessionStorage.userName +" "+ sessionStorage.userLastName + " " + sessionStorage.userSecondLastName;
+	u.innerHTML = sessionStorage.userUniversity;
+	r.innerHTML = sessionStorage.userRole;
+	c.innerHTML = sessionStorage.userCellPhone;
+	e.innerHTML = sessionStorage.userEmail;
+
+	
+
+	document.getElementById('profile').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
+	document.getElementById('profile2').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
+
   	var home = new google.maps.LatLng(sessionStorage.userLocationLat, sessionStorage.userLocationLon);
   	var university = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
 
@@ -25,8 +86,12 @@ function initPassenger()
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
+    var posicionActual = new google.maps.LatLng(lat1, lon1);
+
   	addHome(home);
   	addUniversity(university);
+  	loadLocation();
+
 
 }
 
@@ -43,8 +108,8 @@ function initDriver()
 	var r = document.getElementById('role');
 	var c = document.getElementById('cellphone');
 	var e = document.getElementById('email');
-	document.getElementById('profile').style.backgroundImage = "url('img/default.png')";
-	document.getElementById('profile2').style.backgroundImage = "url('img/default.png')";
+	document.getElementById('profile').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
+	document.getElementById('profile2').style.backgroundImage = "url('"+ sessionStorage.userPhoto +"')";
 	//var ci = document.getElementById('city');
 	fn.innerHTML = sessionStorage.userName + ' ' + sessionStorage.userLastName + ' ' + sessionStorage.userSecondLastName;
 	u.innerHTML = sessionStorage.userUniversity;
@@ -91,7 +156,7 @@ function addHome(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost/sharemycar/webapp/client/img/h.png',
+    icon: 'http://localhost:8080/sharemycar/webapp/client/img/h.png',
     map: map
   });
 }
@@ -102,7 +167,7 @@ function addUniversity(location)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: 'http://localhost/sharemycar/webapp/client/img/s.png',
+    icon: 'http://localhost:8080/sharemycar/webapp/client/img/s.png',
     map: map
   });
 }
