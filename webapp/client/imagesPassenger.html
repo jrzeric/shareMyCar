@@ -1,12 +1,14 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>ShareMyCar - Home</title>
+	<title>Imagen</title>
+	<script src="js/imagen.js"></script>
 	<link rel="stylesheet" href="css/register.css">
-	<link rel="stylesheet" href="css/styleIndex.css">
+	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="icon" type="image/png" href="img/smc.png">
 </head>
-<body>
+<body onload="init()">
+
 	<div id="empty">
 		<header>
 			<div class="menu">
@@ -23,15 +25,17 @@
 				</nav>
 			</div>
 		</header>
-		<div id="options">
-			<h1>Welcome!<br>Take advantage of your trip!</h1>
-			<a href="registerPassenger.html"><button><img src="img/pss.png" id="icon"></img>Register As A Passenger</button></a>
-			<a href="registerDriver.html"><button><img src="img/dr.png" id="icon"></img>Register As A Driver</button></a><br>
-			<a href="login.html"><button><img src="img/log.png" id="icon"></img>Log In</button></a>
-		</div>
 	</div>
 	<div id="content">
+		<h1>To End</h1>
+		<div class="form" align="center">
+			<form action="../apis/imagepassenger.php" method="post" enctype="multipart/form-data">
+			   <label>Select your student ID: </label>
+			   <input type="file" id="studentId" name="studentId">
+			   <input type="hidden" name="id" id="id">
+			   <input type="submit" class="submit">
+			</form>
+		</div>
 	</div>
-	<footer></footer>
 </body>
 </html>
