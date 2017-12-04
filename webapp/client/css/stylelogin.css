@@ -96,3 +96,23 @@ footer {
 footer p {
 	text-align:center;
 }
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+		border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+		margin: 30px;
+		margin-top: 70px;
+    font-size: 16px;
+		width:300px;
+		cursor: pointer;
+}
+
+button:hover {
+	background-color: #66BB6A;
+}

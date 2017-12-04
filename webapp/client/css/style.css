@@ -153,8 +153,9 @@ nav ul li a .five {
   position: absolute;
   border-radius: 250px;
   top: 0px;
+  float: right;
   margin-top: 10px;
-  margin-left: 100px;
+  margin-left: 90%;
   cursor: pointer;
   -webkit-transition: width .5s, height .5s, -webkit-transform .5s;
   transition: width .5s, height .5s, transform .5s;
@@ -165,6 +166,23 @@ nav ul li a .five {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
 }
+
+#profile4{
+  width: 100px;
+  height: 100px;
+  background-image: url("../img/profile.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+  background-color: #000;
+  position: relative;
+  border-radius: 250px;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-left: 80px;
+  border: 1px solid #fff;
+}
+
+
 #sidemenu {
 	float: left;
 	width: 20%;
@@ -209,6 +227,54 @@ nav ul li a .five {
   margin-right: 5px;
 }
 
+
+#sidemenu2 
+{
+	float: right;
+	width: 20%;
+	height: 700px;
+	background: #000;
+	display: none;
+  position:relative;
+  top: 0px;
+  background-image: url("../img/backh.jpg");
+  background-repeat: no-repeat;
+	background-size: 100%;
+}
+#sidemenu2 ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+#sidemenu2 ul li {
+	display: block;
+	width: 100%;
+	font-size: 10pt;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+  color: #fff;
+	text-decoration: none;
+}
+#sidemenu2 ul li a{
+	display: block;
+	width: 100%;
+	font-size: 10pt;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+  color: #fff;
+	text-decoration: none;
+  cursor: pointer;
+}
+#sidemenu2 ul li a:hover {
+	background: #999;
+	color: #FFF;
+}
+#sidemenu2 ul li a .icon{
+  margin-right: 5px;
+}
+
+
+
 #container {
 	position:relative;
 	float:left;
@@ -219,8 +285,10 @@ nav ul li a .five {
 	padding: 10px;
 	left: 5%;
 }
-#map{
-	margin-bottom: 50px;
+#map
+{
+	position:relative;
+	float:left;
 }
 footer{
 	background-image: url("../img/backh.jpg");
@@ -229,4 +297,22 @@ footer{
 	height: 150px;
 	clear: both;
 	bottom: 0;
+}
+
+.buttonRemove
+{
+	padding: 10px;
+	background-color: #e50202;
+	color: #FFF;
+	border: none;
+	margin: 10px 10px 10px 10px; 
+}
+
+.buttonOK
+{
+	padding: 10px;
+	background-color: #45d11b;
+	color: #FFF;
+	border: none;
+	margin: 10px 10px 10px 10px; 
 }
