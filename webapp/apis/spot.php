@@ -27,17 +27,32 @@
         ));
       }
     }
-    else if(isset($_GET['idAll']))
+    else if(isset($_GET['city']) && isset($_GET['uni']))
     {
-      echo Spot::getAllSJson($_GET['idAll']);
+      try 
+      {
+        echo Spot::getAllSCJson($_GET['city'], isset($_GET['uni']));
+      }
+      catch (RecordNotFoundException $ex) 
+      {
+        echo json_encode(array(
+          'status' => 2,
+          'errorMessage' => $ex->get_message()
+        ));
+      }
+
     }
+
     else 
     {
-      echo Spot::getAllJson();
+      echo json_encode(array(
+          'status' => 3,
+          'errorMessage' => 'Missing parameters'
+        ));
+      }
     }
 
 
-  }
 
 
   //POST
@@ -46,7 +61,8 @@
     if (isset($_POST['student']) &&
         isset($_POST['slot']) &&
         isset($_POST['latitude']) &&
-        isset($_POST['longitude']) ) 
+        isset($_POST['longitude']) &&
+        isset($_POST['time']) ) 
     {
      try 
       {
@@ -66,6 +82,7 @@
       $sp->setStudent($s);
       $sp->setLocation(new Location($_POST['latitude'], $_POST['longitude']));
       $sp->setSlot($_POST['slot']);
+      $sp->setTime($_POST['time']);
       //add
       if ($sp->add())
       {

@@ -54,7 +54,7 @@
 
 				try
 				{
-					$b = new Model($_POST['brand']);
+					$b = new Brand($_POST['brand']);
 				}
 				catch(RecordNotFoundException $ex)
 				{

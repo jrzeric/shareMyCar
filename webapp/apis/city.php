@@ -34,6 +34,10 @@
 		{
 			echo City::getAllCJson($_GET['idAll']);
 		}
+		else if (isset($_GET['name'])) 
+		{
+			echo City::get($_GET['idAll']);
+		}
 		else
 		{
 			echo json_encode(array(
