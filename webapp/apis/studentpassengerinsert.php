@@ -21,11 +21,12 @@
 			isset($_POST['university']) &&
 			isset($_POST['cellphone']) &&
 			isset($_POST['controlNumber']) &&
-			isset($_POST['studentId']) &&
 			isset($_POST['password']) &&
 			isset($_POST['payAccount']) &&
 			isset($_POST['latitude']) && 
-			isset($_POST['longitude'])) {
+			isset($_POST['longitude'])&&
+			isset($_POST['city'])) 
+		{
 				//validation
 				$errorU = false;
 
@@ -46,6 +47,8 @@
 				{
 					$sp = new StudentPassenger();
 
+					$city = City::getIdCity($_POST['city']);
+
 					//assign values
 					$sp->setName($_POST['name']);
 					$sp->setLastName($_POST['lastName']);
@@ -55,8 +58,8 @@
 					$sp->setCellphone($_POST['cellphone']);
 					$sp->setUniversity($u);
 					$sp->setControlNumber($_POST['controlNumber']);
-					$sp->setStudentId($_POST['studentId']);
 					$sp->setPayAccount($_POST['payAccount']);
+					$sp->setCity($city);
 
 					$us = new User();
 					$us->setPassword($_POST['password']);
