@@ -21,14 +21,18 @@ function login() {
 					sessionStorage.userUniversityLat = JSONdata.user.id.university.location.latitude;
 					sessionStorage.userUniversityLon = JSONdata.user.id.university.location.longitude;
 					sessionStorage.userLocationLat = JSONdata.user.id.location.latitude;
+					sessionStorage.userCityId = JSONdata.user.id.city.id;
+					sessionStorage.userUniversityId = JSONdata.user.id.university.id;
 					sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
 					sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
 					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
 					sessionStorage.userEmail = JSONdata.user.id.email;
+					sessionStorage.userPhoto = JSONdata.user.id.photo;
 					sessionStorage.token = JSONdata.token;
-					if (JSONdata.user.id.studentId == "") 
+					console.log(JSONdata.user.id.photo);
+					if (JSONdata.user.id.studentId === null) 
 					{
-						window.location = 'imagen.html';
+						window.location = 'imagesPassenger.html';
 					}
 					else window.location = 'homePassenger.html';
 				}

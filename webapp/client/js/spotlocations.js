@@ -27,6 +27,8 @@ function getCoordenates(address, slot) {
 function showCoordenates(data, slot) {
   // Parse to JSON
 	var JSONdata = JSON.parse(data);
+	console.log(JSONdata);
+	console.log(JSONdata.results[0].address_components[2].long_name);
   var address = JSONdata.results[0].formatted_address;
   var latitude = JSONdata.results[0].geometry.location.lat;
   var lontigude = JSONdata.results[0].geometry.location.lng;
