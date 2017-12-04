@@ -187,4 +187,5 @@ create table if not exists scheduleTravel
 
 ALTER TABLE scheduleTravel ADD FOREIGN KEY (STATUS) REFERENCES historicalRides_status_ctg(code);
 ALTER TABLE historicalRides ADD FOREIGN KEY (driver) REFERENCES students(id);
+ALTER TABLE scheduleTravel ADD FOREIGN KEY (idRide) REFERENCES historicalRides(id);
 ALTER TABLE scheduleTravel ADD FOREIGN KEY (passenger) REFERENCES students(id);
