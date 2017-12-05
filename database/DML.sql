@@ -148,9 +148,9 @@ insert into brands_ctg(name, image) VALUES
 ('Nissan', 'img/brands/nissan.png'),
 ('Chevrolet', 'img/brands/chevrolet.jpg'),
 ('Toyota', 'img/brands/toyota.png'),
-('Wolkswagen', 'img/brands/wolkswagen.png'),
+('Wolkswagen', 'img/brands/volkswagen.jpg'),
 ('Honda', 'img/brands/honda.png'),
-('BMW', 'img/brands/fbmw.jpg'),
+('BMW', 'img/brands/bmw.jpg'),
 ('AUDI', 'img/brands/audi.png'),
 ('SEAT', 'img/brands/seat.jpg'),
 ('Hyundai', 'img/brands/hyundai.jpg'),
@@ -255,4 +255,6 @@ INSERT INTO profiles_ctg VALUES
 ('P','Passenger');
 
 
-
+INSERT INTO historicalrides_status_ctg(code, status) VALUES ('I', 'In Wait');
+INSERT INTO historicalrides_status_ctg(code, status) VALUES ('T', 'In Travel');
+INSERT INTO historicalrides_status_ctg(code, status) VALUES ('F', 'Finished');
