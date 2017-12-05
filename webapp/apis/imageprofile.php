@@ -14,7 +14,12 @@
 		if(move_uploaded_file($nombre_temporal, '../files/profilesImages/'.$nombre))
 		{
 			StudentDriver::images('../files/profilesImages/'.$nombre, $id);
-			header('Location: ../client/homeDriver.html');	
+			if ($role == 'Passenger') 
+			{
+				header('Location: ../client/homePassenger.html');	
+			}
+			else
+				header('Location: ../client/homeDriver.html');	
 		}
 		else echo "Intenta nuevamente mas tarde";
 	

@@ -30,7 +30,7 @@ function login() {
 					sessionStorage.userPhoto = JSONdata.user.id.photo;
 					sessionStorage.token = JSONdata.token;
 					console.log(JSONdata.user.id.photo);
-					if (JSONdata.user.id.studentId === null) 
+					if (JSONdata.user.id.studentId == '') 
 					{
 						window.location = 'imagesPassenger.html';
 					}
@@ -56,8 +56,10 @@ function login() {
 					sessionStorage.userLicensePlate = JSONdata.user.id.car.licensePlate;
 					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
 					sessionStorage.userEmail = JSONdata.user.id.email;
+					sessionStorage.userPhoto = JSONdata.user.id.photo;
 					sessionStorage.token = JSONdata.token;
-					console.log(JSONdata.user.id.studentId);
+					console.log(JSONdata.user.id.photo);
+					console.log(sessionStorage.userPhoto);
 					if (JSONdata.user.id.studentId == "") 
 					{
 						window.location = 'imagesDriver.html';

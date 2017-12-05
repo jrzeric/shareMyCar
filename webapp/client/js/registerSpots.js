@@ -82,6 +82,8 @@ function addUniversity(location)
 // Adds a marker to the map and push to the array.
 function addMarker(location) 
 {
+  var message = document.getElementById('message');
+  message.innerHTML = '';
   if (valid < 6) 
   {
     valid++;
@@ -161,7 +163,9 @@ function registerSpots()
       {
 
         var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
-        alert(JSONdata.errorMessage);
+        var message = document.getElementById('message');
+        message.innerHTML = JSONdata.errorMessage;
+        //alert(JSONdata.errorMessage);
         //show buildings
         console.log(x.responseText);
       }//if

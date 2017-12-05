@@ -101,9 +101,9 @@ function addMarker(location, texto, img, hour,id)
 	  position: location,
 	  map: map
 	});
-
-    var contentString = "<div align = 'center'><img src = 'img" + img + "' height='42' width='42'><br>" + texto + 
-    '<br><label>Time the driver passes: '+ hour +'</label><br><div class="buttons"><button class="buttonOK" onClick="addTravel(' + id +
+  console.log(location.lat());
+    var contentString = "<div align = 'center'><img src = '" + img + "' height='42' width='42'><br>" + texto + 
+    '<br><label>Driver passes at hour: '+ hour +'</label><br><div class="buttons"><button class="buttonOK" onClick="addTravel(' + id +
     ', '+location.lat()+','+location.lng()+')">Order that shit</button></div></div>';
     var infowindow = new google.maps.InfoWindow({
           	content: contentString
@@ -143,9 +143,12 @@ function addTravel(driver, latitude, longitude)
     {
       if (x.status == 200 && x.readyState == 4) 
       {
-
         var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
         alert(JSONdata.errorMessage);
+        if (JSONdata.status == 0) 
+        {
+          window.location = "homePassenger.html";
+        }
         //show buildings
         console.log(x.responseText);
       }//if

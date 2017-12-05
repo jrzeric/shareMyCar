@@ -10,6 +10,35 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/historicalride.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/scheduletravel.php');
 
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') 
+	{
+		if (isset($_GET['id']))
+		{
+			try {
+				//create object
+				$st = new HistoricalRide($_GET['id']);
+				//display
+				echo json_encode(array(
+					'status' => 0,
+					'historicalride' => json_decode($st->toJson())
+				));
+			}
+			catch (RecordNotFoundException $ex) {
+				echo json_encode(array(
+					'status' => 1,
+					'errorMessage' => $ex->get_message()
+				));
+			}
+		}
+		else
+		{
+			echo json_encode(array(
+					'status' => 1,
+					'errorMessage' => 'Missing parameters'
+				));
+		}
+	}
+
 	//POST
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//check parameters
@@ -54,14 +83,15 @@
 				{
 
 					$hr = new HistoricalRide();
-					$hr->setEndLatitude($_POST['endLatitude']);
-					$hr->setEndLongitude($_POST['endLongitude']);
 					$hr->setDriver($sd);
 
 					$st = new ScheduleTravel();
 					$st->setBeginLatitude($_POST['beginLatitude']);
 					$st->setBeginLongitude($_POST['beginLongitude']);
 					$st->setPassenger($sp);
+
+					$hr->setEndLatitude($_POST['endLatitude']);
+					$hr->setEndLongitude($_POST['endLongitude']);
 
 					//add
 					if ($hr->add())

@@ -78,7 +78,7 @@ function init()
 			//read buildings
 			for(var i = 0; i < spots.length; i++) 
 			{
-				var spot = new google.maps.LatLng(spots[i].location.latitude, sessionStorage.userLocationLon);
+				var spot = new google.maps.LatLng(spots[i].location.latitude, spots[i].location.longitude);
 				console.log(spot);
 				console.log(spots[i]);
 				addMarker(spot, i, spots[i].dateTime);

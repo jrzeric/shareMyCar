@@ -47,7 +47,7 @@
 				{
 					$sp = new StudentPassenger();
 
-					$city = City::getIdCity($_POST['city']);
+					$city = new City($_POST['city']);
 
 					//assign values
 					$sp->setName($_POST['name']);
