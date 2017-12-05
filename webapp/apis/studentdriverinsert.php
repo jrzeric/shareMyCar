@@ -81,7 +81,7 @@
 				if (!$error && !$errorU && !$errorB)
 				{
 
-					$city = City::getIdCity($_POST['city']);
+					$city = new City($_POST['city']);
 
 					//create building object
 					$sd = new StudentDriver();

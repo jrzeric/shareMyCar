@@ -142,6 +142,7 @@ function initDriver()
 
   	addHome(home);
   	addUniversity(university);
+  	loadLocation();
 
 }
 

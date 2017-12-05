@@ -7,7 +7,7 @@
 	{
 		$nombre_temporal = $_FILES['studentId']['tmp_name'];
 		$nombre = $_FILES['studentId']['name'];
-		$now = date("F j Y g i a");
+		$now = date("FjYgia");
 		$nombre = $now.$nombre;
 		if(move_uploaded_file($nombre_temporal, '../files/studentIds/'.$nombre))
 		{

@@ -27,6 +27,20 @@
         ));
       }
     }
+    else if (isset($_GET['idAll'])) 
+    {
+      try 
+      {
+        echo Spot::getAllSJson($_GET['idAll']);
+      }
+      catch (RecordNotFoundException $ex) 
+      {
+        echo json_encode(array(
+          'status' => 2,
+          'errorMessage' => $ex->get_message()
+        ));
+      }
+    }
     else if(isset($_GET['city']) && isset($_GET['uni']))
     {
       try 

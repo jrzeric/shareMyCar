@@ -45,5 +45,5 @@
 					'errorMessage' => 'Missing parameters'
 				));
 		}
-		}
+	}
 ?>

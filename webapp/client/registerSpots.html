@@ -11,17 +11,20 @@
 </head>
 <body onload="init()">
 	<header id="header" >
+		<div id="back"></div>
 		<nav>
 			<ul>
 				<li><a href="viewDriverSpots.html"><span class="one"><i class="icon icon-location"></i></span>View Your Stops</a></li>
 				<li><a href="#"><span class="two"><i class="icon icon-map2"></i></span>My Travels</a></li>
 				<li><a href="#"><span class="three"><i class="icon icon-home"></i></span>Home</a></li>
 				<li><a href="#"><span class="four"><i class="icon icon-phone"></i></span>Support</a></li>
-				<li><a onclick="logout()"><span class="five"><i class="icon icon-exit"></i></span>Logout</a></li>
+				<li><a href="inTravel.html"><span class="five"><i class="icon icon-exit"></i></span>Start Travel</a></li>
 			</ul>
 		</nav>
 	</header>
 	<div id="profile" onclick="showMenu()">
+	</div>
+	<div id="profile3" onclick="showMenu2()">
 	</div>
 	<div id="sidemenu">
 		<div id="profile2" onclick="showMenu()">
@@ -45,7 +48,7 @@
 				<li id="model"></li>
 				<li id="year"></li>
 				<li id="lp"></li>
-				<li><a href="#"><i class="icon icon-cog"></i>Edit Profile</a></li>
+				<li><a href="#"><i class="icon icon-cog"></i>Edit Car</a></li>
 				<li><a onclick="logout()"><i class="icon icon-exit"></i>Logout</a></li>
 			</ul>
 	</div>
@@ -56,6 +59,8 @@
     	<br>
     	Time you pass by this spot:
   		<input type="time" id="time">
+  		<br>
+  		<label id="message"></label>
 	</div>
 	
 </body>

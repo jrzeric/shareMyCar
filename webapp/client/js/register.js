@@ -27,7 +27,6 @@ function setMapOnAll(map)
 }
 
 
-
 function clearMarkers() { setMapOnAll(null); }
 
 function showMarkers() { setMapOnAll(map); }
@@ -68,6 +67,7 @@ function showCoordenates(data, slot)
   // Parse to JSON
   deleteMarkers();
 	var JSONdata = JSON.parse(data);
+	console.log(JSONdata);
 	city = JSONdata.results[0].address_components[2].long_name;
   var address = JSONdata.results[0].formatted_address;
   latitude = JSONdata.results[0].geometry.location.lat;
@@ -213,6 +213,10 @@ function fillStates()
 			select.innerHTML = '';
 			var select2 = document.getElementById('cities');
 			select2.innerHTML = '';
+			var select3 = document.getElementById('citiesLive');
+			select3.innerHTML = '';
+			var select4 = document.getElementById('universities');
+			select4.innerHTML = '';
 			//console.log(x.responseText);
 			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
@@ -256,13 +260,16 @@ function fillCities()
 		// readyState : 4=Back with data
 		if (x.status == 200 && x.readyState == 4)
 		{
+			var selectLive = document.getElementById('citiesLive');
 			var select = document.getElementById('cities');
 			select.innerHTML = '';
+			selectLive.innerHTML = '';
 			//console.log(x.responseText);
 			var JSONdata = JSON.parse(x.responseText);
 			//get buildings array
 			var cities = JSONdata.cities;
 			//read buildings
+			fillCitiesLive(x.responseText)
 			for(var i = 0; i < cities.length; i++)
 			{
 				//console.log(models[i]);
@@ -280,6 +287,34 @@ function fillCities()
 			}//for
 		}
 	}
+}
+
+function fillCitiesLive(data)
+{
+
+	console.log('Getting cities...');
+	var selectLive = document.getElementById('citiesLive');
+	selectLive.innerHTML = '';
+	//console.log(x.responseText);
+	var JSONdata = JSON.parse(data);
+	//get buildings array
+	var cities = JSONdata.cities;
+	//read buildings
+	for(var i = 0; i < cities.length; i++)
+	{
+		//console.log(models[i]);
+		var option = document.createElement('option');
+		option.innerHTML = cities[i].name;
+		option.value = cities[i].id;
+		//console.log(buildingTypes[i].id);
+		/*
+		var valueDescription = document.createElement('value');
+
+		valueDescription.value = buildingTypes[i].id;
+		option.appendChild(valueDescription);*/
+		selectLive.appendChild(option);
+
+	}//for
 }
 
 function fillUniversities()
@@ -490,7 +525,7 @@ function postPassenger()
 	fd.append('payAccount', document.getElementById('payAccount').value);
 	fd.append('latitude', latitude);
 	fd.append('longitude', longitude);
-	fd.append('city', city);
+	fd.append('city', document.getElementById('citiesLive').value);
 
 	console.log(fd);
 	//send
@@ -545,7 +580,7 @@ function postDriver()
 	fd.append('model', document.getElementById('models').value);
 	fd.append('year', document.getElementById('year').value);
 	fd.append('licensePlate', document.getElementById('licensePlate').value);
-	fd.append('city', city);
+	fd.append('city', document.getElementById('citiesLive').value);
 
 	console.log(fd);
 	//send

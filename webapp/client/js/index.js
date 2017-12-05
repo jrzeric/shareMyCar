@@ -43,5 +43,5 @@ function showMenu2()
 function logout()
 {
 	sessionStorage.clear();
-	window.location = '../index.html';
+	window.location = 'index.html';
 }
