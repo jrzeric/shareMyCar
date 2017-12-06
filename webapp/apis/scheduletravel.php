@@ -44,6 +44,21 @@
           			'errorMessage' => $ex->get_message()
         			));
 			}
+		}
+
+		else if(isset($_GET['notificationDriver']))
+		{
+			try
+			{
+				echo ScheduleTravel::travelsDriverJson($_GET['notificationDriver']);
+			}
+			catch (RecordNotFoundException $ex) 
+      		{
+        		echo json_encode(array(
+          			'status' => 4,
+          			'errorMessage' => $ex->get_message()
+        			));
+			}
 		}	
 		else
 		{
@@ -63,6 +78,9 @@
 			isset($_POST['id']) &&
 			isset($_POST['pickedUp_at']))
 		{
+
+			//$this->ride->getArrivedAt(), $this->paymentAmount, $this->pickedUp_at, $this->id, $this->ride->getId()
+
 				//validation
 				$errorSD = false;
 				//building type
@@ -84,6 +102,9 @@
 					$st->setPickedUpAt($_POST['arrived_at']);
 					$st->setPaymentAmount($_POST['paymentAmount']);
 					$st->getRide()->setArrivedAt($_POST['arrived_at']);
+					//echo $st->getRide()->getArrivedAt();
+					//echo $st->getRide()->getId();
+					//echo $st->getId();
 
 					//add
 					if ($st->update())

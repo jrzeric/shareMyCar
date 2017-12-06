@@ -76,7 +76,8 @@
         isset($_POST['slot']) &&
         isset($_POST['latitude']) &&
         isset($_POST['longitude']) &&
-        isset($_POST['time']) ) 
+        isset($_POST['time']) &&
+        isset($_POST['price']) ) 
     {
      try 
       {
@@ -97,6 +98,7 @@
       $sp->setLocation(new Location($_POST['latitude'], $_POST['longitude']));
       $sp->setSlot($_POST['slot']);
       $sp->setTime($_POST['time']);
+      $sp->setPrice($_POST['price']);
       //add
       if ($sp->add())
       {
