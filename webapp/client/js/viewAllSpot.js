@@ -1,7 +1,11 @@
 var map;
 var spots;
+var meet
 
-
+function meet(value) 
+{
+  meet = value;  
+}
 
 function init() 
 {
@@ -58,10 +62,11 @@ function init()
 				var img = spots[i].student.photo;
 				var hour = spots[i].dateTime;
 				var id = spots[i].student.id;
+        var price = spots[i].price;
 				console.log(text);
 				console.log(spot);
 				console.log(spots[i]);
-				addMarker(spot, text, img, hour, id);
+				addMarker(spot, text, img, hour, id, price);
 			
 			}//for
 		}	
@@ -94,17 +99,20 @@ function addUniversity(location)
 
 
 // Adds a marker to the map and push to the array.
-function addMarker(location, texto, img, hour,id) 
+function addMarker(location, texto, img, hour,id, price) 
 {
+  console.log(hour);
 	var marker = new google.maps.Marker(
 	{
 	  position: location,
 	  map: map
 	});
+  var hhour = "'"+hour+"'";
   console.log(location.lat());
     var contentString = "<div align = 'center'><img src = '" + img + "' height='42' width='42'><br>" + texto + 
-    '<br><label>Driver passes at hour: '+ hour +'</label><br><div class="buttons"><button class="buttonOK" onClick="addTravel(' + id +
-    ', '+location.lat()+','+location.lng()+')">Order that shit</button></div></div>';
+    '<br><label>Driver passes at hour: '+ hour +'</label><br><label>Price of this spot: '+price+'</label><div class="buttons"><button class="buttonOK" onClick="addTravel(' + id +
+    ', '+location.lat()+','+location.lng()+', '+hhour+');">Order this spot</button></div></div>';
+    console.log(contentString);
     var infowindow = new google.maps.InfoWindow({
           	content: contentString
         });
@@ -114,7 +122,7 @@ function addMarker(location, texto, img, hour,id)
         });
 }//addMarker
 
-function addTravel(driver, latitude, longitude) 
+function addTravel(driver, latitude, longitude, hour) 
 {
   console.log('POSTING spots...');
     //create request
@@ -129,6 +137,7 @@ function addTravel(driver, latitude, longitude)
     console.log(sessionStorage.userLocationLon);
     console.log(driver);
     console.log(sessionStorage.userId);
+    console.log(hour);
     var fd = new FormData();
     fd.append('endLatitude', sessionStorage.userUniversityLat);
     fd.append('endLongitude', sessionStorage.userUniversityLon);
@@ -136,6 +145,7 @@ function addTravel(driver, latitude, longitude)
     fd.append('passenger', sessionStorage.userId);
     fd.append('beginLatitude', latitude);
     fd.append('beginLongitude', longitude);
+    fd.append('meet', hour);
     console.log(fd);
     x.send(fd);
     console.log(fd);

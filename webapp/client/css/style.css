@@ -357,3 +357,12 @@ footer{
   opacity: 1;
   right: 0;
 }
+
+#container table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#container th, td {
+    padding: 5px;
+    text-align: left;    
+}

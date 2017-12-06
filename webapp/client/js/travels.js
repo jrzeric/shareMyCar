@@ -1,12 +1,10 @@
 var map;
-var markers = [];
-//var coordinates = [[sessionStorage.userLocationLat, sessionStorage.userLocationLon]];
-//Declaracion de variables
-var coordinates = [];
-var valid = 1;
-function init() 
+var marker;
+
+function getTravels() 
 {
-    var fn = document.getElementById('name');
+
+	    var fn = document.getElementById('name');
     var u = document.getElementById('university');
     var r = document.getElementById('role');
     var c = document.getElementById('cellphone');
@@ -54,9 +52,103 @@ function init()
   // Adds a marker at the center of the map.
   addHome(home);
   addUniversity(university);
+
+
+	console.log('Getting travels...');
+	//create request
+	var x = new XMLHttpRequest();
+	//prepare request
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/scheduletravel.php?notificationDriver='+sessionStorage.userId, true);
+	//
+	/*
+	x.setRequestHeader('username', sessionStorage.userId);
+	x.setRequestHeader('token', sessionStorage.token);
+
+	console.log(sessionStorage.userId);
+	console.log(sessionStorage.token);
+	*/
+	//send request
+	x.send();
+	//handle readyState change event
+	x.onreadystatechange = function() {
+		// check status
+		// status : 200=OK, 404=Page not found, 500=server denied access
+		// readyState : 4=Back with data
+		if (x.status == 200 && x.readyState == 4) {
+			//show buildings
+			showTravels(x.responseText);
+		}
+	}
 }
 
-// Adds a marker to the map and push to the array.
+function showTravels(data) {
+
+	//buildings element
+	var table = document.getElementById('container');
+	//clear
+	//table.innerHTML = '';
+	//parse to JSON
+	console.log(data);
+	var JSONdata = JSON.parse(data); 
+	//get buildings array
+	var travels = JSONdata.travels; 
+	//read buildings
+	var div = document.getElementById('travels');
+	var rowHeader = document.createElement('tr');
+	var name = document.createElement('th');
+	var image = document.createElement('th');
+	var paymentAmount = document.createElement('th');
+	var status = document.createElement('th');
+	name.innerHTML = "Name";
+	image.innerHTML = "Image";
+	paymentAmount.innerHTML = "Payment Amount";
+	status.innerHTML = "Status";
+	rowHeader.appendChild(name);
+	rowHeader.appendChild(image);
+	rowHeader.appendChild(paymentAmount);
+	rowHeader.appendChild(status);
+	table.appendChild(rowHeader);
+
+
+	for(var i = 0; i < travels.length; i++) 
+	{
+		var img = document.createElement('img');
+		img.src = travels[i].passenger.photo;
+		img.style.width = "50px";
+		console.log(travels[i]);
+		//create row
+		var row = document.createElement('tr');
+		//create id cell
+		var cellId = document.createElement('td');
+		cellId.innerHTML = travels[i].passenger.name + travels[i].passenger.lastName;
+		//create name cell
+		var cellName = document.createElement('td');
+		cellName.appendChild(img);
+		//cellName.innerHTML = travels[i].passenger.photo;
+		//create location cell
+		var cellLocation = document.createElement('td');
+		cellLocation.innerHTML = travels[i].paymentAmount;
+		//create location cell
+		var cellType = document.createElement('td');
+		cellType.innerHTML = travels[i].status.status;
+
+		var cellView = document.createElement('td');
+		var beginPoint = new google.maps.LatLng(travels[i].beginLatitude, travels[i].beginLong);
+		cellView.innerHTML = travels[i].status.status;
+		
+		//add cells to row
+		row.appendChild(cellId);
+		row.appendChild(cellName);
+		row.appendChild(cellLocation);
+		row.appendChild(cellType);
+		//add row to table
+		table.appendChild(row);
+		
+	}//for
+	//div.appendChild(table);
+	
+}
+
 function addHome(location) 
 {
   var marker = new google.maps.Marker(
@@ -82,12 +174,7 @@ function addUniversity(location)
 // Adds a marker to the map and push to the array.
 function addMarker(location) 
 {
-  var message = document.getElementById('message');
-  message.innerHTML = '';
-  if (valid < 6) 
-  {
-    valid++;
-      var marker = new google.maps.Marker(
+    marker = new google.maps.Marker(
     {
       position: location,
       icon: 'http://localhost:8080/sharemycar/webapp/client/img/car.png',
@@ -100,77 +187,5 @@ function addMarker(location)
     console.log(coordinates);
     console.log(markers);
     //alert(location);
-  }
-  else
-  {
-    alert('No puedes agregar mas puntos de encuentro');
-  }
 
 }//addMarker
-
-// Sets the map on all markers in the array.
-function setMapOnAll(map) 
-{
-  for (var i = 0; i < markers.length; i++) { markers[i].setMap(map); }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() 
-{
-  setMapOnAll(null);
-}
-
-// Shows any markers currently in the array.
-function showMarkers() 
-{
-  setMapOnAll(map);
-}
-
-// Deletes all markers in the array by removing references to them.
-function deleteMarkers() 
-{
-  clearMarkers();
-  markers = [];
-  valid = 0;
-  coordinates = [];
-}
-
-function registerSpots()
-{
-  console.log('POSTING spots...');
-  for (var i = 0; i < coordinates.length; i++) 
-  {
-    //create request
-    var x = new XMLHttpRequest();
-    //prepare request
-    console.log(sessionStorage.userId);
-    x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/spot.php', true);
-    var t = document.getElementById('time').value;
-    var p = document.getElementById('price').value;
-    console.log(p);
-    //form data
-    var fd = new FormData();
-    fd.append('student', sessionStorage.userId);
-    fd.append('slot', i);
-    fd.append('latitude', coordinates[i][0]);
-    fd.append('longitude', coordinates[i][1]);
-    fd.append('time', t);
-    fd.append('price', p);
-    console.log(fd);
-    x.send(fd);
-    console.log(fd);
-    x.onreadystatechange = function() 
-    {
-      if (x.status == 200 && x.readyState == 4) 
-      {
-
-        var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
-        var message = document.getElementById('message');
-        message.innerHTML = JSONdata.errorMessage;
-        //alert(JSONdata.errorMessage);
-        //show buildings
-        console.log(x.responseText);
-      }//if
-    }//x.onreadystatechange
-  }//For
-}//RegisterSpots

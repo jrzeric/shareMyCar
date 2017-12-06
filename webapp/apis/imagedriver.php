@@ -17,13 +17,13 @@
 			
 			if(move_uploaded_file($nombre_temporal1, '../files/driverLicenses/'.$nombre1))
 			{
-				echo "chingon";
+				//echo "chingon";
 				StudentDriver::images('../files/driverLicenses/'.$nombre1, '../files/studentIds/'.$nombre, $id);
 				header('Location: ../client/homeDriver.html');	
 			}
 			else
 			{
-				echo "te la pelaste";
+				//echo "te la pelaste";
 			}
 		}
 		else echo "Intenta nuevamente mas tarde";

@@ -47,7 +47,8 @@
 			isset($_POST['driver']) &&
 			isset($_POST['passenger']) &&
 			isset($_POST['beginLatitude']) &&
-			isset($_POST['beginLongitude']))
+			isset($_POST['beginLongitude']) &&
+			isset($_POST['meet']))
 		{
 				//validation
 				$errorSD = false;
@@ -89,6 +90,7 @@
 					$st->setBeginLatitude($_POST['beginLatitude']);
 					$st->setBeginLongitude($_POST['beginLongitude']);
 					$st->setPassenger($sp);
+					$st->setmettintAt($_POST['meet']);
 
 					$hr->setEndLatitude($_POST['endLatitude']);
 					$hr->setEndLongitude($_POST['endLongitude']);
@@ -100,7 +102,7 @@
 
 						echo json_encode(array(
 							'status' => 0,
-							'errorMessage' => 'User added successfully'
+							'errorMessage' => 'Ordered sucesfully'
 						));
 
 						$st->add();
@@ -110,7 +112,7 @@
 					{
 						echo json_encode(array(
 							'status' => 3,
-							'errorMessage' => 'Could not add user'
+							'errorMessage' => 'Could not '
 						));
 
 					}

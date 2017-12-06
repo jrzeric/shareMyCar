@@ -181,7 +181,7 @@ create table if not exists scheduleTravel
 	beginLongitude DECIMAL(10,7) not null,
 	paymentAmount DECIMAL(5,2),
 	requested_at DATETIME,
-	mettint_at DATETIME,
+	mettint_at TIME,
 	pickedUp_at DATETIME,
 	status CHAR(1)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;

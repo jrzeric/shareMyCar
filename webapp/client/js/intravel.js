@@ -127,7 +127,8 @@ function init()
 				var spot = new google.maps.LatLng(passengers[i].beginLatitude, passengers[i].beginLongitude);
 				console.log(spot);
 				console.log(passengers[i]);
-				addMarkerPassenger(spot);
+				var text = passengers[i].passenger.name + ' ' + passengers[i].passenger.lastName;
+				addMarkerPassenger(spot, passengers[i].passenger.photo, text);
 
 				var div = document.getElementById('cont');
 				var table = document.createElement('table');
@@ -200,7 +201,7 @@ function addMarker(location)
     });
 }//addMarker
 
-function addMarkerPassenger(location) 
+function addMarkerPassenger(location, img, texto) 
 {
     var marker = new google.maps.Marker(
     {
@@ -208,6 +209,19 @@ function addMarkerPassenger(location)
       icon: 'http://localhost:8080/sharemycar/webapp/client/img/pass.png',
       map: map
     });
+    // Adds a marker to the map and push to the array.
+
+  //console.log(location.lat());
+    var contentString = "<div align = 'center'><img src = '" + img + "' width='42'><br>" + texto + 
+    '<br><br></div>';
+    console.log(contentString);
+    var infowindow = new google.maps.InfoWindow({
+          	content: contentString
+        });
+
+    marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
     markers.push(marker);
 }//addMarker
 
@@ -271,7 +285,7 @@ function setMapOnAll()
 {
 	if (pointer == markers.length) 
 	{
-		alert('mierda');
+		//alert('mierda');
 		var loc = new google.maps.LatLng(sessionStorage.userUniversityLat, sessionStorage.userUniversityLon);
 		addMarkerCar(loc);
 		var now = new Date().toLocaleString(); 
@@ -282,7 +296,7 @@ function setMapOnAll()
 			{
 				var price;
 				var pause = false;
-    			var price = prompt("Please enter your Payment Amount:", "0");
+    			var price = prompt("Please enter the Payment Amount by "+users[i].name+users[i].lastName+": ", "0");
     			if (price == null || price == "") 
     			{
         			alert('Enter a value please');
@@ -290,6 +304,7 @@ function setMapOnAll()
     			} 
     			else 
     			{
+
     			}
 			}while(pause);
 		    //create request
@@ -313,7 +328,7 @@ function setMapOnAll()
 
 		        var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 		        var message = document.getElementById('message');
-		        message.innerHTML = JSONdata.errorMessage;
+		        //message.innerHTML = JSONdata.errorMessage;
 		        //alert(JSONdata.errorMessage);
 		        //show buildings
 		        console.log(x.responseText);
@@ -324,7 +339,9 @@ function setMapOnAll()
 	}//if
 	else
 	{
-		var currentdate = new Date().toLocaleString(); 
+		var currentdate = new Date(); 
+		var date = formatDate(currentdate);
+		console.log(date);
 		dates.push(currentdate);
 		console.log(currentdate);
 		marker.setMap(null);
@@ -372,3 +389,33 @@ function clearMarkers() { setMapOnAll(null); }
 function showMarkers() { setMapOnAll(map); }
 
 function deleteMarkers() { clearMarkers(); markers = []; }
+
+function formatDate(dateVal) 
+{
+    var newDate = new Date(dateVal);
+
+    var sMonth = padValue(newDate.getMonth() + 1);
+    var sDay = padValue(newDate.getDate());
+    var sYear = newDate.getFullYear();
+    var sHour = newDate.getHours();
+    var sMinute = padValue(newDate.getMinutes());
+    var sAMPM = "AM";
+
+    var iHourCheck = parseInt(sHour);
+
+    if (iHourCheck > 12) {
+        sAMPM = "PM";
+        sHour = iHourCheck - 12;
+    }
+    else if (iHourCheck === 0) {
+        sHour = "12";
+    }
+
+    sHour = padValue(sHour);
+
+    return sDay + "-" + sMonth + "-" + sYear + " " + sHour + ":" + sMinute + " " + sAMPM;
+}
+
+function padValue(value) {
+    return (value < 10) ? "0" + value : value;
+}
