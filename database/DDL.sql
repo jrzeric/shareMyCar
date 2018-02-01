@@ -1,6 +1,6 @@
-drop database if exists shareMyCar;
-create database if not exists shareMyCar;
-use shareMyCar;
+drop database if exists sharemycar;
+create database if not exists sharemycar;
+use sharemycar;
 
 
 create table if not EXISTS states_ctg
@@ -10,17 +10,17 @@ create table if not EXISTS states_ctg
     PRIMARY KEY (code),
     status bit default 1
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
  create table if NOT EXISTS cities_ctg
  (
-	CODE smallint AUTO_INCREMENT,
+	code smallint AUTO_INCREMENT,
 	state char(2) not null,
 	name varchar(30) not null,
     status bit default 1,
 	PRIMARY KEY (code),
 	FOREIGN KEY (state) REFERENCES states_ctg(CODE)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
   create table if NOT EXISTS location_ctg
  (
  	id int AUTO_INCREMENT,
@@ -29,7 +29,7 @@ create table if not EXISTS states_ctg
     status bit default 1,
     PRIMARY KEY (id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
   create table if NOT EXISTS universities_ctg
  (
  	id tinyint AUTO_INCREMENT,
@@ -40,14 +40,14 @@ create table if not EXISTS states_ctg
     PRIMARY KEY (id),
     FOREIGN KEY (location) REFERENCES location_ctg(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
   CREATE TABLE IF NOT EXISTS profiles_ctg
  (
  	code char(1),
     name VARCHAR(10) unique not null,
     PRIMARY KEY (code)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
  CREATE TABLE IF NOT EXISTS students
  (
 	id SMALLINT AUTO_INCREMENT,
@@ -72,9 +72,9 @@ create table if not EXISTS states_ctg
     FOREIGN KEY (location) REFERENCES location_ctg(id),
 	FOREIGN KEY (city) REFERENCES cities_ctg(CODE)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
  /*Model Cars-------------------------------------------------------------------------------------------------------*/
- 
+
  create table if not EXISTS brands_ctg
  (
  	id tinyint AUTO_INCREMENT,
@@ -83,7 +83,7 @@ create table if not EXISTS states_ctg
     status bit default 1,
     PRIMARY KEY (id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
   CREATE TABLE IF NOT EXISTS models_ctg
  (
  	id tinyint AUTO_INCREMENT,
@@ -93,7 +93,7 @@ create table if not EXISTS states_ctg
     PRIMARY KEY (id),
     FOREIGN KEY (brand) REFERENCES brands_ctg(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
+
  CREATE TABLE IF NOT EXISTS cars
  (
 	id int,
@@ -109,5 +109,3 @@ create table if not EXISTS states_ctg
 	FOREIGN KEY (driver) REFERENcES students(id),
 	FOREIGN KEY (model) REFERENCES models_ctg(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
- 
- 
