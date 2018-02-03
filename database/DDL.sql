@@ -93,19 +93,74 @@ create table if not EXISTS states_ctg
     PRIMARY KEY (id),
     FOREIGN KEY (brand) REFERENCES brands_ctg(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
-
- CREATE TABLE IF NOT EXISTS cars
+ 
+ 
+ CREATE TABLE IF NOT EXISTS spots/* point where the driver going on*/
  (
 	id int,
 	driver SMALLINT not null,
-	model TINYINT not null,
-	licensePlate CHAR(7) not null,
-	driverLicense varchar(90) not null,
-    color varchar(10) not null,
-    insurance char(10),
-    owner varchar(20) not null,
-    status bit default 1,
-	PRIMARY KEY(id),
-	FOREIGN KEY (driver) REFERENcES students(id),
-	FOREIGN KEY (model) REFERENCES models_ctg(id)
+    location int not null,
+    pay decimal,
+    timeArrived time not null,
+	status bit,
+	primary key(id),
+	FOREIGN KEY (driver) REFERENCES students(id),
+	FOREIGN KEY (location) REFERENCES location_ctg(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS ride /*ride of the passenger/driver*/
+ (
+	id int,
+    spot int not null,
+    timeArrived time not null,/* time where the driver arrived at the spot*/
+    locationend int not null default 1,
+    timeArrivedSchool time not null, /* time where the driver arrived at the school*/
+    spaceCar int not null,
+    groupPassenger int, /*this give the information about how many student take the ride*/
+    status bit
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+ 
+ CREATE TABLE IF NOT EXISTS ridePassenger /* table intermedia que llena los autos con los pasajeros */
+ (
+	ride int not null,
+    passenger int not null,
+    request_at time,
+    picked_at time,
+    primary key(ride,passenger),
+	FOREIGN KEY (ride) REFERENCES ride(id),
+    FOREIGN KEY (passenger) REFERENCES students(id)
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS reportOption
+ (
+	id int,
+    description varchar(100) not null,
+    primary key(id)
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS report
+ (
+	id int,
+    reportoption int not null,
+    dateOfReport datetime not null,
+    ride int not null,
+    whoReport char(1)not null,/* the id of the perfil*/
+    status bit,
+    primary key(id),
+    foreign key(reportoption) references reportOption(id)
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS timeban
+ (
+	id int,
+    description varchar(100) not null
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+ 
+ CREATE TABLE IF NOT EXISTS banlist
+ (
+	id int,
+    report int not null,
+    dateofban datetime not null,
+    status bit
+ )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
