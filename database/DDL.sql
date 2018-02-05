@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS report
     dateOfReport datetime not null,
     ride int not null,
     whoReport char(1)not null,/* the id of the perfil*/
-    status bit,
+    status bit not null,
     primary key(id),
     foreign key(reportoption) references reportOption(id)
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
@@ -161,6 +161,6 @@ CREATE TABLE IF NOT EXISTS timeban
 	id int,
     report int not null,
     dateofban datetime not null,
-    status bit
+    status bit not null
  )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 

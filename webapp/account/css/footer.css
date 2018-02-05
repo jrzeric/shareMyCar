@@ -1,0 +1,24 @@
+footer {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  background-color: #080B43;
+  color: #FFF;
+  bottom: 0;
+  left: 0;
+}
+#title {
+  font-size: 24pt;
+}
+#block {
+  float: left;
+  width: 33%;
+  margin: 10px auto;
+}
+#block a {
+  color: #FFF;
+  text-decoration: none;
+}
+#block a:hover {
+  color: #90CAF9;
+}
