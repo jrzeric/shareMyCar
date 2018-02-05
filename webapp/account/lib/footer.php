@@ -18,4 +18,10 @@
     <p><a href = "">how can i put a spot?</a></p>
     <p><a href = "">how can i use a spot?</a></p>
   </div>
+  <div id = "block">
+    <p><label id = "title">Find us</label></p>
+    <img id = "image" src = "../../images/icono_facebook.png">
+    <img id = "image" src = "../../images/icono_twitter.png">
+  </div>
+  <label id = "copyright">©2018 | Todos los derechos reservados</label>
 </html>
