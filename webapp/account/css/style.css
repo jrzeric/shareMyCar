@@ -19,7 +19,7 @@ background-color: lightgray;
 .header__menu-icon {
   position: absolute;
   width: 36px;
-  margin: 16px;
+  margin: 25px 16px;
   left: 6px;
   cursor: pointer;
 }
@@ -28,7 +28,7 @@ background-color: lightgray;
   right: 15px;
   width: 155px;
   height: 60px;
-  margin: 4px;
+  margin: 13px 4px;
   cursor: pointer;
 }
 .header__logo {
