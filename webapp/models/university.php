@@ -1,9 +1,9 @@
 <?php
 
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
-require_once('city.php');
-require_once('location.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/location.php');
 
 class University
 {

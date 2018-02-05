@@ -1,7 +1,7 @@
 <?php
 
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
 
 class State
 {
@@ -59,6 +59,59 @@ class State
       $this->status = $arguments[2];
     }
   }
+  
+  //Instance methods
+  
+	//Methods
+	public function toJson()
+	{
+		return json_encode(array(
+			'code' => $this->code,
+			'name' => $this->name,
+			'status' => $this->status
+			));
+	}//toJson
+	
+	public static function getAll()
+	{
+		//list
+		$list = array();
+		$connection = MySQLConnection::getConnection();
+		//query
+		$query = 'select code, name , status
+					from states_ctg';
+		//command
+		$command = $connection->prepare($query);
+		//execute
+		$command->execute();
+		//bind results
+		$command->bind_result($code, $name, $status);
+		//fetch
+		while ($command->fetch())
+		{
+			array_push($list, new State($code, $name, $status));
+		}
+		//close statement
+		mysqli_stmt_close($command);
+		//close connection
+		$connection->close();
+		//return array
+		return $list;
+	}//getAll
+
+	public static function getAllJson()
+	{
+		//list
+		$list = array();
+		//encode to json
+		foreach (self::getAll() as $item) 
+		{
+			array_push($list, json_decode($item->toJson()));
+		}//foreach
+		return json_encode(array(
+		'status' => '1',
+		'states' => $list));
+	}
 
   /**
    * Adds a new state to the database

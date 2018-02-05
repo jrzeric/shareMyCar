@@ -1,7 +1,7 @@
 <?php
 
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
 
 class Location
 {

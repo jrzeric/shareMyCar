@@ -3,7 +3,7 @@
 		//returns a MySQL connection object
 		public static function getConnection() {
 			//open configuration file
-			$configPath = $_SERVER['DOCUMENT_ROOT'].'/webapp/config/mysqlconnection.json';
+			$configPath = $_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/config/mysqlconnection.json';
 			$configData = json_decode(file_get_contents($configPath),true);
 			//check parameters
 			if (isset($configData['server']))
