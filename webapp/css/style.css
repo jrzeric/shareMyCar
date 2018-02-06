@@ -1,25 +1,13 @@
-* {
-	font-family:arial;
-}
-body {
-	margin:0px;
-	background: #ccc;
-}
-
-/*all*/
-header, #menu, #logo, #user, #sidemenu, #content {
-	position:relative;
-}
-
-/*header*/
+* { margin: auto 0px; font-family: Tahoma, Verdana, Sans-serif; }
 header {
-	float:left;
-	width:100%;
-	background:#FFF;
-	box-shadow:0px 0px 20px #222;
-	z-index:9000;
+  position: relative;
+  height: 86px;
+	width: 100%;
+	background: #FFF;
+	box-shadow: 0px 0px 20px #222;
+	z-index: 9000;
 }
-
+main { position: relative; }
 footer{
 	float:left;
 	width:100%;
@@ -28,69 +16,102 @@ footer{
 	z-index:9000;
 }
 
-#logo {
-	width: 95%;
-	text-align: center;
+/*  */
+.header__logo {
+  position: absolute;
+  height: 80px;
+  margin-top: 3px;
+  left: 50px;
 }
-
-#logo img {
-	float: left;
-	height:60px;
+.header__download-app-icon {
+  position: absolute;
+  right: 340px;
+  width: 155px;
+  margin: 13px 4px;
+  cursor: pointer;
 }
-
-.download{	
-	margin: 0px 0px 0px 0px;
-    font-weight: bold;
-    color: #000;
-    float: right;
-    position: relative;
+.header__button-login, .header__button-register {
+  position: absolute;
+  width: 130px;
+  height: 46px;
+  border-radius: 15px;
+  margin: 20px 4px;
+  color: white;
+  cursor: pointer;
 }
-
-.download label{
-    font-size: 12pt;
-    margin: 20px 0px 0px 0px;
-    float: left;
+.header__button-login {
+  right: 195px;
+  color: #1A237E;
+  border: 2px solid #1A237E;
 }
-
-.download img{
-	margin: 0px 0px 0px 0px;
-	height:40px;
-	position: relative;
-	float: right;
-	color:  #000;
+.header__button-register {
+  right: 50px;
+  color: white;
+  background-color: #1A237E;
 }
+.presentation {
+  position: relative;
+  height: 380px;
+  background-image: url(../images/presentation.jpg);
+  background-position: 50% -75px;
+  background-attachment: fixed;
 
-select{
-	float:left;
-	width:30%;
-	margin:10px 20px 10px 20px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#E8EAF6;
-	border:1px solid #666;
-	color:#AAA;
 }
-
-#logo  {
-	margin: 10px auto auto 10px;
-    font-size: 25pt;
-    font-weight: bold;
-    color: #000;
+.description-box {
+  position: absolute;
+  width: 420px;
+  height: auto;
+  top: 86px;
+  left: 86px;
+  padding: 15px;
+  color: white;
+  background: #1A237E;
+  opacity: 0.9;
+  border: 2px solid darkblue;
+  border-radius: 15px;
+  box-shadow:0px 0px 20px #CCC;
 }
-
-#logo button {
-	border:0px;
-	height:40px;
-	width:100px;
-	margin-left:20px;
-	color:#FFF;
-	background:#000;
-	border-radius:5px;
-	font-size:12pt;
-	cursor:pointer;
-	float: right;
+.description-box__title { font-size: 24pt; }
+.description-box__paragraph { font-size: 16pt; }
+.image-box {
+  position: absolute;
+  width: 680px;
+  max-height: 280px;
+  top: 50px;
+  right: 86px;
+  text-align: center;
 }
-
+.image-box__university-logo {
+  position: relative;
+  max-height: 100px;
+  margin: 20px;
+}
+.information {
+  position: relative;
+  width: 98%;
+  height: auto;
+  margin: 35px auto;
+  background-color: pink;
+}
+.column-information {
+  position: relative;
+  float: left;
+  width: 376px;
+  padding: 13px;
+  margin: 15px 15px;
+  border-radius: 15px;
+  background: white;
+  color: black;
+  text-align: center;
+  border: 2px solid #1A237E;
+}
+.column-information__title { font-size: 16pt; }
+.column-information__paragraph {
+  font-size: 12pt;
+  color: #080B43;
+  font-style: italic;
+}
+.column-information__image { max-height: 128px; margin-top: 5px; }
 button {
 	border:0px;
 	height:40px;
@@ -105,82 +126,7 @@ button {
 	margin: auto 25px 25px auto;
 }
 
-#register{
-	position: relative;
-}
-
-#register2 input{
-	float:left;
-	width:46%;
-	margin: 10px auto auto 21px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#FFF;
-	border:1px solid #666;
-	color:#212121;
-}
-
-.labels{
-	font-size: 22pt;
-	margin: 100px 10px auto 100px;
-	color: #000;
-	float: center;
-}
-
-.box {
-	margin: 20px auto auto 20px;
-	position:relative;
-	float:left;
-	width:40%;
-	height:400px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#A4A4A4;
-}
-
-.box2 {
-	margin: 2px auto auto 2px;
-	position:relative;
-	float:left;
-	width:97%;
-	height:3px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#848484;
-}
-
-.box3 {
-	margin: 20px auto auto 20px;
-	position:relative;
-	float:left;
-	width:31%;
-	height:400px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#A4A4A4;
-}
-
-input{
-	float:left;
-	width:30%;
-	margin: 10px auto auto 21px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#FFF;
-	border:1px solid #666;
-	color:#212121;
-}
-
-
-.images{
-	margin: 20px auto auto 20px;
-    height: 190px;
-    width: 215px;
-}
-
-iframe{
-	margin:20px 20px 20px 10px;
-	height: 500px;
-	width: 98%;
-	float:center;
+/*  */
+@media only screen and (max-width:720px) {
+  .header__download-app-icon { visibility: hidden; }
 }
