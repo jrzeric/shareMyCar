@@ -3,27 +3,20 @@
 	<head>
 		<title>Home</title>
 		<!--style sheets-->
-		<link href="css/style.css" rel="stylesheet"></link>
+    <link href="../css/admin/header.css" rel="stylesheet"></link>
+		<link href="../css/admin/style.css" rel="stylesheet"></link>
+		<link href="../css/admin/footer.css" rel="stylesheet"></link>
 		<!--scripts-->
-		<script src="js/globals.js"></script>
-		<script src="js/index.js"></script>
+		<script src="../js/index.js"></script>
 	</head>
 	<body onLoad="init()">
 		<header id="nav">
-			<div id="menu">
-				<img src="img/menu.png" onclick="showMenu()"></img>
-			</div>
-			<div id="logo">
-				<img src="img/smc.png"></img>
-			</div>
-			<div id="title">
-				<h1>Reports</h1>
-			</div>
+			<?php require_once("../lib/admin/header.php"); ?>
 		</header>
 		<div id="sidemenu">
-			<a href="#"><img class="iconSideMenu" src="img/home.png">  Home</a>
-			<a href="#"><img class="iconSideMenu" src="img/report.png">  Reports</a>
-			<a href="#"><img class="iconSideMenu" src="img/blacklist.png">  Black List</a>
+			<a href="#"><img class="iconSideMenu" src="../images/home.png">  Home</a>
+			<a href="#"><img class="iconSideMenu" src="../images/report.png">  Reports</a>
+			<a href="#"><img class="iconSideMenu" src="../images/blacklist.png">  Black List</a>
 		</div>
 		<div id="content">
 			<div class="filters">
@@ -37,7 +30,7 @@
 
 			<div class="reports">
 				<div class="badPerson">
-				    <div class="reportImg"><img src="img/default.png"></div>		 
+				    <div class="reportImg"><img src="../images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Maria Felix De La Olla</div>
 		                <div class="unBanAt">2 days to unban</div>
@@ -45,7 +38,7 @@
 				</div>
 
 				<div class="badPerson">
-				    <div class="reportImg"><img src="img/default.png"></div>		 
+				    <div class="reportImg"><img src="../images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Eric Luis Juarez Cendejas</div>
 		                <div class="unBanAt">2 days to unban</div>
@@ -53,7 +46,7 @@
 				</div>
 
 				<div class="badPerson">
-				    <div class="reportImg"><img src="img/default.png"></div>		 
+				    <div class="reportImg"><img src="../images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Raul Reyes Rodriguez</div>
 		                <div class="unBanAt">2 days to unban</div>
@@ -61,7 +54,7 @@
 				</div>
 
 				<div class="badPerson">
-				    <div class="reportImg"><img src="img/default.png"></div>		 
+				    <div class="reportImg"><img src="../images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Pablo Lagarda Rodriguez</div>
 		                <div class="unBanAt">2 days to unban</div>
@@ -69,19 +62,19 @@
 				</div>
 
 				<div class="badPerson">
-				    <div class="reportImg"><img src="img/default.png"></div>		 
+				    <div class="reportImg"><img src="../images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Fernando Coronel Salinas</div>
 		                <div class="unBanAt">2 days to unban</div>
 				    </div>
 				</div>
 
-				
+
 
 				<!--
 				<div class="report">
 	  					<div class="userImage">
-	  						<img src="img/default.png">
+	  						<img src="../images/default.png">
 	  					</div>
 	  					<div class="userImage">
 	  						<div class="nameAndRating"><label>UserName</label></div>
@@ -89,8 +82,12 @@
 	  					</div>
   				</div>-->
 
-			</div>	
+			</div>
 
 		</div>
+    <footer>
+      <?php //require_once('../lib/admin/footer.php'); ?>
+    </footer>
 </body>
+
 </html>

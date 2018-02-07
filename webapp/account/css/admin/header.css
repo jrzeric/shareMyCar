@@ -1,0 +1,21 @@
+header {
+  position: relative;
+  height: 86px;
+	width: 100%;
+	background: black;
+	box-shadow: 0px 0px 20px #222;
+	z-index: 9000;
+  text-align: center;
+}
+.header__logo {
+  position: static;
+  height: 80px;
+  margin: 3px auto;
+}
+.header__menu-icon {
+  position: absolute;
+  width: 36px;
+  margin: 25px 16px;
+  left: 6px;
+  cursor: pointer;
+}

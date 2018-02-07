@@ -50,8 +50,8 @@
         </div>
       </div>
 		</main>
+    <footer>
+      <?php require_once("lib/footer.php"); ?>
+    </footer>
   </body>
-  <footer>
-    <?php require_once("lib/footer.php"); ?>
-  </footer>
 </html>
