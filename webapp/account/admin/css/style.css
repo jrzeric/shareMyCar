@@ -132,6 +132,7 @@ header {
 #content {
 	float:left;
 	width:100%;
+	transition: 0.5s;
 }
 
 .iconSideMenu 
@@ -176,10 +177,11 @@ header {
 .reports
 {
 	float:left;
-	width:100%;
+	width:98%;
 }
 
 .report {
+	width: 23%;
 	margin: 10px;
     background:#eeeeee;
     display:inline-block;
@@ -213,11 +215,43 @@ header {
 
 .information {
     padding:10px;
-    float:right;
+    float:left;
 }
 
 .name {
-    font-size:18px;
+
+    font-size:14px;
     padding:8px;}
 
 .stars { padding:8px; }
+
+
+/*-----------------BLACKLIST--------------------*/
+.badPerson {
+	width: 23%;
+	margin: 10px;
+    background:#C62828;
+    color: #EEEEEE;
+    display:inline-block;
+}
+
+.badPerson:hover
+{
+	background-color: #B71C1C; 
+	box-shadow:5px 5px 20px #333;
+	z-index:-1;
+	color:#FFF;
+}
+
+.badPerson:active
+{
+	box-shadow:2px 2px 2px #aaa;
+	z-index:-1;
+	color:#FFF;
+}
+
+.unBanAt 
+{ 
+	color: #E0E0E0;
+	padding:8px; 
+}
