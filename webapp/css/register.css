@@ -1,23 +1,15 @@
 * { margin: auto 0px; font-family: Tahoma, Verdana, Sans-serif; }
-main {
-	margin:0px;
-	background: #ccc;
-}
-
-/*all*/
-header, #menu, #logo, #user, #sidemenu, #content {
-	position:relative;
-}
-
-/*header*/
+h1 { margin: 15px 0px;  text-align: center; }
 header {
-	float:left;
-	width:100%;
-	background:#FFF;
-	box-shadow:0px 0px 20px #222;
-	z-index:9000;
+  position: relative;
+  height: 86px;
+	width: 100%;
+	background: #030427;
+	box-shadow: 0px 0px 20px #222;
+	z-index: 9000;
 }
-
+body { background-color: #F8F8F9; }
+main { position: relative; }
 footer{
 	float:left;
 	width:100%;
@@ -25,70 +17,88 @@ footer{
 	box-shadow:0px 0px 20px #222;
 	z-index:9000;
 }
-
-#logo {
-	width: 95%;
-	text-align: center;
+.header__logo {
+  position: absolute;
+  height: 80px;
+  margin-top: 3px;
+  left: 50px;
 }
-
-#logo img {
-	float: left;
-	height:60px;
+.header__download-app-icon {
+  position: absolute;
+  right: 195px;
+  width: 155px;
+  margin: 13px 4px;
+  cursor: pointer;
 }
-
-.download{
-	margin: 0px 0px 0px 0px;
-    font-weight: bold;
-    color: #000;
-    float: right;
-    position: relative;
+.header__button-login, .header__button-register {
+  position: absolute;
+  width: 130px;
+  height: 46px;
+  border-radius: 15px;
+  margin: 20px 4px;
+  color: white;
+  cursor: pointer;
 }
-
-.download label{
-    font-size: 12pt;
-    margin: 20px 0px 0px 0px;
-    float: left;
+.header__button-login {
+  right: 50px;
+  color: #030427;
+  border: 2px solid #080B43;
+  background-color: white;
 }
-
-.download img{
-	margin: 0px 0px 0px 0px;
-	height:40px;
-	position: relative;
-	float: right;
-	color:  #000;
+.form-section {
+  position: static;
+  width: 100%;
+  height: auto;
+  margin: 15px auto;
 }
-
-select{
-	float:left;
-	width:30%;
-	margin:10px 20px 10px 20px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#E8EAF6;
-	border:1px solid #666;
-	color:#AAA;
+.form-section__title {
+  position: relative;
+  left: 4.5%;
+  font-size: 22pt;
+  border-bottom: 1px solid black;
+	color: black;
 }
-
-#logo  {
-	margin: 10px auto auto 10px;
-    font-size: 25pt;
-    font-weight: bold;
-    color: #000;
+.form-section-blank {
+  position: relative;
+  width: 98%;
+  height: auto;
+  text-align: center;
+  margin: 0px auto;
 }
-
-#logo button {
-	border:0px;
-	height:40px;
-	width:100px;
-	margin-left:20px;
-	color:#FFF;
-	background:#000;
-	border-radius:5px;
-	font-size:12pt;
-	cursor:pointer;
-	float: right;
+.form-section-blank input, .form-section-blank select {
+	font-size: 14pt;
+  margin: 15px;
+	padding: 15px;
+	background: #FFF;
+	border: 1px solid #666;
+	color: #212121;
 }
-
+.form-section__blank--three-columns, .form-section__blank--two-columns {
+  position: relative;
+  height: auto;
+  margin: 5px 2%;
+}
+.form-section__blank--three-columns { width: 27.5%; }
+.form-section__blank--two-columns { width: 44.3%; }
+.map {
+  margin: auto auto;
+	height: auto;
+  height: 500px;
+	width: 97%;
+  margin: 15px 2%;
+}
+.next-page {
+  right: 50px;
+  color: white;
+  background-color: #030427;
+}
+.previus-page {
+  float: left;
+  margin-left:20px;
+  color: #030427;
+  border: 2px solid #080B43;
+  background-color: white;
+}
 button {
 	border:0px;
 	height:40px;
@@ -101,84 +111,4 @@ button {
 	cursor:pointer;
 	float: right;
 	margin: auto 25px 25px auto;
-}
-
-#register{
-	position: relative;
-}
-
-#register2 input{
-	float:left;
-	width:46%;
-	margin: 10px auto auto 21px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#FFF;
-	border:1px solid #666;
-	color:#212121;
-}
-
-.labels{
-	font-size: 22pt;
-	margin: 100px 10px auto 100px;
-	color: #000;
-	float: center;
-}
-
-.box {
-	margin: 20px auto auto 20px;
-	position:relative;
-	float:left;
-	width:40%;
-	height:400px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#A4A4A4;
-}
-
-.box2 {
-	margin: 2px auto auto 2px;
-	position:relative;
-	float:left;
-	width:97%;
-	height:3px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#848484;
-}
-
-.box3 {
-	margin: 20px auto auto 20px;
-	position:relative;
-	float:left;
-	width:31%;
-	height:400px;
-	margin:1%;
-	box-shadow:0px 0px 20px #CCC;
-	background:#A4A4A4;
-}
-
-input{
-	float:left;
-	width:30%;
-	margin: 10px auto auto 21px;
-	padding:10px 0px 10px 10px;
-	font-size:14pt;
-	background:#FFF;
-	border:1px solid #666;
-	color:#212121;
-}
-
-
-.images{
-	margin: 20px auto auto 20px;
-    height: 190px;
-    width: 215px;
-}
-
-iframe{
-	margin:20px 20px 20px 10px;
-	height: 500px;
-	width: 98%;
-	float:center;
 }

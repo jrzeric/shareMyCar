@@ -41,13 +41,13 @@ footer{
 }
 .header__button-login {
   right: 195px;
-  color: #1A237E;
-  border: 2px solid #1A237E;
+  color: #030427;
+  border: 2px solid #030427;
 }
 .header__button-register {
   right: 50px;
   color: white;
-  background-color: #1A237E;
+  background-color: #030427;
 }
 .presentation {
   position: relative;
@@ -91,7 +91,6 @@ footer{
   width: 98%;
   height: auto;
   margin: 35px auto;
-  background-color: pink;
 }
 .column-information {
   position: relative;
@@ -103,7 +102,7 @@ footer{
   background: white;
   color: black;
   text-align: center;
-  border: 2px solid #1A237E;
+  border: 2px solid #030427;
 }
 .column-information__title { font-size: 16pt; }
 .column-information__paragraph {

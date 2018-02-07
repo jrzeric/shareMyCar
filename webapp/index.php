@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Share My Car</title>
+		<title><?php require_once('lib/title.php'); ?> Home </title>
 		<link href="css/style.css" rel="stylesheet"></link>
 		<link href="css/footer.css" rel="stylesheet"></link>
 	</head>
 	<body>
     <header>
-      <img class="header__logo" src="images/logo.png" alt="">
-      <img class="header__download-app-icon" src="images/download-app-02.png" alt="">
-      <button class="header__button-login" type="button" name="login">Login</button>
-      <a href="register1.html"><button class="header__button-register" type="button" name="register">Register</button></a>
+      <?php require_once("lib/header.php"); ?>
     </header>
     <main>
       <div class="presentation">
