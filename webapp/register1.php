@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php require_once('lib/title.php'); ?> Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Register</title>
 		<link href="css/register.css" rel="stylesheet"></link>
-    <link href="css/footer.css" rel="stylesheet"></link>
+    <link href="/css/footer.css" rel="stylesheet"></link>
 	</head>
 	<body>
     <header>
-      <?php require_once("lib/header_register.php"); ?>
+      <?php require_once("/lib/header_register.php"); ?>
     </header>
 		<main>
       <h1>Registration</h1>
@@ -36,8 +38,8 @@
       </div>
 			<a href="register2.php"><button class="next-page">Next</button></a>
 		</main>
+    <footer>
+  		<?php require_once("/lib/footer.php"); ?>
+  	</footer>
 	</body>
-	<footer>
-		<?php require_once("lib/footer.php"); ?>
-	</footer>
 </html>

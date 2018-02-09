@@ -1,0 +1,101 @@
+#manageTitle
+{
+  width: 100%;
+  font-size: 24pt;
+  text-align: center;
+  font-weight: bold;
+}
+#manageOption
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#manageOption select
+{
+  float: left;
+  border: 1px solid #BFBFBF;
+  color: #000;
+  padding: 4px 5px 4px 17px;
+  width: 200px;
+  margin: 10px 6px 6px 20px;
+}
+#manageOption input
+{
+  float: left;
+  border: 1px solid #BFBFBF;
+  color: #000;
+  padding: 5px 5px 5px 17px;
+  width: 200px;
+  margin: 10px 6px 6px 20px;
+}
+#button
+{
+  float: left;
+  background-color: #080B43;
+  font-size: 12px;
+  color: #FFF;
+   border: 2px solid #FFF;
+  border-radius: 10px;
+  padding: 10px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0px 6px 0px 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+}
+#button:hover
+{
+  background-color: #03A9F4;
+    color: #000;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#button:active
+{
+  background-color: #03A9F4;
+  box-shadow: 0 4px #666;
+  transform: translateY(4px);
+}
+/*Table CSS-------------------------------------------------------------------*/
+#manageTable
+{
+  width: 100%;
+  height: auto%;
+  display: flex;
+  justify-content: center;
+  /*overflow-x: auto;*/ scrollbar
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#manageTable01
+{
+  border-collapse: collapse;
+  width: 90%;
+}
+#manageTable01 th
+{
+  height: 50px;
+  background-color: #0D47A1;
+  padding-right: 5px;
+}
+#manageTable01 th,td
+{
+  text-align: left;
+  padding: 8px 0px 8px 10px;
+  border-bottom: 1px solid #000;
+}
+#manageTable01 tr:nth-child(even)
+{
+  background-color: #E0E0E0;
+}
+#manageTable01 td img
+{
+  width: 36px;
+  height: 36px;
+}
+.cellIcon
+{
+  width: 6%;
+}

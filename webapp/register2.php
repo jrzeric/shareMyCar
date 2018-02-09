@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php require_once('lib/title.php'); ?> Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Register</title>
 		<link href="css/register.css" rel="stylesheet"></link>
     <link href="css/footer.css" rel="stylesheet"></link>
 	</head>
@@ -59,7 +61,7 @@
           <input id="security" class="form-section__blank--three-columns" type="text" name="" value="" placeholder="SECURITY NUMBER">
         </div>
       </div>
-			<a href="register1.php"><button class="previus-page">PREVIUS</button></a>
+			<a href="register1.php"><button class="previus-page">PREVIOUS</button></a>
 			<a href="index.php"><button class="next-page">FINISH</button></a>
 		</main>
 	</body>
