@@ -8,10 +8,10 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['id'])){
-			try{
+		if (isset($_GET['id'])) {
+			try {
 				//create object
 				$b = new Brand($_GET['id']);
 				//display
@@ -20,23 +20,23 @@
 					'brand' => json_decode($b->toJson())
 				));
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => $ex->get_message()
 				));
 			}
 		}
-		else{
+		else {
 			echo Brand::getAllJson();
 		}
 	}
-	
+
 	//POST (Insert)
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
 		if (isset($_POST['name']) &&
-			isset($_POST['image'])){
+			isset($_POST['image'])) {
 			/*Create an object Brand*/
 			$b = new Brand();
 
@@ -48,7 +48,7 @@
 			$b->setStatus(1);
 
 			/*Then execute the method add*/
-			if ($b->add()){
+			if ($b->add()) {
 
 				/*This message means the spot was added to the database*/
 				echo json_encode(array(
@@ -56,8 +56,8 @@
 					'errorMessage' => 'Brand added successfully'
 				));
 			}
-			else{
-				/*the error is caused because the connection of the database, or the user 
+			else {
+				/*the error is caused because the connection of the database, or the user
 				writed something wrong*/
 				echo json_encode(array(
 					'status' => 1,
@@ -66,7 +66,7 @@
 
 			}
 		}
-		else{
+		else {
 			echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => 'Missing Parameters'
@@ -90,7 +90,7 @@
 				isset($jsonData['status'])) {
 					//create empty object
 				try {
-					$b = new Brand($jsonData['id']);						
+					$b = new Brand($jsonData['id']);
 					//set values
 					$b->setName($jsonData['name']);
 					$b->setImage($jsonData['image']);
@@ -118,7 +118,7 @@
 				echo json_encode(array(
 					'status' => 3,
 					'errorMessage' => 'Missing parameters'
-				));	
+				));
 		}
 	}
 

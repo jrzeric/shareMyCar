@@ -9,11 +9,9 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET')
-	{
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['id']))
-		{
+		if (isset($_GET['id'])) {
 			try {
 				//create object
 				$u = new University($_GET['id']);
@@ -29,17 +27,13 @@
 					'errorMessage' => $ex->get_message()
 				));
 			}
-		}
-		else if(isset($_GET['idAll']))
-		{
+		} elseif (isset($_GET['idAll'])) {
 			echo university::getAllUJson($_GET['idAll']);
-		}
-		else
-		{
+		} else {
 			echo json_encode(array(
 					'status' => 1,
 					'errorMessage' => 'Missing parameters'
 				));
 		}
-		}
+	}
 ?>

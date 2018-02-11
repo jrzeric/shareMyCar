@@ -34,7 +34,6 @@ class City
       $this->state = new State();
       $this->name = '';
       $this->status = 0;
-
     }
     if (func_num_args() == 1) {
       $code = func_get_arg(0);
@@ -131,7 +130,7 @@ class City
 
 
   //Instance methods
-  
+
   //Methods
   public function toJson()
   {
@@ -142,7 +141,7 @@ class City
       'status' => $this->status
       ));
   }//toJson
-  
+
   public static function getAll()
   {
     //list
@@ -158,8 +157,7 @@ class City
     //bind results
     $command->bind_result($code, $name, $status, $state);
     //fetch
-    while ($command->fetch())
-    {
+    while ($command->fetch()) {
       array_push($list, new City($code, $state, $name, $status));
     }
     //close statement
@@ -175,8 +173,7 @@ class City
     //list
     $list = array();
     //encode to json
-    foreach (self::getAll() as $item) 
-    {
+    foreach (self::getAll() as $item) {
       array_push($list, json_decode($item->toJson()));
     }//foreach
     return json_encode(array(
@@ -202,8 +199,7 @@ class City
       //bind results
       $command->bind_result($code, $name, $status, $state);
       //echo $found;
-      while ($command->fetch())
-      {
+      while ($command->fetch()) {
         array_push($list, new City($code, $state, $name, $status));
       }
       //close statement
@@ -219,8 +215,7 @@ class City
       //list
       $list = array();
       //encode to json
-      foreach (self::getAllCitiesByState($state) as $item) 
-      {
+      foreach (self::getAllCitiesByState($state) as $item) {
         array_push($list, json_decode($item->toJson()));
       }//foreach
       return json_encode(array(

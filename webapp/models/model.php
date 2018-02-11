@@ -21,16 +21,14 @@ class Model
 
   function __construct()
   {
-      if (func_num_args()==0)
-      {
+      if (func_num_args()==0) {
         $this->id = 0;
         $this->brand = new Brand();
         $this->name = '';
         $this->status = 1;
       }
 
-      if (func_num_args()==1)
-      {
+      if (func_num_args()==1) {
         $id = func_get_arg(0);
         $connection = MySQLConnection::getConnection();
         $query = 'SELECT id, brand, name, status FROM models_ctg WHERE id = ?;';
@@ -41,21 +39,18 @@ class Model
         $found = $command->fetch();
         mysqli_stmt_close($command);
         $connection->close();
-        if ($found)
-        {
+        if ($found) {
           $this->id = $id;
           $this->brand = new Brand($brand);
           $this->name = $name;
           $this->status = $status;
         }
-        else
-        {
+        else {
           throw new RecordNotFoundException();
         }
       }
 
-      if (func_num_args()==4)
-      {
+      if (func_num_args()==4) {
         $arguments = func_get_args();
         $this->id = $arguments[0];
         $this->brand = new Brand($arguments[1]);
@@ -150,8 +145,7 @@ class Model
     //bind results
     $command->bind_result($code, $name, $status, $brand);
     //fetch
-    while ($command->fetch())
-    {
+    while ($command->fetch()) {
       array_push($list, new Model($code, $brand, $name, $status));
     }
     //close statement
@@ -170,8 +164,7 @@ class Model
   public static function getAllJson()
   {
     $list = array();
-    foreach (self::getAll() as $item)
-    {
+    foreach (self::getAll() as $item) {
       array_push($list, json_decode($item->toJson()));
     }
     return json_encode(array(
@@ -197,8 +190,7 @@ class Model
       //bind results
       $command->bind_result($code, $name, $status, $brand);
       //echo $found;
-      while ($command->fetch())
-      {
+      while ($command->fetch()) {
         array_push($list, new Model($code, $brand, $name, $status));
       }
       //close statement
@@ -214,8 +206,7 @@ class Model
       //list
       $list = array();
       //encode to json
-      foreach (self::getAllModelsByBrand($brand) as $item) 
-      {
+      foreach (self::getAllModelsByBrand($brand) as $item) {
         array_push($list, json_decode($item->toJson()));
       }//foreach
       return json_encode(array(

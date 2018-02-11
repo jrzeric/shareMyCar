@@ -9,10 +9,10 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['id'])){
-			try{
+		if (isset($_GET['id'])) {
+			try {
 				//create object
 				$m = new Model($_GET['id']);
 				//display
@@ -21,7 +21,7 @@
 					'model' => json_decode($m->toJson())
 				));
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => $ex->get_message()
@@ -29,12 +29,12 @@
 			}
 		}
 		else if (isset($_GET['idBrand'])) {
-			try{
+			try {
 				//create object
 				$b = new Brand($_GET['idBrand']);
 				echo Model::getAllModelsByBrandJson($_GET['idBrand']);
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 4,
 					'errorMessage' => $ex->get_message()
@@ -45,12 +45,12 @@
 			echo Model::getAllJson();
 		}
 	}
-	
+
 	//POST (Insert)
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
 		if (isset($_POST['brand']) &&
-			isset($_POST['name'])){
+			isset($_POST['name'])) {
 			$errorBrand = false;
 			try {
 				$b = new Brand($_POST['brand']);
@@ -60,7 +60,7 @@
 					'status' => 3,
 					'errorMessage' => 'Invalid Brand'
 				));
-			}	
+			}
 			if (!$errorBrand) {
 				$m = new Model();
 				//assign values
@@ -69,7 +69,7 @@
 				$m->setBrand($b);
 
 				/*Then execute the method add*/
-				if ($m->add()){
+				if ($m->add()) {
 
 					/*This message means the spot was added to the database*/
 					echo json_encode(array(
@@ -78,7 +78,7 @@
 					));
 				}
 				else{
-					/*the error is caused because the connection of the database, or the user 
+					/*the error is caused because the connection of the database, or the user
 					writed something wrong*/
 					echo json_encode(array(
 						'status' => 1,
@@ -122,7 +122,7 @@
 				}
 				if (!$errorBrand) {
 					try {
-						$m = new Model($jsonData['id']);						
+						$m = new Model($jsonData['id']);
 						//set values
 						$m->setName($jsonData['name']);
 						$m->setStatus($jsonData['status']);
@@ -152,7 +152,7 @@
 				echo json_encode(array(
 					'status' => 3,
 					'errorMessage' => 'Missing parameters'
-				));	
+				));
 		}
 	}
 
@@ -184,7 +184,7 @@
 				));
 			}
 		}
-		else { 
+		else {
 			echo json_encode(array(
 				'status' => 2,
 				'errorMessage' => 'Missing code parameter'

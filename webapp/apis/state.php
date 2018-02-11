@@ -9,9 +9,9 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['id'])){
+		if (isset($_GET['id'])) {
 			try{
 				//create object
 				$s = new State($_GET['id']);
@@ -21,7 +21,7 @@
 					'state' => json_decode($s->toJson())
 				));
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => $ex->get_message()
@@ -32,12 +32,12 @@
 			echo State::getAllJson();
 		}
 	}
-	
+
 	//POST (Insert)
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
 		if (isset($_POST['code']) &&
-			isset($_POST['name'])){
+			isset($_POST['name'])) {
 			/*Create an object state*/
 			$s = new State();
 
@@ -49,7 +49,7 @@
 			$s->setStatus(1);
 
 			/*Then execute the method add*/
-			if ($s->add()){
+			if ($s->add()) {
 
 				/*This message means the spot was added to the database*/
 				echo json_encode(array(
@@ -57,8 +57,8 @@
 					'errorMessage' => 'State added successfully'
 				));
 			}
-			else{
-				/*the error is caused because the connection of the database, or the user 
+			else {
+				/*the error is caused because the connection of the database, or the user
 				writed something wrong*/
 				echo json_encode(array(
 					'status' => 1,
@@ -90,7 +90,7 @@
 				isset($jsonData['status'])) {
 					//create empty object
 				try {
-					$s = new State($jsonData['code']);						
+					$s = new State($jsonData['code']);
 					//set values
 					$s->setName($jsonData['name']);
 					$s->setStatus($jsonData['status']);
@@ -117,7 +117,7 @@
 				echo json_encode(array(
 					'status' => 3,
 					'errorMessage' => 'Missing parameters'
-				));	
+				));
 		}
 	}
 

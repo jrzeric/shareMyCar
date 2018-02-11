@@ -9,9 +9,9 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
 
 	//GET (Read)
-	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['code'])){
+		if (isset($_GET['code'])) {
 			try{
 				//create object
 				$c = new City($_GET['code']);
@@ -21,7 +21,7 @@
 					'city' => json_decode($c->toJson())
 				));
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => $ex->get_message()
@@ -34,7 +34,7 @@
 				$s = new State($_GET['codeState']);
 				echo City::getAllCitiesByStateJson($_GET['codeState']);
 			}
-			catch(RecordNotFoundException $ex){
+			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 4,
 					'errorMessage' => $ex->get_message()
@@ -45,9 +45,9 @@
 			echo City::getAllJson();
 		}
 	}
-	
+
 	//POST (Insert)
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
 		if (isset($_POST['code']) &&
 			isset($_POST['name']) &&
@@ -61,7 +61,7 @@
 					'status' => 3,
 					'errorMessage' => 'Invalid State'
 				));
-			}	
+			}
 			if (!$errorState) {
 				$c = new City();
 				//assign values
@@ -71,16 +71,15 @@
 				$c->setState($s);
 
 				/*Then execute the method add*/
-				if ($c->add()){
+				if ($c->add()) {
 
 					/*This message means the spot was added to the database*/
 					echo json_encode(array(
 						'status' => 0,
 						'errorMessage' => 'City added successfully'
 					));
-				}
-				else{
-					/*the error is caused because the connection of the database, or the user 
+				}	else {
+					/*the error is caused because the connection of the database, or the user
 					writed something wrong*/
 					echo json_encode(array(
 						'status' => 1,
@@ -89,8 +88,7 @@
 
 				}
 			}
-		}
-		else{
+		} else {
 			echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => 'Missing Parameters'
@@ -124,7 +122,7 @@
 				}
 				if (!$errorState) {
 					try {
-						$c = new City($jsonData['code']);						
+						$c = new City($jsonData['code']);
 						//set values
 						$c->setName($jsonData['name']);
 						$c->setStatus($jsonData['status']);
@@ -140,23 +138,20 @@
 									'status' => 1,
 									'errorMessage' => 'Could not update city'
 								));
-							}
-						catch (RecordNotFoundException $ex) {
+					} catch (RecordNotFoundException $ex) {
 							echo json_encode(array(
 								'status' => 2,
 								'errorMessage' => 'Invalid City id'
 							));
-						}
-			}
-
-			}
-			else
+            }
+          }
+        } else
 				echo json_encode(array(
 					'status' => 3,
 					'errorMessage' => 'Missing parameters'
-				));	
-		}
-	}
+				));
+    }
+  }
 
 
 	//DELETE (delete)
