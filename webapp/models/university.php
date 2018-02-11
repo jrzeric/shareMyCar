@@ -86,7 +86,7 @@ class University
     $query = "INSERT INTO universities_ctg (id, name, city, location, status) values (?, ?, ?, ?, ?);";
 
     $command = $connection->prepare($query);
-    $command->bind_param('isiii', $this->id, $this->name, $this->city, $this->location, $this->status);
+    $command->bind_param('isiii', $this->id, $this->name, $this->city->getCode(), $this->location->getCode(), $this->status);
 
     $result = $command->execute();
     mysqli_stmt_close($command);

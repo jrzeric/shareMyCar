@@ -6,19 +6,19 @@
 	//allow methods
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
 
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
-		if (isset($_GET['code'])) {
-			try{
+		if (isset($_GET['id'])) {
+			try {
 				//create object
-				$c = new City($_GET['code']);
+				$m = new Model($_GET['id']);
 				//display
 				echo json_encode(array(
 					'status' => 0,
-					'city' => json_decode($c->toJson())
+					'model' => json_decode($m->toJson())
 				));
 			}
 			catch(RecordNotFoundException $ex) {
@@ -28,11 +28,11 @@
 				));
 			}
 		}
-		else if ($_GET['codeState']) {
-			try{
+		else if (isset($_GET['idBrand'])) {
+			try {
 				//create object
-				$s = new State($_GET['codeState']);
-				echo City::getAllCitiesByStateJson($_GET['codeState']);
+				$b = new Brand($_GET['idBrand']);
+				echo Model::getAllModelsByBrandJson($_GET['idBrand']);
 			}
 			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
@@ -42,53 +42,53 @@
 			}
 		}
 		else{
-			echo City::getAllJson();
+			echo Model::getAllJson();
 		}
 	}
 
 	//POST (Insert)
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
-		if (isset($_POST['code']) &&
-			isset($_POST['name']) &&
-			isset($_POST['state'])){
-			$errorState = false;
+		if (isset($_POST['brand']) &&
+			isset($_POST['name'])) {
+			$errorBrand = false;
 			try {
-				$s = new State($_POST['state']);
+				$b = new Brand($_POST['brand']);
 			} catch (RecordNotFoundException $ex) {
-				$errorState = true; //found error
+				$errorBrand = true; //found error
 				echo json_encode(array(
 					'status' => 3,
-					'errorMessage' => 'Invalid State'
+					'errorMessage' => 'Invalid Brand'
 				));
 			}
-			if (!$errorState) {
-				$c = new City();
+			if (!$errorBrand) {
+				$m = new Model();
 				//assign values
-				$c->setCode($_POST['code']);
-				$c->setName($_POST['name']);
-				$c->setStatus(1);
-				$c->setState($s);
+				$m->setName($_POST['name']);
+				$m->setStatus(1);
+				$m->setBrand($b);
 
 				/*Then execute the method add*/
-				if ($c->add()) {
+				if ($m->add()) {
 
 					/*This message means the spot was added to the database*/
 					echo json_encode(array(
 						'status' => 0,
-						'errorMessage' => 'City added successfully'
+						'errorMessage' => 'Model added successfully'
 					));
-				}	else {
+				}
+				else{
 					/*the error is caused because the connection of the database, or the user
 					writed something wrong*/
 					echo json_encode(array(
 						'status' => 1,
-						'errorMessage' => 'Could not add City'
+						'errorMessage' => 'Could not add Model'
 					));
 
 				}
 			}
-		} else {
+		}
+		else{
 			echo json_encode(array(
 					'status' => 2,
 					'errorMessage' => 'Missing Parameters'
@@ -106,78 +106,81 @@
 			//decode json
 			$jsonData = json_decode($putData['data'], true);
 			//check parameters
-			if (isset($jsonData['code']) &&
+			if (isset($jsonData['id']) &&
 				isset($jsonData['name']) &&
-				isset($jsonData['state']) &&
+				isset($jsonData['brand']) &&
 				isset($jsonData['status'])) {
-				$errorState = false;
+				$errorBrand = false;
 				try {
-					$s = new State($jsonData['state']);
+					$b = new Brand($jsonData['brand']);
 				} catch (RecordNotFoundException $ex) {
-					$errorState = true; //found error
+					$errorBrand = true; //found error
 					echo json_encode(array(
 					'status' => 3,
-					'errorMessage' => 'Invalid State'
+					'errorMessage' => 'Invalid Brand'
 					));
 				}
-				if (!$errorState) {
+				if (!$errorBrand) {
 					try {
-						$c = new City($jsonData['code']);
+						$m = new Model($jsonData['id']);
 						//set values
-						$c->setName($jsonData['name']);
-						$c->setStatus($jsonData['status']);
-						$c->setState($s);
+						$m->setName($jsonData['name']);
+						$m->setStatus($jsonData['status']);
+						$m->setBrand($b);
 							//add
-							if ($c->put())
+							if ($m->put())
 								echo json_encode(array(
 									'status' => 0,
-									'errorMessage' => 'City updated successfully'
+									'errorMessage' => 'Model updated successfully'
 								));
 							else
 								echo json_encode(array(
 									'status' => 1,
-									'errorMessage' => 'Could not update city'
+									'errorMessage' => 'Could not update Model'
 								));
-					} catch (RecordNotFoundException $ex) {
+							}
+						catch (RecordNotFoundException $ex) {
 							echo json_encode(array(
 								'status' => 2,
-								'errorMessage' => 'Invalid City id'
+								'errorMessage' => 'Invalid Model id'
 							));
-            }
-          }
-        } else
+						}
+			}
+
+			}
+			else
 				echo json_encode(array(
 					'status' => 3,
 					'errorMessage' => 'Missing parameters'
 				));
-    }
-  }
+		}
+	}
 
 
 	//DELETE (delete)
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 		//read id
 		parse_str(file_get_contents('php://input'), $putData);
-		if (isset($putData['code'])) {
+		if (isset($putData['id'])) {
 			try {
 				//create object
-				$c = new City($putData['code']);
+				$m = new Model($putData['id']);
 				//delete
-				if ($c->delete())
+				if ($m->delete())
 					echo json_encode(array(
 						'status' => 0,
-						'errorMessage' => 'City deleted successfully'
+						'errorMessage' => 'Model deleted successfully'
 					));
 				else
 					echo json_encode(array(
 						'status' => 1,
-						'errorMessage' => 'Could not delete the City'
+						'errorMessage' => 'Could not delete the Model'
 					));
 			}
 			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 3,
-					'errorMessage' => 'Invalid city id'
+					'errorMessage' => 'Invalid Model id'
 				));
 			}
 		}

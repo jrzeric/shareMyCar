@@ -2,6 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
 
 class City
@@ -33,7 +34,6 @@ class City
       $this->state = new State();
       $this->name = '';
       $this->status = 0;
-
     }
     if (func_num_args() == 1) {
       $code = func_get_arg(0);
@@ -79,7 +79,7 @@ class City
     $query = "INSERT INTO cities_ctg (code, state, name, status) values (?, ?, ?, ?);";
 
     $command = $connection->prepare($query);
-    $command->bind_param('issi', $this->code, $this->state, $this->name, $this->status);
+    $command->bind_param('issi', $this->code, $this->state->getCode(), $this->name, $this->status);
 
     $result = $command->execute();
     mysqli_stmt_close($command);
@@ -99,7 +99,7 @@ class City
     $query = "UPDATE cities_ctg SET state = ?, name = ?, status = ? WHERE code = ?;";
 
     $command = $connection->prepare($query);
-    $command->bind_param('ssii', $this->state, $this->name, $this->status, $this->code);
+    $command->bind_param('ssii', $this->state->getCode(), $this->name, $this->status, $this->code);
 
     $result = $command->execute();
     mysqli_stmt_close($command);
@@ -127,4 +127,101 @@ class City
 
     return $result;
   }
+
+
+  //Instance methods
+
+  //Methods
+  public function toJson()
+  {
+    return json_encode(array(
+      'code' => $this->code,
+      'name' => $this->name,
+      'state' => json_decode($this->state->toJson()),
+      'status' => $this->status
+      ));
+  }//toJson
+
+  public static function getAll()
+  {
+    //list
+    $list = array();
+    $connection = MySQLConnection::getConnection();
+    //query
+    $query = 'select code, name , status, state
+          from cities_ctg';
+    //command
+    $command = $connection->prepare($query);
+    //execute
+    $command->execute();
+    //bind results
+    $command->bind_result($code, $name, $status, $state);
+    //fetch
+    while ($command->fetch()) {
+      array_push($list, new City($code, $state, $name, $status));
+    }
+    //close statement
+    mysqli_stmt_close($command);
+    //close connection
+    $connection->close();
+    //return array
+    return $list;
+  }//getAll
+
+  public static function getAllJson()
+  {
+    //list
+    $list = array();
+    //encode to json
+    foreach (self::getAll() as $item) {
+      array_push($list, json_decode($item->toJson()));
+    }//foreach
+    return json_encode(array(
+    'status' => '1',
+    'states' => $list));
+  }
+
+
+  public static function getAllCitiesByState($state)
+  {
+      //list
+      $list = array();
+      $connection = MySQLConnection::getConnection();
+      //query
+      $query = 'select code, name , status, state
+            from cities_ctg
+            where state = ?';
+      //command
+      $command = $connection->prepare($query);
+      $command->bind_param('s', $state);
+      //execute
+      $command->execute();
+      //bind results
+      $command->bind_result($code, $name, $status, $state);
+      //echo $found;
+      while ($command->fetch()) {
+        array_push($list, new City($code, $state, $name, $status));
+      }
+      //close statement
+      mysqli_stmt_close($command);
+      //close connection
+      $connection->close();
+      //return array
+      return $list;
+  }//getAll
+
+    public static function getAllCitiesByStateJson($state)
+    {
+      //list
+      $list = array();
+      //encode to json
+      foreach (self::getAllCitiesByState($state) as $item) {
+        array_push($list, json_decode($item->toJson()));
+      }//foreach
+      return json_encode(array(
+        'status' => '3',
+        'cities' => $list));
+    }
 }
+
+?>
