@@ -6,6 +6,9 @@
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Home</title>
 		<link href="/css/style.css" rel="stylesheet"></link>
 		<link href="/css/footer.css" rel="stylesheet"></link>
+				<link href="/css/popup.css" rel="stylesheet"></link>
+		 <script src="js/globals.js"></script>
+        <script src="js/popup.js"></script>
 	</head>
 	<body>
     <header>
