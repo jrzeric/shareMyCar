@@ -184,7 +184,7 @@
 				));
 			}
 		}
-		else {
+		else { 
 			echo json_encode(array(
 				'status' => 2,
 				'errorMessage' => 'Missing code parameter'
