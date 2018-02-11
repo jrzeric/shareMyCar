@@ -1,6 +1,7 @@
 <?php
-  require_once('mysqlconnection.php');
-  require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
 
 class Model
 {
@@ -32,12 +33,12 @@ class Model
       {
         $id = func_get_arg(0);
         $connection = MySQLConnection::getConnection();
-        $query = 'SELECT id, brand, name, email, status FROM models_ctg WHERE id = ?;';
+        $query = 'SELECT id, brand, name, status FROM models_ctg WHERE id = ?;';
         $command = $connection->prepare($query);
         $command->bind_param('s',$id);
         $command->execute();
         $command->bind_result($id,$brand,$name,$status);
-        $found->fetch();
+        $found = $command->fetch();
         mysqli_stmt_close($command);
         $connection->close();
         if ($found)
@@ -45,7 +46,7 @@ class Model
           $this->id = $id;
           $this->brand = new Brand($brand);
           $this->name = $name;
-          $this->status = $state;
+          $this->status = $status;
         }
         else
         {
@@ -71,9 +72,9 @@ class Model
   public function add()
   {
     $connection = MySQLConnection::getConnection();
-    $query = ""; // this query is empty
+    $query = "INSERT INTO models_ctg (brand, name, status) VALUES (?, ?, ?);"; // this query is empty
     $command = $connection->prepare($query);
-    $command->bind_param(); //this also is empty
+    $command->bind_param('isi' , $this->brand->getId(), $this->name, $this->status); //this also is empty
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -88,9 +89,9 @@ class Model
   public function put()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "";
+    $query = "UPDATE models_ctg SET brand = ?, name = ?, status = ? WHERE id = ?;";
     $command = $connection->prepare($query);
-    $command->bind_param();
+    $command->bind_param('isii' , $this->brand->getId(), $this->name, $this->status, $this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -105,9 +106,9 @@ class Model
   public function delete()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "";
+    $query = "UPDATE models_ctg SET status = 0 WHERE id = ?;";
     $command = $connection->prepare($query);
-    $command->bind_param();
+    $command->bind_param('i',$this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -136,7 +137,29 @@ class Model
    */
   public static function getAll()
   {
-    // WORK IN THIS
+    //list
+    $list = array();
+    $connection = MySQLConnection::getConnection();
+    //query
+    $query = 'select id, name , status, brand
+          from models_ctg';
+    //command
+    $command = $connection->prepare($query);
+    //execute
+    $command->execute();
+    //bind results
+    $command->bind_result($code, $name, $status, $brand);
+    //fetch
+    while ($command->fetch())
+    {
+      array_push($list, new Model($code, $brand, $name, $status));
+    }
+    //close statement
+    mysqli_stmt_close($command);
+    //close connection
+    $connection->close();
+    //return array
+    return $list;
   }
 
   /**
@@ -151,7 +174,56 @@ class Model
     {
       array_push($list, json_decode($item->toJson()));
     }
-    return json_encode(array('models' => $list));
+    return json_encode(array(
+      'status' => 1,
+      'models' => $list));
   }
+
+
+  public static function getAllModelsByBrand($brand)
+  {
+      //list
+      $list = array();
+      $connection = MySQLConnection::getConnection();
+      //query
+      $query = 'select id, name , status, brand
+            from models_ctg
+            where brand = ?';
+      //command
+      $command = $connection->prepare($query);
+      $command->bind_param('i', $brand);
+      //execute
+      $command->execute();
+      //bind results
+      $command->bind_result($code, $name, $status, $brand);
+      //echo $found;
+      while ($command->fetch())
+      {
+        array_push($list, new Model($code, $brand, $name, $status));
+      }
+      //close statement
+      mysqli_stmt_close($command);
+      //close connection
+      $connection->close();
+      //return array
+      return $list;
+  }//getAll
+
+  public static function getAllModelsByBrandJson($brand)
+  {
+      //list
+      $list = array();
+      //encode to json
+      foreach (self::getAllModelsByBrand($brand) as $item) 
+      {
+        array_push($list, json_decode($item->toJson()));
+      }//foreach
+      return json_encode(array(
+        'status' => '3',
+        'models' => $list));
+    }
+
+
+
 }
 ?>

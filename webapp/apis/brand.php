@@ -1,12 +1,11 @@
 <?php
-
 	//access control
 	//allow access from outside the server
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
 
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -14,11 +13,11 @@
 		if (isset($_GET['id'])){
 			try{
 				//create object
-				$s = new State($_GET['id']);
+				$b = new Brand($_GET['id']);
 				//display
 				echo json_encode(array(
 					'status' => 0,
-					'state' => json_decode($s->toJson())
+					'brand' => json_decode($b->toJson())
 				));
 			}
 			catch(RecordNotFoundException $ex){
@@ -29,32 +28,32 @@
 			}
 		}
 		else{
-			echo State::getAllJson();
+			echo Brand::getAllJson();
 		}
 	}
 	
 	//POST (Insert)
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		//parameters
-		if (isset($_POST['code']) &&
-			isset($_POST['name'])){
-			/*Create an object state*/
-			$s = new State();
+		if (isset($_POST['name']) &&
+			isset($_POST['image'])){
+			/*Create an object Brand*/
+			$b = new Brand();
 
 			/*Pass the values to the atributes
 			by the properties*/
 			//assign values
-			$s->setCode($_POST['code']);
-			$s->setName($_POST['name']);
-			$s->setStatus(1);
+			$b->setName($_POST['name']);
+			$b->setImage($_POST['image']);
+			$b->setStatus(1);
 
 			/*Then execute the method add*/
-			if ($s->add()){
+			if ($b->add()){
 
 				/*This message means the spot was added to the database*/
 				echo json_encode(array(
 					'status' => 0,
-					'errorMessage' => 'State added successfully'
+					'errorMessage' => 'Brand added successfully'
 				));
 			}
 			else{
@@ -62,7 +61,7 @@
 				writed something wrong*/
 				echo json_encode(array(
 					'status' => 1,
-					'errorMessage' => 'Could not add State'
+					'errorMessage' => 'Could not add brand'
 				));
 
 			}
@@ -85,31 +84,33 @@
 			//decode json
 			$jsonData = json_decode($putData['data'], true);
 			//check parameters
-			if (isset($jsonData['code']) &&
+			if (isset($jsonData['id']) &&
 				isset($jsonData['name']) &&
+				isset($jsonData['image']) &&
 				isset($jsonData['status'])) {
 					//create empty object
 				try {
-					$s = new State($jsonData['code']);						
+					$b = new Brand($jsonData['id']);						
 					//set values
-					$s->setName($jsonData['name']);
-					$s->setStatus($jsonData['status']);
+					$b->setName($jsonData['name']);
+					$b->setImage($jsonData['image']);
+					$b->setStatus($jsonData['status']);
 					//add
-					if ($s->put())
+					if ($b->put())
 						echo json_encode(array(
 							'status' => 0,
-							'errorMessage' => 'State updated successfully'
+							'errorMessage' => 'Brand updated successfully'
 						));
 					else
 						echo json_encode(array(
 							'status' => 1,
-							'errorMessage' => 'Could not update state'
+							'errorMessage' => 'Could not update Brand'
 						));
 				}
 				catch (RecordNotFoundException $ex) {
 					echo json_encode(array(
 						'status' => 2,
-						'errorMessage' => 'Invalid state id'
+						'errorMessage' => 'Invalid Brand id'
 					));
 				}
 			}
@@ -126,26 +127,26 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 		//read id
 		parse_str(file_get_contents('php://input'), $putData);
-		if (isset($putData['code'])) {
+		if (isset($putData['id'])) {
 			try {
 				//create object
-				$b = new State($putData['code']);
+				$b = new Brand($putData['id']);
 				//delete
 				if ($b->delete())
 					echo json_encode(array(
 						'status' => 0,
-						'errorMessage' => 'State deleted successfully'
+						'errorMessage' => 'Brand deleted successfully'
 					));
 				else
 					echo json_encode(array(
 						'status' => 1,
-						'errorMessage' => 'Could not delete state'
+						'errorMessage' => 'Could not delete Brand'
 					));
 			}
 			catch(RecordNotFoundException $ex) {
 				echo json_encode(array(
 					'status' => 3,
-					'errorMessage' => 'Invalid state id'
+					'errorMessage' => 'Invalid Brand id'
 				));
 			}
 		}
