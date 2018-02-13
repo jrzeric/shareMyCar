@@ -38,8 +38,8 @@ select id, name, image, status from brands_ctg;
 select id, name, image, status from brands_ctg where id = 1;
 
 /*select from model*/
-select * from models_ctg;
-select * from models_ctg where id = 1;
+select id, name, brand, status from models_ctg;
+select id, name, brand, status from models_ctg where id = 1;
 
 /*select from car*/
 select id, driver, model, licencePlate, driverLicence, color, insurance, owner, status from cars;
@@ -60,7 +60,6 @@ select r.id, r.spot, r.timeArrived, r.latitudeEnd, r.longitudeEnd, r.timeArrived
 
 /*select from ridePassenger*/
 select ride, spot, request_at, picked_at from ridePassenger;
-
 
 /*selects from reportoption*/
 select id, description from reportOption;
