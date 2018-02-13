@@ -65,7 +65,7 @@
 			<a href="index.php"><button class="next-page">FINISH</button></a>
 		</main>
 	</body>
-	<footer>
+	  <footer class="footer footer--darkblue">
 		<?php require_once("lib/footer.php"); ?>
 	</footer>
 </html>

@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</main>
-		<footer>
+		  <footer class="footer footer--darkblue">
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_users.php"); ?>
    		</footer>
 	</body>

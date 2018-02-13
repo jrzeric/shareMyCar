@@ -7,7 +7,7 @@
 		<!--style sheets-->
     <link href="../css/admin/header.css" rel="stylesheet"></link>
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
-		<link href="/css/footer.css" rel="stylesheet"></link>
+		<link href="../../css/footer.css" rel="stylesheet"></link>
 		<!--scripts-->
 		<script src="/js/index.js"></script>
 	</head>
@@ -87,7 +87,7 @@
 			</div>
 
 		</div>
-    <footer>
+    <footer class="footer footer--black">
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_admin.php"); ?>
     </footer>
 </body>

@@ -49,7 +49,7 @@
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap">
 			</script>
     </main>
-    <footer>
+    <footer class="footer footer--darkblue">
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_users.php"); ?>
     </footer>
   </body>
