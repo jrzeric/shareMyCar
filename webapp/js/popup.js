@@ -27,7 +27,7 @@ function showPopup(title, width, height) {
 	//body
 	var body = document.getElementsByTagName('body')[0];
 	//get document height
-	var documentHeight = document.documentElement.offsetHeight; 
+	var documentHeight = document.documentElement.offsetHeight;
 	//create glass
 	var glass = document.createElement('div');
 	glass.id = 'glass';
@@ -54,22 +54,46 @@ function showPopup(title, width, height) {
 	//create content
 	var popupContent = document.createElement('div');
 	popupContent.id = 'popupcontent';
-		popup.appendChild(popupContent);
+	popup.appendChild(popupContent);
 	//create buttons
-	var popupButtons = document.createElement('div');	
+	var popupButtons = document.createElement('div');
 	popupButtons.id = 'popupbuttons';
+    /*
 	var buttonNeutral = document.createElement('button');
 	buttonNeutral.className = 'popupbuttonneutral';
 	buttonNeutral.innerHTML = 'Neutral';
 	popupButtons.appendChild(buttonNeutral);
-	var buttonNegative = document.createElement('button');	
+	var buttonNegative = document.createElement('button');
 	buttonNegative.className = 'popupbuttonnegative';
 	buttonNegative.innerHTML = 'Negative';
 	popupButtons.appendChild(buttonNegative);
-	var buttonPositive = document.createElement('button');
-	buttonPositive.className = 'popupbuttonpositive';
-	buttonPositive.innerHTML = 'Positive';
-	popupButtons.appendChild(buttonPositive);
+    *//*
+    labeluser = document.createElement('label');
+    labeluser.className='loginlabelu';
+    labeluser.innerHTML='User';
+     popupContent.appendChild(labeluser);
+    */
+    textuser = document.createElement('input');
+    textuser.className='userLogin';
+    textuser.setAttribute('type','email');
+    textuser.setAttribute('placeholder','Email');
+    popupContent.appendChild(textuser);
+    /*
+    labelpass = document.createElement('label');
+    labelpass.className='loginlabelp';
+    labelpass.innerHTML='Password';
+     popupContent.appendChild(labelpass);
+    */
+    textpass = document.createElement('input');
+    textpass.className='userPass';
+    textpass.setAttribute('type','password');
+    textpass.setAttribute('placeholder','Password');
+    popupContent.appendChild(textpass);
+
+    var buttonLogin = document.createElement('button');
+	buttonLogin.className = 'buttonlogin';
+	buttonLogin.innerHTML = 'Login';
+	popupButtons.appendChild(buttonLogin);
 	popup.appendChild(popupButtons);
 
 	//add popup to body
