@@ -5,6 +5,10 @@
 /*Fecha de creacion: 09/FEB/2018 */
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
+use sharemycar;
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
 /*Insert into states*/
 insert into states_ctg(id, name) values ('BCN','Baja California'),('SON','Sonora'),('BCS','Baja California Sur');
 
@@ -33,19 +37,20 @@ insert into models_ctg(name, brand) values('Focus', 1),('Fiesta', 1),('Fusion', 
 ('Corolla', 3),('Tacoma', 3),('Celica', 3);
 
 /*insert into cars*/
-insert into cars(driver, model, licencePlate, driverLicence, color, insurance, owner) 
-values(2,1,'1234567890','410041011','white','664-132-12-32','Alejandro Angulo');
+insert into cars(driver, model, licencePlate, driverLicence, color, insurance,spaceCar, owner) 
+values(2,1,'1234567890','410041011','white','664-132-12-32',4,'Alejandro Angulo');
 
 /*Insert into spot*/
-insert into spots(driver,latitude, longitude, pay, timeArrived) values(2,'32.495647', '-116.932144',15,'06:30:00'),(2,'32.495648', '-116.932145',10,'06:45:00');
+insert into spots(driver,latitude, longitude, pay, timeArrived) 
+values(2,'32.495647', '-116.932144',15,'2018-02-14'),(2,'32.495648', '-116.932145',10,'2018-02-14');
 
-/*insert into ride*/
-insert into ride(id, spot, timeArrived, latitudeEnd, longitudeEnd, timeArrivedSchool, spaceCar, groupPassenger)
-values(1,1,'06:30:00','32.529062', '-116.986837','06:58:00',3,3),(1,2,'06:45:00','32.529062', '-116.986837','06:58:00',3,3);
+/*destination*/
+insert into destination(driver, university, timeArrivedSchool) 
+values(1, 'UTT', '2018-02-14');
 
 /*insert into ridePassenger*/
-insert into ridepassenger(ride, spot, passenger, request_at, picked_at)
-values(1,1,1,'06:20:00','06:33:00'),(1,2,3,'06:20:00','06:47:00');
+insert into ridepassenger(spot, passenger,destination, picked_at, timeArrivedDriver)
+values(1,1,1,'2018-02-14','2018-02-14'),(1,2,1,'2018-02-14','2018-02-14');
 
 /*insert into reportOption*/
 insert into reportOption(description) values('Llego tarde'),('Fue Grosero'),('Manejo imprudente');

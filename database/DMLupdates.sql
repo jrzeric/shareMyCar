@@ -28,16 +28,16 @@ update brands_ctg set name = 'prueba', image = 'prueba', status = 1 where id = 1
 update models_ctg set name = 'prueba', brand = 1, status = 1 where id = 1;
 
 /*Update from car*/
-update cars set driver = 1, model = 1, licencePlate = 'prueba',driverLicence = 'prueba', color = 'prueba', insurance = 'prueba', owner = 'prueba', status = 1 where id = 1;
+update cars set driver = 1, model = 1, licencePlate = 'prueba',driverLicence = 'prueba', color = 'prueba', insurance = 'prueba', spaceCar = 4, owner = 'prueba', status = 1 where id = 1;
 
 /*Update from spot*/
 update spots set driver = 1, latitude = 'prueba', longitude = 'prueba', pay = 12, timeArrived = '06:00:00', status = 1 where id = 1;
 
-/*Update from ride*/
-update ride set timeArrived = '06:00:00', latitudeEnd = 'prueba', longitudeEnd = 'prueba', timeArrivedSchool = '06:00:00', spaceCar = 3, groupPassenger = 3 where id = 1 and spot = 1;
+/*update destination*/
+update destination set driver = 1, university = 'UTT', timeArrivedSchool = '2018-02-14' where id = 1;
 
 /*Update from ridePassenger*/
-update ridePassenger set request_at = '06:00:00', picked_at = '06:00:00' where ride = 1 and spot = 1 and passenger = 1; 
+update ridePassenger set destination = 1, picked_at = '2018-02-14', timeArrivedDriver ='2018-02-14' where spot = 1 and passenger = 1; 
 
 /*Update from reportoption*/
 update reportOption set description = 'prueba' where id = 1;
