@@ -38,29 +38,29 @@ select id, name, image, status from brands_ctg;
 select id, name, image, status from brands_ctg where id = 1;
 
 /*select from model*/
-select * from models_ctg;
-select * from models_ctg where id = 1;
+select id, name, brand, status from models_ctg;
+select id, name, brand, status from models_ctg where id = 1;
 
 /*select from car*/
-select id, driver, model, licencePlate, driverLicence, color, insurance, owner, status from cars;
-select id, driver, model, licencePlate, driverLicence, color, insurance, owner, status from cars where id = 1;
-select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.owner, c.driver, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.university, s.controlNumber, s.latitude, s.longitude, s.photo, s.city, s.turn, s.profile, s.status  from cars as c join students as s on c.driver = s.id;
-select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.owner, c.driver, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.university, s.controlNumber, s.latitude, s.longitude, s.photo, s.city, s.turn, s.profile, s.status  from cars as c join students as s on c.driver = s.id where c.id = 1;
+select id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status from cars;
+select id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status from cars where id = 1;
+select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.spaceCar, c.owner, c.driver, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.university, s.controlNumber, s.latitude, s.longitude, s.photo, s.city, s.turn, s.profile, s.status  from cars as c join students as s on c.driver = s.id;
+select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.spaceCar, c.owner, c.driver, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.university, s.controlNumber, s.latitude, s.longitude, s.photo, s.city, s.turn, s.profile, s.status  from cars as c join students as s on c.driver = s.id where c.id = 1;
 
 /*select from spot*/
-select id, driver, latitude, longitude,pay, timeArrived, status from spots;
-select id, driver, latitude, longitude,pay, timeArrived, status from spots where id = 1;
+select id, driver, latitude, longitude, pay, timeArrived, status from spots;
+select id, driver, latitude, longitude, pay, timeArrived, status from spots where id = 1;
 select s.id, s.driver, s.longitude, s.longitude, s.pay, timeArrived, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
 
-
-/*select from ride*/
-select id, spot, timeArrived, latitudeEnd, longitudeEnd, timeArrivedSchool, spaceCar, groupPassenger, status from ride;
-select id, spot, timeArrived, latitudeEnd, longitudeEnd, timeArrivedSchool, spaceCar, groupPassenger, status from ride where id = 1;
-select r.id, r.spot, r.timeArrived, r.latitudeEnd, r.longitudeEnd, r.timeArrivedSchool, r.spaceCar, r.groupPassenger, s.id, s.driver, s.latitude, s.longitude, s.pay,s.timeArrived, r.status from ride  as r join spots as s on r.spot = s.id;
+/*select destination*/
+select id, driver, university, timeArrivedSchool from destination;
+select id, driver, university, timeArrivedSchool from destination where id = 1;
+select d.id, d.timeArrivedSchool, s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.controlNumber,s.latitude, s.longitude, s.photo, s.turn, s.profile, u.id, u.name, u.latitude, u.longitude, s.city, s.status from destination as d join students as s on d.driver = s.id join universities_ctg as u on d.university = u.id; 
 
 /*select from ridePassenger*/
-select ride, spot, request_at, picked_at from ridePassenger;
-
+select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger;
+select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1;
+select r.picked_at, r.timeArrivedDriver, s.id as spotID, s.driver, s.latitude, s.longitude,s.pay, s.timeArrived, st.id as PassengerID, st.name, st.surname, st.secondSurname,st.email, st.cellPhone, st.controlNumber, st.latitude, st.longitude, st.photo, st.turn, st.profile, d.id as destinationID, d.driver, d.university, d.timeArrivedSchool, r.status from ridepassenger as r join spots as s on r.spot=s.id join students as st on r.passenger=st.id join destination as d on r.destination=d.id;
 
 /*selects from reportoption*/
 select id, description from reportOption;

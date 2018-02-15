@@ -163,7 +163,8 @@ CREATE TABLE IF NOT EXISTS models_ctg
 	@param licencePlate:	licence plate of the car
     @param driverLicence:	licence number of the driver(student)
     @param color:			color of the car
-    @param insurance:		Number of the insurance(dont have idea)
+    @param insurance:		number of the insurance(dont have idea)
+    @param spaceCar:		number of seat of the car
     @param owner:			owner of the car will be use
     @param status:			1 for active, 0 for disable
     @comment:				this table is use to administrate all about the car
@@ -177,6 +178,7 @@ CREATE TABLE IF NOT EXISTS cars
 	driverLicence varchar(10) not null,
 	color varchar(10) not null,
 	insurance varchar(15) not null,
+    spaceCar int not null,
 	owner varchar(20) not null,
 	status bit default 1,
 	PRIMARY KEY (id),
@@ -202,62 +204,55 @@ CREATE TABLE IF NOT EXISTS spots/* point where the driver going on*/
 	latitude varchar(18) not null,
 	longitude varchar(18) not null,
 	pay decimal,
-	timeArrived time not null,
+	timeArrived date not null,
 	status bit default 1,
 	primary key(id),
 	FOREIGN KEY (driver) REFERENCES students(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
-/*ride documentation
-
-	@param id:					identifier of the table ride
-    @param spot:				is a foreign key of the table spot
-    @param timeArrived:			in what time the driver arrives
-	@param locationend:			The school direccion, is a foreign key of the table location_ctg
-    @param timeArrivedSchool:	in what time the the dirver arrives at school
-	@param spaceCar:			number of seat of the car
-	@param groupPassenger:		number of passenger in that moment
-    @param status:				1 for active, 0 for disable
-    @comment:					this table is use to know the time the driver get to spot, where is going the space of the car, and how passenger
-								is have at that spot
-*/
-CREATE TABLE IF NOT EXISTS ride 
+/*destination documentation
+	
+    @param id:			id of the table destination
+    @param driver:		is a foreign key of the table student
+    @param university:	is a foreign key of the table university
+    @timeArrivedSchool:	in witch time/date they arrived at the school
+    @comment:			This table is use to know the destination of the driver and witch time his arrive
+*/	
+create table destination
 (
-	id int,
-	spot int,
-	timeArrived time not null,/* time where the driver arrived at the spot*/
-	latitudeEnd varchar(18) not null default '32.460915',
-	longitudeEnd varchar(18) not null default '-116.824267',
-	timeArrivedSchool time not null, /* time where the driver arrived at the school*/
-	spaceCar int not null,
-	groupPassenger int, /*this give the information about how many student take the ride*/
-	status bit default 1,
-    primary key(id,spot),
-    foreign key(spot) references spots(id)
+	id int auto_increment,
+	driver smallint not null,
+	university char(4) not null,
+    timeArrivedSchool date not null,
+	primary key(id),
+	FOREIGN KEY(university) REFERENCES universities_ctg(id),
+	FOREIGN KEY(driver) REFERENCES students(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 /*ridePassenger documentation
 
-	@param ride:				identifier of the table ridePassenger
     @param spot:				is a foreign key of the table spot
     @param passenger:			is a foreign key of the table student is the person who take the raite
-	@param request_at:			this is the time when the student request the car
-    @param picked_at:			this is the time when the student take the car
-    @comment:					this is a intermediate table of ride and spot, this is use to know who passenger request and the time he picket 
+    @destination:				is a foreign key of the table destination
+	@param timeArrivedDriver:	whitch time the driver pass that spots
+	@param status:				1 for active, 0 for disable
+    @comment:					this is a intermediate table of spot and passenger, this is use to know who passenger request and the time he picket 
 								spot
 */
 CREATE TABLE IF NOT EXISTS ridePassenger /* table intermedia que llena los autos con los pasajeros */
 (
-	ride int,
-    spot int,
+	spot int,
 	passenger smallint,
-	request_at time,
-	picked_at time,
-	primary key(ride,spot,passenger),
+    destination int not null,
+	picked_at date not null,
+	timeArrivedDriver date not null,
+    status bit not null default 1,
+	primary key(spot,passenger),
+	FOREIGN KEY (passenger) REFERENCES students(id),
     FOREIGN KEY (spot) REFERENCES spots(id),
-	FOREIGN KEY (ride) REFERENCES ride(id),
-	FOREIGN KEY (passenger) REFERENCES students(id)
+	FOREIGN KEY (destination) REFERENCES destination(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+
 
 /*reportoption documentation
 
