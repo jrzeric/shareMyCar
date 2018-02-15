@@ -1,0 +1,66 @@
+#glass {
+	position:absolute;
+	top:0px; left:0px; 
+	width:100%;
+	background:rgba(150, 150, 150, .5);
+}
+#popup {
+	position:fixed;
+	background:#FFF;
+	box-shadow:0px 0px 20px #000;
+}
+#popuptitle {
+	position:absolute;
+	top:0px; left:0px;
+	height:40px; width:100%;
+	background:#2196F3;
+}
+#popuptitle h1 {
+	margin:10px auto auto 10px;
+	padding:0px;
+	font-size:14pt;
+	color:#FFF;
+}
+#popupclose{
+	position:absolute;
+	top:5px; right:5px;
+	background: #F44339;
+	font-size: 14pt;
+	color:#FFF;
+	padding:5px 10px 5px 10px;
+	cursor:pointer;
+}
+
+#popupcontent {
+	position:absolute;
+	top:40px; left:0px;
+	width:100%;
+}
+#popupbuttons {
+	position:absolute;
+	bottom:0px; left:0px;
+	width:100%;
+	text-align:center;
+}
+.popupbuttonneutral, .popupbuttonnegative, .popupbuttonpositive {
+	margin:10px;
+	padding:10px 20px 10px 20px;
+	font-size:14pt;
+	border-radius:10px;
+	cursor:pointer;
+}
+.popupbuttonneutral {
+	border:1px solid #777;
+	background:#FFF;
+	color:#777;
+}
+.popupbuttonnegative {
+	border:1px solid #F44336;
+	background:#FFF;
+	color:#F44336;
+}
+.popupbuttonpositive {
+	border:1px solid #388E3C;
+	background:#4CAF50;
+	color:#FFF;
+}
