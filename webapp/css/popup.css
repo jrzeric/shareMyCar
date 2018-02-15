@@ -1,66 +1,94 @@
 #glass {
 	position:absolute;
-	top:0px; left:0px; 
+	top:0px; left:0px;
 	width:100%;
 	background:rgba(150, 150, 150, .5);
 }
 #popup {
 	position:fixed;
-	background:#FFF;
+	background:#f7f7f7;
+	border:1px solid #030427;
 	box-shadow:0px 0px 20px #000;
 }
 #popuptitle {
 	position:absolute;
 	top:0px; left:0px;
 	height:40px; width:100%;
-	background:#2196F3;
+	background:#fcfcff;
+
 }
 #popuptitle h1 {
 	margin:10px auto auto 10px;
 	padding:0px;
 	font-size:14pt;
-	color:#FFF;
+	color:#000;
 }
 #popupclose{
 	position:absolute;
 	top:5px; right:5px;
 	background: #F44339;
-	font-size: 14pt;
+	font-size: 12pt;
 	color:#FFF;
 	padding:5px 10px 5px 10px;
 	cursor:pointer;
 }
+#popupclose:hover{
+    background: #f95c57;
+}
+#popupclose:active{
+   transform: scale(0.95);
+}
+.loginlabelu,.loginlabelp,.userLogin,.userPass{
+    position :relative;
+    float: left;
+}
+.userLogin,.userPass{
+    margin-left: 7%;
+    margin-right: 10%;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 80%;
+    height: 30px;
+		background: #fcfc99;
+    font-size: 18px;
+
+}
+
+.userLogin:hover{
+	background: #fff;
+    }
+		.userPass:hover{
+			background: #fff;
+		}
+
+
 
 #popupcontent {
 	position:absolute;
 	top:40px; left:0px;
 	width:100%;
 }
+
 #popupbuttons {
 	position:absolute;
 	bottom:0px; left:0px;
 	width:100%;
 	text-align:center;
 }
-.popupbuttonneutral, .popupbuttonnegative, .popupbuttonpositive {
+.buttonlogin {
 	margin:10px;
 	padding:10px 20px 10px 20px;
 	font-size:14pt;
 	border-radius:10px;
 	cursor:pointer;
+	border:1px solid #030427;
+	background: #fafcf9;
+	color:#000;
 }
-.popupbuttonneutral {
-	border:1px solid #777;
-	background:#FFF;
-	color:#777;
+.buttonlogin:hover{
+    background:#ccc;
 }
-.popupbuttonnegative {
-	border:1px solid #F44336;
-	background:#FFF;
-	color:#F44336;
-}
-.popupbuttonpositive {
-	border:1px solid #388E3C;
-	background:#4CAF50;
-	color:#FFF;
+.buttonlogin:active{
+     transform: scale(0.95);
 }
