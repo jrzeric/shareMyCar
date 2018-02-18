@@ -19,11 +19,13 @@ function centerPopup() {
 		//center popup
 		popup.style.top = ((clientHeight - popup.offsetHeight) / 2) + 'px';
 		popup.style.left = ((clientWidth - popup.offsetWidth) / 2) + 'px';
+
 	}
 }
 function showPopup(title, width, height) {
 	//popup visible
 	popupVisible = true;
+
 	//body
 	var body = document.getElementsByTagName('body')[0];
 	//get document height
@@ -90,7 +92,7 @@ function showPopup(title, width, height) {
     textpass.setAttribute('placeholder','Password');
     popupContent.appendChild(textpass);
 
-    var buttonLogin = document.createElement('button');
+  var buttonLogin = document.createElement('button');
 	buttonLogin.className = 'buttonlogin';
 	buttonLogin.innerHTML = 'Login';
 	popupButtons.appendChild(buttonLogin);
@@ -101,6 +103,10 @@ function showPopup(title, width, height) {
 
 	//center popup
 	centerPopup();
+
+	var getbuttonloginpop = document.getElementById("buttonloginpop");
+	getbuttonloginpop.setAttribute('onclick', 'closePopup()');
+
 }
 
 function closePopup(){
@@ -113,7 +119,8 @@ function closePopup(){
 	//the parent kill their childen >:c
 	parentOfGlass.removeChild(glass);
 	parentOfPopup.removeChild(popup);
-
+	var getbuttonloginpop = document.getElementById("buttonloginpop");
+	getbuttonloginpop.setAttribute('onclick', "showPopup('Login',400, 400)");
 }
 
 //var new Area= new Popupwindow('new area' , 500, 300);

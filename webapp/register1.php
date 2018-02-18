@@ -6,6 +6,9 @@
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Register</title>
 		<link href="css/register.css" rel="stylesheet"></link>
     <link href="/css/footer.css" rel="stylesheet"></link>
+		<link href="/css/popup.css" rel="stylesheet"></link>
+   <script src="js/popup.js"></script>
+	<script src="js/globals.js"></script>
 	</head>
 	<body>
     <header>
