@@ -7,7 +7,8 @@ header {
 	box-shadow: 0px 0px 20px #222;
 	z-index: 9000;
 }
-main { position: relative; }
+main { position: relative;
+text-align: center;}
 
 /*  */
 .header__logo {
@@ -20,7 +21,7 @@ main { position: relative; }
   position: absolute;
   right: 340px;
   width: 155px;
-  margin: 13px 4px;
+  margin: 14px 4px;
   cursor: pointer;
 }
 .header__button-login, .header__button-register {
@@ -57,14 +58,14 @@ background: #ccc;
   background-image: url(../images/presentation.jpg);
   background-position: 50% -75px;
   background-attachment: fixed;
-
+  text-align: center;
+  margin: 0px auto;
 }
 .description-box {
-  position: absolute;
-  width: 420px;
+  position: relative;
+  float: left;
+  width: 40%;
   height: auto;
-  top: 86px;
-  left: 86px;
   padding: 15px;
   color: white;
   background: #1A237E;
@@ -72,21 +73,22 @@ background: #ccc;
   border: 2px solid darkblue;
   border-radius: 15px;
   box-shadow:0px 0px 20px #CCC;
+  margin: 90px 20px;
 }
 .description-box__title { font-size: 24pt; }
 .description-box__paragraph { font-size: 16pt; }
 .image-box {
-  position: absolute;
-  width: 680px;
+  float: left;
+  position: relative;
+  width: 52%;
   max-height: 280px;
-  top: 50px;
-  right: 86px;
   text-align: center;
+  margin-top: 50px;
 }
 .image-box__university-logo {
   position: relative;
   max-height: 100px;
-  margin: 20px;
+  margin: 15px;
 }
 .information {
   position: relative;
@@ -97,7 +99,7 @@ background: #ccc;
 .column-information {
   position: relative;
   float: left;
-  width: 376px;
+  width: 356px;
   padding: 13px;
   margin: 15px 15px;
   border-radius: 15px;
@@ -128,10 +130,154 @@ button {
 }
 
 /*  */
+  @media only screen and (max-width:1080px) {
+    .description-box {
+      position: relative;
+      float: left;
+      width: 40%;
+      height: auto;
+      top: auto;
+      left: 5%;
+      padding: 15px;
+      margin: 80px 15px 1px 5px;
+    }
+    .image-box {
+      position: relative;
+      float: left;
+      width: 50%;
+      max-height: 280px;
+      margin: 60px 5px 1px 15px;
+    }
+    .image-box__university-logo {
+      position: relative;
+      margin: 10px;
+      width: 25%;
+    }
+    .column-information {
+      position: relative;
+      float: left;
+      width: 42%;
+      padding: 13px;
+      margin: 15px 15px;
+    }
+  }
+
 @media only screen and (max-width:720px) {
   .header__download-app-icon,.header__button-login, .header__button-register  {
-    height: 40px;
-    width: 60px;
-    font-size:
+    width: 140px;
+
+    }
+    .header__download-app-icon {
+      margin: 16px 4px;
   }
+  .description-box {
+    position: relative;
+    float: left;
+    width: 40%;
+    height: auto;
+    top: auto;
+    left: 5%;
+    padding: 15px;
+    margin: 40px 15px 1px 5px;
+  }
+  .image-box {
+    position: relative;
+    float: left;
+    width: 48%;
+    height: auto;
+    max-height: 280px;
+    margin: 40px 5px 1px 15px;
+  }
+  .image-box__university-logo {
+    position: relative;
+    margin: 10px;
+    width: 30%;
+  }
+  .column-information {
+    position: relative;
+    float: left;
+    width: 286px;
+    padding: 13px;
+    margin: 15px 15px;
+  }
+  .hidden{
+    display: none;
+
+  }
+  @media only screen and (max-width:480px) {
+    .header__logo {
+      position: absolute;
+      height: 80px;
+      margin-top: 3px;
+      left: 30px;
+    }
+
+    .header__download-app-icon,.header__button-login, .header__button-register  {
+        float: left;
+        width: 100px;
+        margin: 1px 1px;
+        height: 35px;
+      }
+
+      .header__download-app-icon {
+        margin: 1px 2px;
+        right: auto;
+        top: auto;
+        display: none;
+    }
+    button {
+    	font-size:10pt;
+    }
+    .header__button-login {
+      right: 120px;
+      bottom: 24px;
+      color: #030427;
+      border: 2px solid #030427;
+    }
+
+    .header__button-register {
+      right: 10px;
+      bottom: 24px;
+      color: #fff;
+      background-color: #030427;
+    }
+    .presentation {
+      text-align: center;
+      height: 700px;
+      background-position: 50% -75px;
+    }
+    .description-box {
+      position: relative;
+      float: left;
+      width: 80%;
+      height: auto;
+      top: auto;
+      left: 5%;
+      padding: 15px;
+      margin: 40px 15px 1px 5px;
+    }
+    .image-box {
+      position: relative;
+      float: left;
+      width: 80%;
+      height: 700px;
+      max-height: auto;
+      margin: 20px 5px 1px 40px;
+    }
+    .image-box__university-logo {
+      position: relative;
+      margin: 10px;
+      width: 40%;
+    }
+    .column-information {
+      position: relative;
+      float: left;
+      width: 90%;
+      padding: 13px;
+      margin: 15px 8px;
+    }
+    .hidden{
+      display: none;
+
+    }
 }

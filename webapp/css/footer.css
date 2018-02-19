@@ -56,3 +56,36 @@
 .footer--black {
   background-color: #000;
 }
+
+@media only screen and (max-width:480px) {
+  .footer__block{
+    width: 29%;
+    float: left;
+    height:100px;
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  .footer__block__label{
+    font-size: 14pt;
+    font-family: arial;
+    font-weight: bold;
+    padding-left: 5px;
+  }
+  .footer__block__p{
+  font-size: 8pt;
+
+  }
+  .footer__block_img{
+    width: 36px;
+    height: 36px;
+    padding: 0px 3px;
+  }
+  .footer__copiright{
+    width: 17%;
+    float: right;
+    position: relative;
+    font-size: 8px;
+
+
+  }
+}
