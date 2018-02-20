@@ -1,6 +1,7 @@
 var map;
 var spots;
 var meet;
+var valid = 0;
 
 var markers = [];
 //var coordinates = [[sessionStorage.userLocationLat, sessionStorage.userLocationLon]];
@@ -60,13 +61,17 @@ function addUniversity()
 // Adds a marker to the map and push to the array.
 function addMarker(location) 
 {
+  valid++;
 	var marker = new google.maps.Marker(
 	{
 	  position: location,
+    icon: 'http://localhost:8080/sharemycar/webapp/account/driver/img/iconspot.png',
 	  map: map
 	});
-  var contentString = "<div align = 'center'><br><label>Time at you pass: </label><br><input type='text'><br><br><label>Price of this spot: </label><br><input type='text'><div class='buttons'><button class='buttonOK' onClick=addTravel()>Save</button></div></div>'";
-    console.log(contentString);
+  var lat = location.lat();
+  var lng = location.lng();
+  console.log(contentString);
+  var contentString = "<div align = 'center'><br><label>Time at you pass: </label><br><input id='time"+valid+"' type='time'><br><br><label>Price of this spot: </label><br><input id='price"+valid+"' type='number' min='10' max='200' step='any'><div class='buttons'><button class='buttons__addSpot'" + 'onClick="addTravel('+lat+', '+lng+', '+valid+')">Save</button> <button class="buttons__removeSpot" onClick="removeSpot()">Remove</button></div></div>';
     var infowindow = new google.maps.InfoWindow({
           	content: contentString
         });
@@ -77,7 +82,13 @@ function addMarker(location)
 }//addMarker
 
 
-function addTravel() 
+function addTravel(latitude, longitude, number) 
 {
-
+  var spotTime = 'time'+number;
+  var spotPrice = 'price'+number;
+  var time = document.getElementById(spotTime).value;
+  var price = document.getElementById(spotPrice).value;
+  console.log("Time: " + time + ", " + "Price: " + price);
+  console.log("Latitude: " + latitude + ", " + "Longitude: " + longitude);
+  if (time == '' || price == '') { alert('Time or price are empty');}
 }//RegisterSpots-
