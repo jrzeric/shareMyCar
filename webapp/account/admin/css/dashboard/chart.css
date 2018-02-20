@@ -1,0 +1,35 @@
+.title {
+	font-size:24pt;
+	fill:#999;
+	text-anchor:middle;
+}
+.subtitle {
+	font-size:14pt;
+	fill:#777;
+	text-anchor:middle;
+}
+.axisline {
+	stroke:#999;
+	stroke-width:1px;
+}
+.yaxistext {
+	fill:#999;
+	font-size:12pt;
+	text-anchor:end;
+}
+.xaxistext {
+	fill:#999;
+	font-size:12pt;
+	text-anchor:middle;
+}
+.label {
+	fill:#999;
+	font-size:18pt;
+	font-weight:bold;
+	text-anchor:middle;
+}
+.bar {
+	fill:#045FB4;
+	stroke:#999;
+	stroke-width:1px;
+}
