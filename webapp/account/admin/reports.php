@@ -95,7 +95,7 @@
 			</div>
 
 		</div>
-    <footer>
+    <footer class="footer footer--black">
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_admin.php"); ?>
     </footer>
 </body>

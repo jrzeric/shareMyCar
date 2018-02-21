@@ -41,7 +41,7 @@
       </div>
 			<a href="register2.php"><button class="next-page">Next</button></a>
 		</main>
-    <footer>
+      <footer class="footer footer--darkblue">
   		<?php require_once("/lib/footer.php"); ?>
   	</footer>
 	</body>

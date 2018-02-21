@@ -55,7 +55,7 @@
         </div>
       </div>
 		</main>
-    <footer>
+    <footer class="footer footer--darkblue">
       <?php require_once('/lib/footer.php'); ?>
     </footer>
   </body>

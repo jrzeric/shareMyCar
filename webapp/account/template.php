@@ -6,17 +6,12 @@
     <!-- Estilos-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
-    <title><?php require_once('lib/title.php'); ?> Template </title>
+    <title> Template </title>
   </head>
   <body>
     <header>
-      <?php require_once('lib/header.php'); ?>
-    </header>
-    <main>
-      <h1>Title</h1>
-    </main>
-    <footer>
-      <?php require_once('lib/footer.php'); ?>
-    </footer>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_users.php"); ?>
+		</header>
+    
   </body>
 </html>
