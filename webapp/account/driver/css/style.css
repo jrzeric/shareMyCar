@@ -230,3 +230,21 @@ h3{
   width: -moz-calc(100% - 50px);
   width: calc(100% - 50px);
 */
+
+.buttons__addSpot
+{
+  padding: 10px;
+  background-color: #45d11b;
+  color: #FFF;
+  border: none;
+  margin: 10px 10px 10px 10px; 
+}
+
+.buttons__removeSpot
+{
+  padding: 10px;
+  background-color: #e50202;
+  color: #FFF;
+  border: none;
+  margin: 10px 10px 10px 10px; 
+}
