@@ -9,22 +9,22 @@ var markers = [];
 var coordinates = [];
 var valid = 1;
 
-function init() 
+function init()
 {
-  	map = new google.maps.Map(document.getElementById('map'), 
+  	map = new google.maps.Map(document.getElementById('map'),
   	{
     	zoom: 10,
     	center: new google.maps.LatLng(32.537063, -117.048211),
     	mapTypeId: google.maps.MapTypeId.ROADMAP
   	});
-    
+
     // This event listener will call addMarker() when the map is clicked.
-    map.addListener('click', function(event) 
+    map.addListener('click', function(event)
     {
       addMarker(event.latLng);
     });
 
-    
+
   	// Adds a marker at the center of the map.
   	addHome();
   	addUniversity();
@@ -32,26 +32,26 @@ function init()
 
 
 // Adds a marker to the map and push to the array.
-function addHome() 
+function addHome()
 {
   var location = new google.maps.LatLng(32.537063, -117.048211);
 	var marker = new google.maps.Marker(
 	{
 	    position: location,
-	     icon: 'http://localhost:8080/sharemycar/webapp/account/driver/img/iconhome.png',
+	     icon: '/images/iconhome.png',
 	    map: map
 	 });
 
 }
 
 // Adds a marker to the map and push to the array.
-function addUniversity() 
+function addUniversity()
 {
   var location = new google.maps.LatLng(32.460157, -116.825552);
   var marker = new google.maps.Marker(
   {
     position: location,
-     icon: 'http://localhost:8080/sharemycar/webapp/account/driver/img/iconschool.png',
+     icon: '/images/iconschool.png',
     map: map
   });
 }
@@ -59,13 +59,13 @@ function addUniversity()
 
 
 // Adds a marker to the map and push to the array.
-function addMarker(location) 
+function addMarker(location)
 {
   valid++;
 	var marker = new google.maps.Marker(
 	{
 	  position: location,
-    icon: 'http://localhost:8080/sharemycar/webapp/account/driver/img/iconspot.png',
+    icon: '/images/iconspot.png',
 	  map: map
 	});
   var lat = location.lat();
@@ -82,7 +82,7 @@ function addMarker(location)
 }//addMarker
 
 
-function addTravel(latitude, longitude, number) 
+function addTravel(latitude, longitude, number)
 {
   var spotTime = 'time'+number;
   var spotPrice = 'price'+number;
