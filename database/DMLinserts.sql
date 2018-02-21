@@ -41,8 +41,8 @@ insert into cars(driver, model, licencePlate, driverLicence, color, insurance,sp
 values(2,1,'1234567890','410041011','white','664-132-12-32',4,'Alejandro Angulo');
 
 /*Insert into spot*/
-insert into spots(driver,latitude, longitude, pay, timeArrived) 
-values(2,'32.495647', '-116.932144',15,'2018-02-14'),(2,'32.495648', '-116.932145',10,'2018-02-14');
+insert into spots(driver,latitude, longitude, pay, hour, day) 
+values(2,'32.495647', '-116.932144',15,'06:45:00','Lunes'),(2,'32.495648', '-116.932145',10,'06:55:00','Lunes');
 
 /*destination*/
 insert into destination(driver, university, timeArrivedSchool) 

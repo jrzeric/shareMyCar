@@ -193,7 +193,8 @@ CREATE TABLE IF NOT EXISTS cars
     @param latitude:		is the latitude of the spot
     @param longitude:		is the longitude of the spot
 	@param pay:				for decide
-    @param timeArrived:		whitch time the driver pass that spots
+    @param hour:			whitch time the driver pass that spots
+	@param day:				whitch day the driver pass that spots
     @param status:			1 for active, 0 for disable
     @comment:				this table is use to know all about the spot create of the driver
 */
@@ -204,7 +205,8 @@ CREATE TABLE IF NOT EXISTS spots/* point where the driver going on*/
 	latitude varchar(18) not null,
 	longitude varchar(18) not null,
 	pay decimal,
-	timeArrived date not null,
+	hour time not null,
+	day varchar(9) not null,
 	status bit default 1,
 	primary key(id),
 	FOREIGN KEY (driver) REFERENCES students(id)

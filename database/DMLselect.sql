@@ -48,9 +48,9 @@ select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.s
 select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.spaceCar, c.owner, c.driver, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.university, s.controlNumber, s.latitude, s.longitude, s.photo, s.city, s.turn, s.profile, s.status  from cars as c join students as s on c.driver = s.id where c.id = 1;
 
 /*select from spot*/
-select id, driver, latitude, longitude, pay, timeArrived, status from spots;
-select id, driver, latitude, longitude, pay, timeArrived, status from spots where id = 1;
-select s.id, s.driver, s.longitude, s.longitude, s.pay, timeArrived, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
+select id, driver, latitude, longitude, pay, hour, day, status from spots;
+select id, driver, latitude, longitude, pay, hour, day, status from spots where id = 1;
+select s.id, s.driver, s.longitude, s.longitude, s.pay, s.hour, s.day, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
 
 /*select destination*/
 select id, driver, university, timeArrivedSchool from destination;
