@@ -7,11 +7,13 @@
 		<!--style sheets-->
     <link href="../css/admin/header.css" rel="stylesheet"></link>
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
-		<link href="../../css/footer.css" rel="stylesheet"></link>
+		<link href="/css/footer.css" rel="stylesheet"></link>
+		<link rel="stylesheet" href="css/style.css">
 		<!--scripts-->
 		<script src="/js/index.js"></script>
+
 	</head>
-	<body onLoad="init()">
+	<body>
 		<header id="nav">
 			<?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_admin.php"); ?>
 		</header>
@@ -31,13 +33,16 @@
 			</div>
 
 			<div class="reports">
-				<div class="badPerson">
+				<a href="#openwindow">
+					<div class="badPerson">
 				    <div class="reportImg"><img src="/images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Maria Felix De La Olla</div>
 		                <div class="unBanAt">2 days to unban</div>
 				    </div>
 				</div>
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/account/lib/popup.php'); ?>
+			</a>
 
 				<div class="badPerson">
 				    <div class="reportImg"><img src="/images/default.png"></div>
