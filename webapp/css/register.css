@@ -7,7 +7,9 @@ header {
 	background: #030427;
 	box-shadow: 0px 0px 20px #222;
 	z-index: 9000;
+  color:#FFF;
 }
+
 body { background-color: #F8F8F9; }
 main { position: relative; }
 .header__logo {
@@ -53,31 +55,41 @@ main { position: relative; }
 }
 .form-section-blank {
   position: relative;
-  width: 98%;
-  height: auto;
-  text-align: center;
-  margin: 0px auto;
+width: 98%;
+height: auto;
+text-align: center;
+margin: 0px auto;
 }
 .form-section-blank input, .form-section-blank select {
-	font-size: 14pt;
-  margin: 15px;
+	font-size: 16pt;
 	padding: 15px;
 	background: #FFF;
-	border: 1px solid #666;
+	border: 3px solid #666;
 	color: #212121;
 }
 .form-section__blank--three-columns, .form-section__blank--two-columns {
   position: relative;
   height: auto;
   margin: 5px 2%;
+  border-radius: 15px;
 }
-.form-section__blank--three-columns { width: 27.5%; }
-.form-section__blank--two-columns { width: 44.3%; }
+.form-section__blank--three-columns {
+  width: 27%;
+      margin: 10px 0px 0px 0px; }
+.form-section__blank--two-columns {
+     width: 42.3%;
+    margin: 6px 0px 0px 0px; }
+.form-section__blank--three-columns_school{
+  margin: 6px 0px;
+  border-radius: 15px;
+  width: 29%;
+
+}
 .map {
   margin: auto auto;
 	height: auto;
-  height: 500px;
-	width: 97%;
+  height: 300px;
+	width: 85%;
   margin: 15px 2%;
 }
 .next-page {
