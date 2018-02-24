@@ -7,21 +7,24 @@
 #popup {
 	position:fixed;
 	background:#f7f7f7;
-	border:1px solid #030427;
+	border:2px solid #030427;
 	box-shadow:0px 0px 20px #000;
 }
 #popuptitle {
 	position:absolute;
 	top:0px; left:0px;
 	height:40px; width:100%;
-	background:#fcfcff;
+	background:#030427;
+
 
 }
 #popuptitle h1 {
 	margin:10px auto auto 10px;
 	padding:0px;
 	font-size:14pt;
-	color:#000;
+	color:#fff;
+
+
 }
 #popupclose{
 	position:absolute;
@@ -48,7 +51,7 @@
     border-radius: 15px;
     margin-bottom: 30px;
     margin-top: 30px;
-    width: 80%;
+    width: 84%;
     height: 30px;
 		background: #fcfc99;
     font-size: 18px;
@@ -61,9 +64,6 @@
 		.userPass:hover{
 			background: #fff;
 		}
-
-
-
 #popupcontent {
 	position:absolute;
 	top:40px; left:0px;
@@ -78,13 +78,13 @@
 }
 .buttonlogin {
 	margin:10px;
-	padding:10px 20px 10px 20px;
+	padding:8px 20px 10px 20px;
 	font-size:14pt;
 	border-radius:10px;
 	cursor:pointer;
 	border:1px solid #030427;
-	background: #fafcf9;
-	color:#000;
+	background: #030427;
+	color:#fff;
 }
 .buttonlogin:hover{
     background:#ccc;

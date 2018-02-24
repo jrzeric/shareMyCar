@@ -120,7 +120,7 @@ function closePopup(){
 	parentOfGlass.removeChild(glass);
 	parentOfPopup.removeChild(popup);
 	var getbuttonloginpop = document.getElementById("buttonloginpop");
-	getbuttonloginpop.setAttribute('onclick', "showPopup('Login',400, 400)");
+	getbuttonloginpop.setAttribute('onclick', "showPopup('Login',400, .300)");
 }
 
 //var new Area= new Popupwindow('new area' , 500, 300);
