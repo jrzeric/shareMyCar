@@ -26,12 +26,6 @@
     			<option>Friday</option>
     			<option>Saturday</option>
     		</select>
-    		<div class="switch">
-    		  <input type="radio" name="turn" value="M" id="TM" class="switch-input" checked>
-    		  <label for="TM" class="switch-label">Morning</label>
-    		  <input type="radio" name="turn" value="V" id="TV" class="switch-input">
-    		  <label for="TV" class="switch-label">Evening</label>
-    		</div>
   	  </div>
   		<div id="map" style="width: 80%; height: 600px;"></div>
     </main>
