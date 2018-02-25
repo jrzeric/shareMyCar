@@ -240,6 +240,15 @@ h3{
   margin: 10px 10px 10px 10px; 
 }
 
+.buttons__modifySpot
+{
+  padding: 10px;
+  background-color: #0056e0;
+  color: #FFF;
+  border: none;
+  margin: 10px 10px 10px 10px; 
+}
+
 .buttons__removeSpot
 {
   padding: 10px;

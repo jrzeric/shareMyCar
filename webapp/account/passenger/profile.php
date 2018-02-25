@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</main>
-		<footer>
+		<footer class="footer footer--darkblue">
       		<?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/footer.php'); ?>
    		</footer>
 	</body>

@@ -12,23 +12,21 @@
 		public function setId($value) { $this->id = $value; }
 		public function getName() { return $this->name; }
 		public function setName($value) { $this->name = $value; }
-    	public function getImage(){ return $this->image; }
-    	public function setImage($value){ $this->image = $value; }
-    	public function getStatus(){ return $this->status; }
-    	public function setStatus($value){ $this->status = $value; }
+  	public function getImage(){ return $this->image; }
+  	public function setImage($value){ $this->image = $value; }
+  	public function getStatus(){ return $this->status; }
+  	public function setStatus($value){ $this->status = $value; }
 
 		function __construct()
 		{
-			if (func_num_args() == 0)
-			{
+			if (func_num_args() == 0) {
 				$this->id = '';
 				$this->name = '';
         		$this->image = '';
         		$this->status = 1;
 			}
 
-			if (func_num_args() == 1)
-			{
+			if (func_num_args() == 1) {
 				$id = func_get_arg(0);
 				$connection = MySQLConnection::getConnection();
 				$query = 'SELECT id, name, image, status FROM brands_ctg WHERE id = ?';
@@ -41,9 +39,7 @@
 				$connection->close();
 				if (!$found) throw new RecordNotFoundException();
 			}
-
-			if (func_num_args() == 4)
-			{
+			if (func_num_args() == 4) {
 				$arguments = func_get_args();
 				$this->id = $arguments[0];
 				$this->name = $arguments[1];
@@ -116,8 +112,7 @@
 			$command = $connection->prepare($query);
 			$command->execute();
 			$command->bind_result($id, $name, $image, $status);
-			while ($command->fetch())
-			{
+			while ($command->fetch()) {
 				array_push($list, new Brand($id, $name, $image, $status));
 			}
 			mysqli_stmt_close($command);
@@ -128,8 +123,7 @@
 		public static function getAllJson()
 		{
 			$list = array();
-			foreach (self::getAll() as $item)
-			{
+			foreach (self::getAll() as $item) {
 				array_push($list, json_decode($item->toJson()));
 			}
 			return json_encode(array(
