@@ -44,13 +44,10 @@ values(2,1,'1234567890','410041011','white','664-132-12-32',4,'Alejandro Angulo'
 insert into spots(driver,latitude, longitude, pay, hour, day) 
 values(2,'32.495647', '-116.932144',15,'06:45:00','Lunes'),(2,'32.495648', '-116.932145',10,'06:55:00','Lunes');
 
-/*destination*/
-insert into destination(driver, university, timeArrivedSchool) 
-values(1, 'UTT', '2018-02-14');
 
-/*insert into ridePassenger*/
-insert into ridepassenger(spot, passenger,destination, picked_at, timeArrivedDriver)
-values(1,1,1,'2018-02-14','2018-02-14'),(1,2,1,'2018-02-14','2018-02-14');
+/*insert into ride*/
+insert into ride(spot, passenger, timeArrived, timeFinish,calificationPass,calificationDriv)
+values(1,1,'06:30:00','06:55:00',4,3),(1,2,'06:25:00','06:53:00',5,4);
 
 /*insert into reportOption*/
 insert into reportOption(description) values('Llego tarde'),('Fue Grosero'),('Manejo imprudente');
