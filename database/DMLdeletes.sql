@@ -43,11 +43,8 @@ delete from cars where id = 1;
 update spots set status = 0 where id = 1;
 delete from spots where id = 1;
 
-/*delete from destination*/
-delete from destination where id = 1;
 
-/*delete from ridePassenger*/
-update ridePassenger set status = 0 where spot = 1 and passenger = 1;
+/*delete from ride*/
 delete from ridepassenger where spot = 1 and passenger = 1; 
 
 /*delete from reportoption*/
