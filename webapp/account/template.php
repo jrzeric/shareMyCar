@@ -10,8 +10,10 @@
   </head>
   <body>
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_users.php"); ?>
+      <?php //require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_users.php");
+      $variable = "../lib/header_users.php";
+      echo $variable;?>
 		</header>
-    
+
   </body>
 </html>

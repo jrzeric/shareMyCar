@@ -13,23 +13,21 @@
   </head>
   <body onload="init()">
     <header>
-        <input type="checkbox" id="abrir-cerrar" name="abrir-cerrar">
-        <label for="abrir-cerrar">&#9776;</label>
-        <div id="sidebar" class="sidebar">
-            <ul class="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Spots</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
-            </ul>
-        </div>
     </header>
     <div class="box3">
       <div class="day">Active Users</div>
         <div class="now">
           <div class="value">
             85%
+          </div>
+        </div>
+          <div style="clear:both"></div>
+    </div>
+    <div class="box">
+      <div class="day">Registered Drivers</div>
+        <div class="now">
+          <div class="value">
+            190
           </div>
         </div>
           <div style="clear:both"></div>
