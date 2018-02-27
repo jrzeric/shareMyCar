@@ -14,8 +14,8 @@ class RidePassenger{
 		public function setSpot($value){$this->spot = $value;}
 		public function getPassenger(){return $this->passenger;}
 		public function setPassenger($value){$this->passenger = $value;}
-		public function getdestination(){return $this->destination;}
-		public function setdestination($value){$this->destination = $value;}
+		public function getDestination(){return $this->destination;}
+		public function setDestination($value){$this->destination = $value;}
 		public function getPicked(){return $this->picked;}
 		public function setPicked($value){$this->picked = $value;}
 		public function getTimeArrivedDrive(){return $this->timeArrivedDrive;}
@@ -35,9 +35,9 @@ class RidePassenger{
 			if(func_num_args()==1){
 				$spot = func_get_arg(0);
 				$connection = MySqlConnection::getConnection();
-				$query = 'select spot,passenger,destination,picked,timeArrivedDrive,status from ridePassenger where spot = ?';
+				$query = 'SELECT spot, passenger, destination, picked_at, timeArrivedDrive, status FROM ridePassenger WHERE spot = ?';
 				$command = $connection->prepare($query);
-				$command->bind_param('d', $spot);
+				$command->bind_param('i', $spot);
 				$command->execute();
 				$command->bind_result($spot, $passenger, $destination, $picked,$timeArrivedDrive,$status);
 				$found = $command->fetch();
@@ -51,7 +51,7 @@ class RidePassenger{
 					$this->$timeArrivedDrive = $timeArrivedDrive;
 					$this->status = $status;
 				}
-				else {		
+				else {
 					throw new RecordNotFoundException();
 				}
 			}
@@ -69,9 +69,9 @@ class RidePassenger{
 		public function add()
 	  	{
 		    $connection = MySQLConnection::getConnection();
-		    $query = "insert into ridePassenger(spot, passenger,destination, picked_at, timeArrivedDriver) values(?,?,?,?,?)";
+		    $query = "INSERT INTO ridePassenger(spot, passenger, destination, picked_at, timeArrivedDriver) VALUES(?,?,?,?,?);";
 		    $command = $connection->prepare($query);
-		    $command->bind_param('dddss',$this->spot->getId(),$this->passenger->getId(),$this->destination->getId(),$picked,$timeArrivedDrive); 
+		    $command->bind_param('dddss',$this->spot->getId(),$this->passenger->getId(),$this->destination->getId(),$this->picked,$this->timeArrivedDrive);
 		    $result = $command->execute();
 		    mysqli_stmt_close($command);
 		    $connection->close();
@@ -79,9 +79,9 @@ class RidePassenger{
 	  	}
 	  	public function put(){
 	  		$connection = MySQLConnection::getConnection();
-	  		$query ="update ridePassenger set destination = ?, picked_at = ?, timeArrivedDriver = ? where spot = ? and passenger = ?; ";
+	  		$query ="UPDATE ridePassenger SET destination = ?, picked_at = ?, timeArrivedDriver = ? WHERE spot = ? AND passenger = ?; ";
 	  		$command = $connection->prepare($query);
-	  		$command->bind_param('dssdd',$this->destination->getId(),$picked,$timeArrivedDrive,$this->spot->getId(),$this->passenger->getId());
+	  		$command->bind_param('dssdd',$this->destination->getId(),$this->picked,$this->timeArrivedDrive,$this->spot->getId(),$this->passenger->getId());
 	  		$result = $command->execute();
 	  		mysqli_stmt_close($command);
 		    $connection->close();
@@ -91,11 +91,11 @@ class RidePassenger{
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'delete from ridePassenger where ride = ?';
+			$query = 'UPDATE ridePassenger SET status = 0 WHERE spot = ? and passenger = ?;';
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
-			$command->bind_param('s', $this->spot);
+			$command->bind_param('dd', $this->spot->getId(),$this->passenger->getId());
 			//execute
 			$result = $command->execute();
 			//close command
@@ -120,12 +120,13 @@ class RidePassenger{
 		public static function getAll() {
 			$list = array();
 			$connection = MySqlConnection::getConnection();
-			$query = '';
+			$query = 'SELECT spot, passenger, destination, picked_at, timeArrivedDriver, status FROM ridePassenger;';
 			$command = $connection->prepare($query);
 			$command->execute();
-			$command->bind_result();
-			while ($command->fetch()) {
-				array_push($list,);
+			$command->bind_result($spot,$passenger,$destination,$picked,$timeArrivedDrive,$status);
+			while ($command->fetch())
+			{
+				array_push($list, new RidePassenger(new Spot($spot),new Student($passenger),new Destination($destination),$picked,$timeArrivedDrive,$status));
 			}
 			mysqli_stmt_close($command);
 			$connection->close();
@@ -139,9 +140,7 @@ class RidePassenger{
 			foreach(self::getAll() as $item) {
 				array_push($list, json_decode($item->toJson()));
 			}
-			return json_encode(array(
-				'RidePassenger' => $list
-			));
+			return json_encode(array(	'RidePassenger' => $list));
 		}
 	}
 ?>

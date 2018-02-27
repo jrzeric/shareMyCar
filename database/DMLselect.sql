@@ -55,11 +55,11 @@ select s.id, s.driver, s.longitude, s.longitude, s.pay, s.hour, s.day, st.id,  s
 /*select destination*/
 select id, driver, university, timeArrivedSchool from destination;
 select id, driver, university, timeArrivedSchool from destination where id = 1;
-select d.id, d.timeArrivedSchool, s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.controlNumber,s.latitude, s.longitude, s.photo, s.turn, s.profile, u.id, u.name, u.latitude, u.longitude, s.city, s.status from destination as d join students as s on d.driver = s.id join universities_ctg as u on d.university = u.id; 
+select d.id, d.timeArrivedSchool, s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.controlNumber,s.latitude, s.longitude, s.photo, s.turn, s.profile, u.id, u.name, u.latitude, u.longitude, s.city, s.status from destination as d join students as s on d.driver = s.id join universities_ctg as u on d.university = u.id;
 
 /*select from ridePassenger*/
 select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger;
-select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1;
+select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1; // this need a change ?
 select r.picked_at, r.timeArrivedDriver, s.id as spotID, s.driver, s.latitude, s.longitude,s.pay, s.timeArrived, st.id as PassengerID, st.name, st.surname, st.secondSurname,st.email, st.cellPhone, st.controlNumber, st.latitude, st.longitude, st.photo, st.turn, st.profile, d.id as destinationID, d.driver, d.university, d.timeArrivedSchool, r.status from ridepassenger as r join spots as s on r.spot=s.id join students as st on r.passenger=st.id join destination as d on r.destination=d.id;
 
 /*selects from reportoption*/
@@ -76,4 +76,3 @@ select id, description from timeban;
 select id, reportman, timeban, status from banlist;
 select id, reportman, timeban, status from banlist where id = 1;
 select b.id, t.id, t.description, s.id, s.name, b.status from banlist as b join students as s on b.reportman = s.id join timeban as t on b.timeban = t.id;
-
