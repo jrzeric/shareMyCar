@@ -13,6 +13,7 @@
   </head>
   <body onload="init()">
     <header>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_admin.php"); ?>
     </header>
     <div class="box3">
       <div class="day">Active Users</div>
