@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard/style.css">
     <link rel="stylesheet" href="css/dashboard/footer.css">
-    <link rel="stylesheet" href="css/dashboard/menuStyle.css">
+    <!--<link rel="stylesheet" href="css/dashboard/menuStyle.css">-->
     <link href="css/dashboard/chart.css" rel="stylesheet"></link>
     <script src="js/dashboard/chart.js" charset="utf-8"></script>
     <script src="js/dashboard/svg.js" charset="utf-8"></script>
