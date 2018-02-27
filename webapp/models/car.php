@@ -11,6 +11,7 @@ class Car
   private $driverLicense;
   private $color;
   private $insurance;
+  private $spaceCar;
   private $owner;
   private $status;
 
@@ -28,6 +29,8 @@ class Car
   public function setColor($value){ $this->color = $value; }
   public function getInsurance(){ return $this->insurance; }
   public function setInsurance($value){ $this->insurance = $value; }
+  public function getSpaceCar(){ return $this->spaceCar; }
+  public function setSpaceCar($value){ $this->spaceCar = $value; }
   public function getOwner(){ return $this->owner; }
   public function setOwner($value){ $this->owner = $value; }
   public function getStatus(){ return $this->status; }
@@ -44,6 +47,7 @@ class Car
       $this->driverLicense = '';
       $this->color = '';
       $this->insurance = '';
+      $this->spaceCar = 0;
       $this->owner = '';
       $this->status = 1;
     }
@@ -52,11 +56,11 @@ class Car
     {
       $id = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
-      $query = 'SELECT id, driver, model, licensePlate, driverLicense, color, insurance, owner, status FROM cars WHERE id = ?;';
+      $query = 'SELECT id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status FROM cars WHERE id = ?;';
       $command = $connection->prepare($query);
-      $command->bind_param('s',$id);
+      $command->bind_param('i',$id);
       $command->execute();
-      $command->bind_result($id,$driver,$model,$licensePlate,$driverLicense,$color,$insurance,$owner,$status);
+      $command->bind_result($id,$driver,$model,$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status);
       $found->fetch();
       mysqli_stmt_close($command);
       $connection->close();
@@ -69,8 +73,9 @@ class Car
         $this->driverLicense = $driverLicense;
         $this->color = $color;
         $this->insurance = $insurance;
+        $this->spaceCar = $spaceCar;
         $this->owner = $owner;
-        $this->status = $state;
+        $this->status = $status;
       }
       else
       {
@@ -78,7 +83,7 @@ class Car
       }
     }
 
-    if (func_num_args()==9)
+    if (func_num_args()==10)
     {
       $arguments = func_get_args();
       $this->id = $arguments[0];
@@ -88,8 +93,9 @@ class Car
       $this->driverLicense = $arguments[4];
       $this->color = $arguments[5];
       $this->insurance = $arguments[6];
-      $this->owner = $arguments[7];
-      $this->status = $arguments[8];
+      $this->spaceCar = $arguments[7];
+      $this->owner = $arguments[8];
+      $this->status = $arguments[9];
     }
   }
 
@@ -101,9 +107,9 @@ class Car
   public function add()
   {
     $connection = MySQLConnection::getConnection();
-    $query = ""; // this query is empty
+    $query = "INSERT INTO cars(driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner) VALUES (?,?,?,?,?,?,?,?);";
     $command = $connection->prepare($query);
-    $command->bind_param(); //this also is empty
+    $command->bind_param('iissssis',$this->driver->getId(),$this->model->getId(),$this->licensePlate,$this->driverLicense,$this->color,$this->insurance,$this->spaceCar,$this->owner);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -118,9 +124,9 @@ class Car
   public function put()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "";
+    $query = "UPDATE cars SET driver = ?, model = ?, licencePlate = ?, driverLicence = ?, color = ?, insurance = ?, spaceCar = ?, owner = ?, status = ? WHERE id = ?;";
     $command = $connection->prepare($query);
-    $command->bind_param();
+    $command->bind_param('iissssisii',$this->driver->getId(),$this->model->getId(),$this->licensePlate,$this->driverLicense,$this->color,$this->insurance,$this->spaceCar,$this->owner,$this->status,$this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -135,9 +141,9 @@ class Car
   public function delete()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "";
+    $query = "UPDATE cars SET status = 0 WHERE id = ?;";
     $command = $connection->prepare($query);
-    $command->bind_param();
+    $command->bind_param('i',$this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
@@ -159,6 +165,7 @@ class Car
       'driverLicense' => $this->driverLicense,
       'color' => $this->color,
       'insurance' => $this->insurance,
+      'spaceCar' => $this->spaceCar,
       'owner' => $this->owner,
       'status' => $this->status
     ));
@@ -171,7 +178,19 @@ class Car
    */
   public static function getAll()
   {
-    // WORK IN THIS
+      $list = array();
+      $connection = MySQLConnection::getConnection();
+      $query = 'SELECT id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status FROM cars;';
+      $command = $connection->prepare($query);
+      $command->execute();
+      $command->bind_result($id,$driver,$model,$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status);
+      while ($command->fetch())
+      {
+        array_push($list, new Car($id,new Driver($driver),new Model($model),$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status));
+      }
+      mysqli_stmt_close($command);
+      $connection->close();
+      return $list;
   }
 
   /**
