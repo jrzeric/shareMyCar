@@ -3,75 +3,81 @@ require_once('mysqlconnection.php');
 require_once('exceptions/recordnotfoundexception.php');
 
 class RidePassenger{
+		private $id;
 		private $spot;
 		private $passenger;
-		private $destination;
-		private $picked;
 		private $timeArrivedDrive;
-		private $status;
+		private $timeFinish;
+		private $calificationPass;
+		private $calificationDriv;
 
+		public function getId(){return $this->id;}
+		public function setId($value){$this->id = $value;}
 		public function getSpot(){return $this->spot;}
 		public function setSpot($value){$this->spot = $value;}
 		public function getPassenger(){return $this->passenger;}
 		public function setPassenger($value){$this->passenger = $value;}
-		public function getDestination(){return $this->destination;}
-		public function setDestination($value){$this->destination = $value;}
-		public function getPicked(){return $this->picked;}
-		public function setPicked($value){$this->picked = $value;}
 		public function getTimeArrivedDrive(){return $this->timeArrivedDrive;}
 		public function setTimeArrivedDrive($value){$this->timeArrivedDrive = $value;}
-		public function getStatus(){return $this->status;}
-		public function setStatus($value){$this->status = $value;}
+		public function getTimeFinish(){return $this->timeFinish;}
+		public function setTimeFinish($value){$this->timeFinish = $value;}
+		public function getCalificationPass(){return $this->calificationPass;}
+		public function setCalificationPass($value){$this->calificationPass = $value;}
+		public function getCalificationDriv(){return $this->calificationDriv;}
+		public function setCalificationDriv($value){$this->calificationDriv = $value;}
 
 		function __construct(){
 			if(func_num_args()==0){
+				$this->id=0;
 				$this->spot= new Spot();
 				$this->passenger= new Student();
-				$this->destination= new Destination();
-				$this->picked= '';
 				$this->timeArrivedDrive = '';
-				$this->status = 0;
+				$this->timeFinish= '';
+				$this->calificationPass= 0;
+				$this->calificationDriv = 0;
 			}
 			if(func_num_args()==1){
-				$spot = func_get_arg(0);
+				$id = func_get_arg(0);
 				$connection = MySqlConnection::getConnection();
-				$query = 'SELECT spot, passenger, destination, picked_at, timeArrivedDrive, status FROM ridePassenger WHERE spot = ?';
+				$query = 'SELECT id , spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv FROM ride WHERE id = ?;';
 				$command = $connection->prepare($query);
-				$command->bind_param('i', $spot);
+				$command->bind_param('i', $id);
 				$command->execute();
-				$command->bind_result($spot, $passenger, $destination, $picked,$timeArrivedDrive,$status);
+				$command->bind_result($id, $spot, $passenger, $timeArrivedDrive, $timeFinish, $calificationPass, $calificationDriv);
 				$found = $command->fetch();
 				mysqli_stmt_close($command);
 				$connection->close();
 				if ($found) {
+					$this->id = $id;
 					$this->spot = new Spot($spot);
 					$this->passenger = new Student($passenger);
-					$this->destination = new Destination($destination);
-					$this->picked = $picked;
-					$this->$timeArrivedDrive = $timeArrivedDrive;
-					$this->status = $status;
+					$this->timeArrivedDrive = $timeArrivedDrive;
+					$this->timeFinish = $timeFinish;
+					$this->calificationPass = $calificationPass;
+					$this->calificationDriv = $calificationDriv;
 				}
 				else {
 					throw new RecordNotFoundException();
 				}
 			}
-			if(func_num_args()==6){
+			if(func_num_args()==7){
 				$arguments = func_get_args();
-				$this->spot=$arguments[0];
-				$this->passenger= $arguments[1];
-				$this->destination= $arguments[2];
-				$this->picked= $arguments[3];
-				$this->timeArrivedDrive = $arguments[4];
-				$this->status = $arguments[5];
+				$this->id = $arguments[0];
+				$this->spot=$arguments[1];
+				$this->passenger= $arguments[2];
+				$this->timeArrivedDrive= $arguments[3];
+				$this->timeFinish= $arguments[4];
+				$this->calificationPass = $arguments[5];
+				$this->calificationDriv = $arguments[6];
 			}
 		}
 
 		public function add()
 	  	{
 		    $connection = MySQLConnection::getConnection();
-		    $query = "INSERT INTO ridePassenger(spot, passenger, destination, picked_at, timeArrivedDriver) VALUES(?,?,?,?,?);";
+		    $query = "INSERT INTO ride(spot, passenger, timeArrived, timeFinish,calificationPass,calificationDriv);";
 		    $command = $connection->prepare($query);
-		    $command->bind_param('dddss',$this->spot->getId(),$this->passenger->getId(),$this->destination->getId(),$this->picked,$this->timeArrivedDrive);
+		    $command->bind_param('ddssdd',$this->spot->getId(),$this->passenger->getId(),$this->timeArrivedDrive,$this->timeFinish,$this->calificationPass,$this->calificationDriv);
 		    $result = $command->execute();
 		    mysqli_stmt_close($command);
 		    $connection->close();
@@ -79,9 +85,9 @@ class RidePassenger{
 	  	}
 	  	public function put(){
 	  		$connection = MySQLConnection::getConnection();
-	  		$query ="UPDATE ridePassenger SET destination = ?, picked_at = ?, timeArrivedDriver = ? WHERE spot = ? AND passenger = ?; ";
+	  		$query ="UPDATE ride SET timeArrived =?, timeFinish =?, calificationPass =?, calificationDriv =? WHERE id =? AND spot =? AND passenger =?; ";
 	  		$command = $connection->prepare($query);
-	  		$command->bind_param('dssdd',$this->destination->getId(),$this->picked,$this->timeArrivedDrive,$this->spot->getId(),$this->passenger->getId());
+	  		$command->bind_param('ssddddd',$this->timeArrivedDrive, $this->timeFinish, $this->calificationPass, $this->calificationDriv, $this->id, $this->spot->getId(), $this->passenger->getId());
 	  		$result = $command->execute();
 	  		mysqli_stmt_close($command);
 		    $connection->close();
@@ -91,7 +97,7 @@ class RidePassenger{
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'UPDATE ridePassenger SET status = 0 WHERE spot = ? and passenger = ?;';
+			$query = 'DELETE FROM ride WHERE spot = ? AND passenger = ?;';
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
@@ -108,25 +114,26 @@ class RidePassenger{
 
 		public function toJson(){
 			return json_encode(array(
+				'id' => $this->id,
 				'spot' => $this->json_decode($this->spot->toJson()),
 				'passenger'=>$this->json_decode($this->passenger->toJson()),
-				'destination'=>$this->json_decode($this->destination->toJson()),
-				'picked' => $this->picked,
-				'timeArrivedDrive' => $this->timeArrivedDrive,
-				'status' => $this->status
+				'timeArrived'=>$this->timeArrivedDrive,
+				'timeFinish' => $this->timeFinish,
+				'calificationPass' => $this->calificationPass,
+				'calificationDriv' => $this->calificationDriv
 			));
 		}
 
 		public static function getAll() {
 			$list = array();
 			$connection = MySqlConnection::getConnection();
-			$query = 'SELECT spot, passenger, destination, picked_at, timeArrivedDriver, status FROM ridePassenger;';
+			$query = 'SELECT id, spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv FROM ride;';
 			$command = $connection->prepare($query);
 			$command->execute();
-			$command->bind_result($spot,$passenger,$destination,$picked,$timeArrivedDrive,$status);
+			$command->bind_result($id,$spot,$passenger,$timeArrivedDrive,$timeFinish,$calificationPass,$calificationDriv);
 			while ($command->fetch())
 			{
-				array_push($list, new RidePassenger(new Spot($spot),new Student($passenger),new Destination($destination),$picked,$timeArrivedDrive,$status));
+				array_push($list, new RidePassenger($id,new Spot($spot),new Student($passenger),$timeArrivedDrive,$timeFinish,$calificationPass,$calificationDriv));
 			}
 			mysqli_stmt_close($command);
 			$connection->close();
