@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS spots/* point where the driver going on*/
 	@param calificationPass		rating that the driver gives the passenger
 	@param calificationDriv		rating that the passenger gives the driver
 	@param status:				1 for active, 0 for disable
-    @comment:					this is a intermediate table of spot and passenger, this is use to know who passenger request and the time he picket 
+    @comment:					this is a intermediate table of spot and passenger, this is use to know who passenger request and the time he picket
 								spot
 */
 CREATE TABLE IF NOT EXISTS ride /* table intermedia que llena los autos con los pasajeros */
@@ -234,10 +234,10 @@ CREATE TABLE IF NOT EXISTS ride /* table intermedia que llena los autos con los 
 	timeArrived time null,
 	timeFinish time null,
 	calificationPass smallint null,
-	calificationDriv smallint null
+	calificationDriv smallint null,
 	primary key(id,spot,passenger),
 	FOREIGN KEY (passenger) REFERENCES students(id),
-    FOREIGN KEY (spot) REFERENCES spots(id),
+    FOREIGN KEY (spot) REFERENCES spots(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS timeban
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 /*Banlist documentation
-    
+
 	@param id:			identifier of the table banlist
     @param reportman:	is a foreign key of the table student, this is the student who is report
     @param timeban:		is a foreign key of the table timeban, this is the time of the ban
