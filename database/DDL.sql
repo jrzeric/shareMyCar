@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS profiles_ctg
 	name VARCHAR(13) unique not null,
 	PRIMARY KEY (id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
+select * from profiles_ctg;
 
 /*student documentation
 	@param id:				identifier of the table students

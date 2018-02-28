@@ -4,7 +4,7 @@
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
 	
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -12,11 +12,11 @@
 		if (isset($_GET['id'])) {
 			try{
 				//object
-				$c = new City($_GET['id']);
+				$s = new Student($_GET['id']);
 				//display
 				echo json_encode(array(
 					'status' => 0,
-					'city' => json_decode($c->toJson())
+					'student' => json_decode($s->toJson())
 				));
 			}
 			catch (RecordNotFoundException $ex) {
@@ -25,9 +25,8 @@
 					'errorMessage' => $ex->get_message()
 				));
 			}
-		}
-		else {
-			echo City::getAllJson();
+		}else {
+			echo Student::getAllJson();
 		}
 	}
 ?>

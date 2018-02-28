@@ -1,19 +1,17 @@
 <?php
-
 	//access control
 	//allow access from outside the server
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
-	header('Access-Control-Allow-Methods: GET');
-
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
+	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/university.php');
 
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
 		if (isset($_GET['id'])) {
-			try {
-				//create object
+			try{
+				//object
 				$u = new University($_GET['id']);
 				//display
 				echo json_encode(array(
@@ -27,13 +25,9 @@
 					'errorMessage' => $ex->get_message()
 				));
 			}
-		} elseif (isset($_GET['idAll'])) {
-			echo university::getAllUJson($_GET['idAll']);
-		} else {
-			echo json_encode(array(
-					'status' => 1,
-					'errorMessage' => 'Missing parameters'
-				));
+		}
+		else {
+			echo University::getAllJson();
 		}
 	}
 ?>
