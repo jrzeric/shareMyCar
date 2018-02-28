@@ -234,10 +234,10 @@ CREATE TABLE IF NOT EXISTS ride /* table intermedia que llena los autos con los 
 	timeArrived time null,
 	timeFinish time null,
 	calificationPass smallint null,
-	calificationDriv smallint null
+	calificationDriv smallint null,
 	primary key(id,spot,passenger),
 	FOREIGN KEY (passenger) REFERENCES students(id),
-  FOREIGN KEY (spot) REFERENCES spots(id),
+  FOREIGN KEY (spot) REFERENCES spots(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 

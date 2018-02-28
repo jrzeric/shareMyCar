@@ -52,12 +52,12 @@ select id, driver, latitude, longitude, pay, hour, day, status from spots;
 select id, driver, latitude, longitude, pay, hour, day, status from spots where id = 1;
 select s.id, s.driver, s.longitude, s.longitude, s.pay, s.hour, s.day, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD */
 
 /*select from ride*/
 select id, spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv from ride;
 select id,spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv from ride where id = 1;
-=======
+/*=======*/
 /*select destination*/
 select id, driver, university, timeArrivedSchool from destination;
 select id, driver, university, timeArrivedSchool from destination where id = 1;
@@ -65,9 +65,9 @@ select d.id, d.timeArrivedSchool, s.id, s.name, s.surname, s.secondSurname, s.em
 
 /*select from ridePassenger*/
 select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger;
-select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1; // this need a change ?
+select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1; /* this need a change ?*/
 select r.picked_at, r.timeArrivedDriver, s.id as spotID, s.driver, s.latitude, s.longitude,s.pay, s.timeArrived, st.id as PassengerID, st.name, st.surname, st.secondSurname,st.email, st.cellPhone, st.controlNumber, st.latitude, st.longitude, st.photo, st.turn, st.profile, d.id as destinationID, d.driver, d.university, d.timeArrivedSchool, r.status from ridepassenger as r join spots as s on r.spot=s.id join students as st on r.passenger=st.id join destination as d on r.destination=d.id;
->>>>>>> dashboard-improve-v2
+/*>>>>>>> dashboard-improve-v2*/
 
 /*selects from reportoption*/
 select id, description from reportOption;
