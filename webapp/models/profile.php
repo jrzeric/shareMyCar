@@ -33,7 +33,7 @@
         mysqli_stmt_close($command);
         //close connection
         $connection->close();
-        if (!$found){
+        if ($found){
           $this->id = $id;
           $this->name = $name;
         }
@@ -120,3 +120,6 @@
       ));
     }
 }
+ $variable = new Profile('ADM');
+ echo $variable->toJson();
+?>

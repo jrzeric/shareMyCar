@@ -26,18 +26,18 @@
 			if(func_num_args() == 1){
 				$id = func_get_arg(0);
 				$connection = MySQLConnection::getConnection();
-				$query = 'Select id, name, status From states_ctg Where id = ?';
+				$query = 'SELECT id, name, status FROM states_ctg WHERE id = ?;';
 				$command = $connection->prepare($query);
 				$command->bind_param('s', $id);
 				$command->execute();
-				$command->bind_result($id, $description);
+				$command->bind_result($id, $name, $status);
 				$found = $command->fetch();
 				//close command
 				mysqli_stmt_close($command);
 				//close connection
 				$connection->close();
 				//throw exception if record not found
-				if (!$found){
+				if ($found){
 					$this->id = $id;
 					$this->name = $name;
 					$this->status = $status;
@@ -127,4 +127,6 @@
 			));
 		}
 	}
+	$variable = new State('BCS');
+	echo $variable->toJson();
 ?>
