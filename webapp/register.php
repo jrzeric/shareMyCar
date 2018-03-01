@@ -9,8 +9,9 @@
 		<link href="/css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
 	<script src="js/globals.js"></script>
+	<script src="js/validatePass.js"></script>
 	</head>
-	<body>
+	<body >
     <header>
       <?php require_once("/lib/header_register.php"); ?>
     </header>
@@ -23,24 +24,28 @@
         <input id="surname" class="form-section__blank--three-columns" type="text" name="" value="" placeholder="SECOND LAST NAME">
       </div>
     </div>
-    <div class="form-section">
+    <div id = 'parentContact' class="form-section">
       <label class="form-section__title">Contact information</label>
       <div class="form-section-blank">
         <input id="cellphone" class="form-section__blank--two-columns" type="text" name="" value="" placeholder="CELL PHONE NUMBER">
         <input id="email" class="form-section__blank--two-columns" type="email" name="" value="" placeholder="EMAIL">
         <input id="password" class="form-section__blank--two-columns" type="password" name="" value="" placeholder="PASSWORD">
-        <input id="repassword" class="form-section__blank--two-columns" type="password" name="" value="" placeholder="CONFIRM PASSWORD">
+        <input id="repassword" class="form-section__blank--two-columns" type="password" name="" value="" placeholder="CONFIRM PASSWORD" onkeyup="validatepass()">
+				<p><label id = "labelPassvalidate"></label></p>
       </div>
     </div>
-    <div class="form-section">
+    <div id = 'parentSchool' class="form-section">
       <label class="form-section__title">School Information</label>
       <div class="form-section-blank">
         <input id="controlnumber" class="form-section__blank--three-columns_school" type="text" name="" value="" placeholder="CONTROL NUMBER">
-        <select id="turn" class="form-section__blank--three-columns_school" name="turn">
-          <option value="0">SELECT TURN</option>
+        <select id="stateSchool" class="form-section__blank--three-columns_school" name="turn">
+          <option value="0">SELECT STATE</option>
         </select>
         <select id="ampm" class="form-section__blank--three-columns_school" name="ampm">
-          <option value="0">MORNING / EVENING</option>
+          <option value="0">SELECT CITY</option>
+        </select>
+				<select id="ampm" class="form-section__blank--three-columns_school" name="ampm">
+          <option value="0">SELECT UNIVERSITY</option>
         </select>
       </div>
     </div>

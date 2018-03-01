@@ -1,7 +1,7 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
 
 class State
 {
@@ -27,12 +27,11 @@ class State
       $this->code = '';
       $this->name = '';
       $this->status = 0;
-
     }
     if (func_num_args() == 1) {
       $code = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
-      $query = 'SELECT code, name, status FROM states_ctg WHERE code = ?;';
+      $query = 'SELECT id, name, status FROM states_ctg WHERE id = ?';
 
       $command = $connection->prepare($query);
       $command->bind_param('s', $code);
@@ -59,9 +58,9 @@ class State
       $this->status = $arguments[2];
     }
   }
-  
+
   //Instance methods
-  
+
 	//Methods
 	public function toJson()
 	{
@@ -71,14 +70,14 @@ class State
 			'status' => $this->status
 			));
 	}//toJson
-	
+
 	public static function getAll()
 	{
 		//list
 		$list = array();
 		$connection = MySQLConnection::getConnection();
 		//query
-		$query = 'select code, name , status
+		$query = 'select id, name , status
 					from states_ctg';
 		//command
 		$command = $connection->prepare($query);
@@ -104,7 +103,7 @@ class State
 		//list
 		$list = array();
 		//encode to json
-		foreach (self::getAll() as $item) 
+		foreach (self::getAll() as $item)
 		{
 			array_push($list, json_decode($item->toJson()));
 		}//foreach
