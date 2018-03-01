@@ -1,13 +1,13 @@
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
-	
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+
 	class State{
 		//attributes
 		private $id;
 		private $name;
 		private $status;
-		
+
 		//setters and getters
 		public function setId($value) { $this->id = $value; }
 		public function getId() { return $this->id; }
@@ -15,7 +15,7 @@
 		public function getName() { return $this->name; }
 		public function setStatus($value) { $this->status = $value; }
 		public function getStatus() { return $this->status; }
-		
+
 		//constructors
 		function __construct(){
 			if(func_num_args() == 0){
@@ -30,7 +30,7 @@
 				$command = $connection->prepare($query);
 				$command->bind_param('s', $id);
 				$command->execute();
-				$command->bind_result($id, $description);
+				$command->bind_result($id, $name, $status);
 				$found = $command->fetch();
 				//close command
 				mysqli_stmt_close($command);
@@ -42,7 +42,7 @@
 					$this->name = $name;
 					$this->status = $status;
 				}
-				else {		
+				else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -57,7 +57,7 @@
 				$this->status = $arguments[2];
 			}
 		}
-		
+
 		//add
 		public function add() {
 			//get connection
@@ -77,7 +77,7 @@
 			//return result
 			return $result;
 		}
-		
+
 		//represents the object in JSON format
 		public function toJson() {
 			return json_encode(array(
@@ -86,7 +86,7 @@
 				'status' => $this->status
 			));
 		}
-		
+
 		//get all
 		public static function getAll() {
 			//list
@@ -112,7 +112,7 @@
 			//return list
 			return $list;
 		}
-		
+
 		//get all in JSON format
 		public static function getAllJson() {
 			//list
@@ -128,13 +128,3 @@
 		}
 	}
 ?>
-
-
-
-
-
-
-
-
-
-

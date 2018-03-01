@@ -12,7 +12,7 @@
 	</head>
 	<body>
     <header>
-      <?php require_once("/lib/header_register.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_register.php"); ?>
     </header>
     <h1>Registration</h1>
     <div class="form-section">

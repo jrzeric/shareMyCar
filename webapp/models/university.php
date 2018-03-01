@@ -1,7 +1,7 @@
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/city.php');
 
 	class University{
 		//attributes
@@ -30,7 +30,7 @@
 		public function __construct() {
 			//empty object
 			if (func_num_args() == 0) {
-				$this->id = '';
+				$this->id = "";
 				$this->name = '';
 				$this->latitude = 0.0;
 				$this->longitude = 0.0;
@@ -43,12 +43,12 @@
 				//get connection
 				$connection = MySqlConnection::getConnection();
 				//query
-				$query = 'Select u.id, u.name, u.latitude, u.longitude, u.status, c.id cityId, 
+				$query = 'Select u.id, u.name, u.latitude, u.longitude, u.status, c.id cityId,
 					c.name cityName, c.status cityStatus, c.state cityStateId,
                     s.name as stateName, s.status as stateStatus
-					FROM universities_ctg u 
+					FROM universities_ctg u
                     JOIN cities_ctg c ON u.city = c.id
-                    Inner join states_ctg s on s.id = c.state 
+                    Inner join states_ctg s on s.id = c.state
                     Where u.id = ?';
 				//command
 				$command = $connection->prepare($query);
@@ -74,7 +74,7 @@
 					$this->status = $status;
 					$this->city = new City($cityId, $city, $statusCity, $state);
 				}
-				else {		
+				else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -95,7 +95,7 @@
 		}
 
 		//instance methods
-		
+
 		//add
 		public function add() {
 			//get connection
@@ -155,10 +155,10 @@
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'Select u.id, u.name, u.latitude, u.longitude, u.status, c.id cityId, 
+			$query = 'Select u.id, u.name, u.latitude, u.longitude, u.status, c.id cityId,
 					c.name cityName, c.status cityStatus, c.state cityStateId,
                     s.name as stateName, s.status as stateStatus
-					FROM universities_ctg u 
+					FROM universities_ctg u
                     JOIN cities_ctg c ON u.city = c.id
                     Inner join states_ctg s on s.id = c.state';
 			//command
