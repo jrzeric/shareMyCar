@@ -50,12 +50,21 @@ select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.s
 /*select from spot*/
 select id, driver, latitude, longitude, pay, hour, day, status from spots;
 select id, driver, latitude, longitude, pay, hour, day, status from spots where id = 1;
+select id, driver, latitude, longitude, pay, hour, day, status from spots where driver = 1;
 select s.id, s.driver, s.longitude, s.longitude, s.pay, s.hour, s.day, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
 
 
 /*select from ride*/
 select id, spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv from ride;
 select id,spot, passenger, timeArrived, timeFinish, calificationPass, calificationDriv from ride where id = 1;
+
+/*Todos los spots de un driver que recogieron un pasajero*/
+select s.id as idSpot, s.latitude, s.longitude, s.pay, s.hour, s.day, r.id as idRide, r.passenger, r.timeArrived, r.timeFinish, r.calificationPass, r.calificationDriv from spots as s join ride as r on r.spot = s.id where s.driver = 2;
+
+/*Todos los spots de un driver que recogieron un pasajero un dia determinado*/
+select s.id as idSpot, s.latitude, s.longitude, s.pay, s.hour, s.day, r.id as idRide, r.passenger, r.timeArrived, r.timeFinish, r.calificationPass, r.calificationDriv from spots as s join ride as r on r.spot = s.id where s.driver = 2 and s.day = 'Martes';
+/*End select from ride*/
+
 
 /*selects from reportoption*/
 select id, description from reportOption;
