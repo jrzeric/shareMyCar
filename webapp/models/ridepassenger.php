@@ -1,6 +1,6 @@
 <?php
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
 
 class RidePassenger{
 		private $id;

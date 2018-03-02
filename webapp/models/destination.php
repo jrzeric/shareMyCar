@@ -1,6 +1,5 @@
 <?php
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+
 
 class Destination{
 	private $id;

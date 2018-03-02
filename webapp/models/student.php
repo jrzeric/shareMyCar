@@ -143,8 +143,8 @@
 				//pass arguments to attributes
 				$this->id = $arguments[0];
 				$this->name = $arguments[1];
-				$this->surName = $arguments[2];
-				$this->secondSurName = $arguments[3];
+				$this->surnName = $arguments[2];
+				$this->secondSurname = $arguments[3];
 				$this->email = $arguments[4];
 				$this->cellPhone = $arguments[5];
 				$this->university = $arguments[6];

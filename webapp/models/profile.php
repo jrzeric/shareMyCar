@@ -120,6 +120,5 @@
       ));
     }
 }
- $variable = new Profile('ADM');
- echo $variable->toJson();
+
 ?>
