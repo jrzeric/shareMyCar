@@ -52,6 +52,7 @@ select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.s
 /*select from spot*/
 select id, driver, latitude, longitude, pay, hour, day, status from spots;
 select id, driver, latitude, longitude, pay, hour, day, status from spots where id = 1;
+select id, driver, latitude, longitude, pay, hour, day, status from spots where driver = 1;
 select s.id, s.driver, s.longitude, s.longitude, s.pay, s.hour, s.day, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.university, st.controlNumber, st.latitude, st.longitude, st.latitude, st.longitude, st.photo, st.city, st.turn, st.profile, s.status from spots as s join students as st on s.driver = st.id;
 
 /*<<<<<<< HEAD */
@@ -70,6 +71,14 @@ select spot, passenger, destination, picked_at, timeArrivedDriver, status from r
 select spot, passenger, destination, picked_at, timeArrivedDriver, status from ridePassenger where id = 1; /* this need a change ?*/
 select r.picked_at, r.timeArrivedDriver, s.id as spotID, s.driver, s.latitude, s.longitude,s.pay, s.timeArrived, st.id as PassengerID, st.name, st.surname, st.secondSurname,st.email, st.cellPhone, st.controlNumber, st.latitude, st.longitude, st.photo, st.turn, st.profile, d.id as destinationID, d.driver, d.university, d.timeArrivedSchool, r.status from ridepassenger as r join spots as s on r.spot=s.id join students as st on r.passenger=st.id join destination as d on r.destination=d.id;
 /*>>>>>>> dashboard-improve-v2*/
+
+/*Todos los spots de un driver que recogieron un pasajero*/
+select s.id as idSpot, s.latitude, s.longitude, s.pay, s.hour, s.day, r.id as idRide, r.passenger, r.timeArrived, r.timeFinish, r.calificationPass, r.calificationDriv from spots as s join ride as r on r.spot = s.id where s.driver = 2;
+
+/*Todos los spots de un driver que recogieron un pasajero un dia determinado*/
+select s.id as idSpot, s.latitude, s.longitude, s.pay, s.hour, s.day, r.id as idRide, r.passenger, r.timeArrived, r.timeFinish, r.calificationPass, r.calificationDriv from spots as s join ride as r on r.spot = s.id where s.driver = 2 and s.day = 'Martes';
+/*End select from ride*/
+
 
 /*selects from reportoption*/
 select id, description from reportOption;
