@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <a href="#openwindow" class="open">Details</a>
-    <section id="openwindow" class="modalDialog">
+
+    <section id="openwindow" class="modalDialog" position="absoulte" z-index="1">
       <section class="div__popup">
         <div>
           <a href="#close" class="close"> X </a>
@@ -44,5 +38,5 @@
 
       </section>
     </section>
-  </body>
+
 </html>
