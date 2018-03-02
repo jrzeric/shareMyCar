@@ -19,29 +19,37 @@ class Car
 
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
+
   public function getDriver(){ return $this->driver; }
   public function setDriver($value){ $this->driver = $value; }
+
   public function getModel(){ return $this->model; }
   public function setModel($value){ $this->model = $value; }
+
   public function getLicensePlate(){ return $this->licensePlate; }
   public function setLicensePlate($value){ $this->licensePlate = $value; }
+
   public function getDriverLicense(){ return $this->driverLicense; }
   public function setDriverLicense($value){ $this->driverLicense = $value; }
+
   public function getColor(){ return $this->color; }
   public function setColor($value){ $this->color = $value; }
+
   public function getInsurance(){ return $this->insurance; }
   public function setInsurance($value){ $this->insurance = $value; }
+
   public function getSpaceCar(){ return $this->spaceCar; }
   public function setSpaceCar($value){ $this->spaceCar = $value; }
+
   public function getOwner(){ return $this->owner; }
   public function setOwner($value){ $this->owner = $value; }
+
   public function getStatus(){ return $this->status; }
   public function setStatus($value){ $this->status = $value; }
 
   function __construct()
   {
-    if (func_num_args()==0)
-    {
+    if (func_num_args()==0) {
       $this->id = 0 ;
       $this->driver = new Student();
       $this->model = new Model();
@@ -53,9 +61,7 @@ class Car
       $this->owner = '';
       $this->status = 1;
     }
-
-    if (func_num_args()==1)
-    {
+    if (func_num_args()==1) {
       $id = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
       $query = 'SELECT id, driver, model, licencePlate, driverLicence,
@@ -68,8 +74,7 @@ class Car
       $found = $command->fetch();
       mysqli_stmt_close($command);
       $connection->close();
-      if ($found)
-      {
+      if ($found) {
         $this->id = $id;
         $this->driver = new Student($driver);  // this variable is an object
         $this->model = new Model($model);
@@ -80,15 +85,12 @@ class Car
         $this->spaceCar = $spaceCar;
         $this->owner = $owner;
         $this->status = $status;
-      }
-      else
-      {
+      } else {
         throw new RecordNotFoundException();
       }
     }
 
-    if (func_num_args()==10)
-    {
+    if (func_num_args()==10) {
       $arguments = func_get_args();
       $this->id = $arguments[0];
       $this->driver = $arguments[1];  // this variable is an object
@@ -102,7 +104,6 @@ class Car
       $this->status = $arguments[9];
     }
   }
-
   /**
    * Adds a new car to the database
    *
@@ -125,7 +126,6 @@ class Car
 
     return $result;
   }
-
   /**
    * Edits a car in the database
    *
@@ -147,7 +147,6 @@ class Car
     $connection->close();
     return $result;
   }
-
   /**
    * Chages the status of a car
    *
@@ -164,7 +163,6 @@ class Car
     $connection->close();
     return $result;
   }
-
   /**
    *
    *
@@ -204,10 +202,8 @@ class Car
             $driverLicense, $color, $insurance, $spaceCar, $owner, $status);
       //echo $found;
       while ($command->fetch()) {
-
         $d = new Student($driver);
         $m = new Model($model);
-
         array_push($list, new Car($id, $d, $m, $licencePlate,
         $driverLicense, $color, $insurance, $spaceCar, $owner, $status));
       }
@@ -231,6 +227,4 @@ class Car
         'status' => '1',
         'Cars' => $list));
     }
-
 }
-?>

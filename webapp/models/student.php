@@ -27,37 +27,52 @@
 		//setters and getters
 		public function getId() { return $this->id; }
 		public function setId($value) { $this->id = $value; }
+
 		public function getName() { return $this->name; }
 		public function setName($value) { $this->name = $value; }
+
 		public function getSurName() { return $this->surnName; }
 		public function setSurName($value) { $this->surnName = $value; }
+
 		public function getSecondSurname() { return $this->secondSurname; }
 		public function setSecondSurname($value) { $this->secondSurname = $value; }
+
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
+
 		public function getCellPhone() { return $this->cellPhone; }
 		public function setCellPhone($value) { $this->cellPhone = $value; }
+
 		public function getUniversity() { return $this->university; }
 		public function setUniversity($value) { $this->university = $value; }
+
 		public function getControlNumber() { return $this->controlNumber; }
 		public function setControlNumber($value) { $this->controlNumber = $value; }
+
 		public function getLatitude() { return $this->latitude; }
 		public function setLatitude($value) { $this->latitude = $value; }
+
 		public function getLongitude() { return $this->longitude; }
 		public function setLongitude($value) { $this->longitude = $value; }
+
 		public function getPhoto() { return $this->photo; }
 		public function setphoto($value) { $this->photo = $value; }
+
 		public function getCity() { return $this->city; }
 		public function setCity($value) { $this->city = $value; }
+
 		public function getTurn() { return $this->turn; }
 		public function setTurn($value) { $this->turn = $value; }
+
 		public function getStatus() { return $this->status; }
 		public function setStatus($value) { $this->status = $value; }
+
 		public function getProfile() { return $this->profile; }
 		public function setProfile($value) { $this->profile = $value; }
 
 		//constructor
-		public function __construct() {
+		public function __construct()
+    {
 			//empty object
 			if (func_num_args() == 0) {
 				$this->id = 0;
@@ -83,7 +98,7 @@
 				//get connection
 				$connection = MySqlConnection::getConnection();
 				//query
-				$query = 'Select s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
+				$query = 'SELECT s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
 					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
 					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
 					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
@@ -129,8 +144,7 @@
 					$this->turn = $turn;
 					$this->status = $status;
 					$this->profile = new Profile($idProfile, $profileName);
-				}
-				else {
+				} else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -160,7 +174,8 @@
 		}
 
 		//add
-		public function add() {
+		public function add()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -193,7 +208,8 @@
 		}
 
 		//delete
-		public function delete() {
+		public function delete()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -213,7 +229,8 @@
 		}
 
 		//represents the object in JSON format
-		public function toJson() {
+		public function toJson()
+    {
 			return json_encode(array(
 				'id' => $this->id,
 				'name' => $this->name,
@@ -235,25 +252,29 @@
 
 
 		//get all
-		public static function getAll() {
+		public static function getAll()
+    {
 			//list
 			$list = array();
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'Select s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
+			$query = 'SELECT s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
 					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
 					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
 					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
 					st.name stUniName, st.status stUnSta, s.turn, s.status, p.id idProfile, p.name profileName
 					FROM students s JOIN universities_ctg u ON s.university = u.id JOIN cities_ctg c ON s.city = c.id
-					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id ';
+					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id';
 			//command
 			$command = $connection->prepare($query);
 			//execute
 			$command->execute();
 			//bind results
-			$command->bind_result($id, $name, $surnName, $secondSurName, $email, $cellPhone, $universityId, $universityName, $cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg, $universityStatus, $controlNumber, $latitude, $longitude, $photo, $ctUnId, $ctUnName, $ctUnStts, $stUniId, $stUniName, $stUnSta, $turn, $status, $idProfile, $profileName);
+			$command->bind_result($id, $name, $surnName, $secondSurName, $email, $cellPhone, $universityId, $universityName,
+								$cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg,
+								$universityStatus, $controlNumber, $latitude, $longitude, $photo, $ctUnId, $ctUnName, $ctUnStts,
+								$stUniId, $stUniName, $stUnSta, $turn, $status, $idProfile, $profileName);
 			//fetch data
 			while ($command->fetch()) {
 				$uState = new State($stUniId, $stUniName, $stUnSta);
@@ -275,7 +296,8 @@
 		}
 
 		//get all in JSON format
-		public static function getAllJson() {
+		public static function getAllJson()
+    {
 			//list
 			$list = array();
 			//get all
@@ -288,4 +310,3 @@
 			));
 		}
 	}
-?>

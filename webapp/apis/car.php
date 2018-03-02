@@ -4,9 +4,13 @@
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+<<<<<<< HEAD
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/models/car.php');
 
+=======
+	require_once($_SERVER['DOCUMENT_ROOT'].'/models/car.php');
+>>>>>>> origin/windowAfterValidate
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//parameters
@@ -31,7 +35,10 @@
 			echo Car::getAllJson();
 		}
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/windowAfterValidate
 	//POST (Insert)
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//parameters
@@ -43,9 +50,13 @@
       isset($_POST['insurance']) &&
       isset($_POST['spaceCar']) &&
       isset($_POST['owner'])) {
+<<<<<<< HEAD
 
         $error = false;
 
+=======
+        $error = false;
+>>>>>>> origin/windowAfterValidate
       try {
         $s = new Student($_POST['driver']);
       } catch (RecordNotFoundException $ex) {
@@ -64,10 +75,15 @@
 					'errorMessage' => 'Invalid model'
 				));
 			}
+<<<<<<< HEAD
 
       if(!$error){
       $c = new Car();
 
+=======
+      if(!$error){
+      $c = new Car();
+>>>>>>> origin/windowAfterValidate
 			$c->setDriver($s);
 			$c->setModel($m);
       $c->setLicensePlate($_POST['licensePlate']);
@@ -76,6 +92,7 @@
       $c->setInsurance($_POST['insurance']);
       $c->setSpaceCar($_POST['spaceCar']);
       $c->setOwner($_POST['owner']);
+<<<<<<< HEAD
 
 			/*Then execute the method add*/
 			if ($c->add()) {
@@ -84,6 +101,14 @@
 				echo json_encode(array(
 					'status' => 0,
 					'essage' => 'Car added successfully'
+=======
+			/*Then execute the method add*/
+			if ($c->add()) {
+				/*This message means the spot was added to the database*/
+				echo json_encode(array(
+					'status' => 0,
+					'message' => 'Car added successfully'
+>>>>>>> origin/windowAfterValidate
 				));
 			}
 			else {
@@ -92,9 +117,13 @@
 				echo json_encode(array(
 					'status' => 1,
 					'errorMessage' => 'Could not add car',
+<<<<<<< HEAD
 
 				));
 
+=======
+				));
+>>>>>>> origin/windowAfterValidate
 			}
 		}
   }else {
@@ -104,7 +133,10 @@
       ));
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/windowAfterValidate
 //PUT(update)
 if($_SERVER['REQUEST_METHOD'] == 'PUT'){
   //read data
@@ -119,7 +151,10 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
     isset($putData['spaceCar']) && isset($putData['owner'])){
       //Error
       $error = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/windowAfterValidate
       try {
         $d = new Brand($putData['driver']);
       } catch (RecordNotFoundException $ex) {
@@ -138,11 +173,17 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
         'errorMessage' => 'Invalid model'
         ));
       }
+<<<<<<< HEAD
 
       if(!$error){
         try{
         $c = new Car();
 
+=======
+      if(!$error){
+        try{
+        $c = new Car();
+>>>>>>> origin/windowAfterValidate
         //set values
         $c->setId($putData['id']);
         $c->setDriver($d);
@@ -184,9 +225,13 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
           'ErrorMessage' => 'Missing data parameters'
         ));
   }
+<<<<<<< HEAD
 
 }
 
+=======
+}
+>>>>>>> origin/windowAfterValidate
 	//DELETE (delete)
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 		//read id
@@ -221,4 +266,8 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
 			));
 		}
 	}
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> origin/windowAfterValidate
