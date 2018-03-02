@@ -127,6 +127,4 @@
 			));
 		}
 	}
-	$variable = new State('BCS');
-	echo $variable->toJson();
 ?>
