@@ -13,6 +13,7 @@
 		private $surnName;
 		private $secondSurname;
 		private $email;
+		private $password;
 		private $cellPhone;
 		private $university;
 		private $controlNumber;
@@ -23,6 +24,7 @@
 		private $turn;
 		private $status;
 		private $profile;
+		private $raiting;
 
 		//setters and getters
 		public function getId() { return $this->id; }
@@ -39,6 +41,9 @@
 
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
+
+		public function getPassword() { return $this->password; }
+		public function setPassword($value) { $this->password = $value; }
 
 		public function getCellPhone() { return $this->cellPhone; }
 		public function setCellPhone($value) { $this->cellPhone = $value; }
@@ -70,16 +75,19 @@
 		public function getProfile() { return $this->profile; }
 		public function setProfile($value) { $this->profile = $value; }
 
+		public function getRaiting() { return $this->raiting; }
+		public function setRaiting($value) { $this->raiting = $value; }
+
 		//constructor
-		public function __construct()
-    {
+		public function __construct() {
 			//empty object
 			if (func_num_args() == 0) {
-				$this->id = 0;
+				$this->id = '';
 				$this->name = '';
 				$this->surnName = '';
 				$this->secondSurname = '';
 				$this->email = '';
+				$this->password = '';
 				$this->cellPhone = '';
 				$this->university = new University();
 				$this->controlNumber = '';
@@ -88,6 +96,7 @@
 				$this->photo = '';
 				$this->city = new City();
 				$this->turn = 0;
+				$this->raiting = 0;
 				$this->status = 0;
 				$this->profile = new Profile();
 			}
@@ -98,11 +107,11 @@
 				//get connection
 				$connection = MySqlConnection::getConnection();
 				//query
-				$query = 'SELECT s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
+				$query = 'Select s.id, s.name, s.surName, s.secondSurName, s.email, s.password, s.cellPhone, u.id universityId,
 					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
 					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
 					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
-					st.name stUniName, st.status stUnSta, s.turn, s.status, p.id idProfile, p.name profileName
+					st.name stUniName, st.status stUnSta, s.turn, s.raiting, s.status, p.id idProfile, p.name profileName
 					FROM students s JOIN universities_ctg u ON s.university = u.id JOIN cities_ctg c ON s.city = c.id
 					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id
 					WHERE s.id = ?';
@@ -113,10 +122,10 @@
 				//execute
 				$command->execute();
 				//bind results
-				$command->bind_result($id, $name, $surnName, $secondSurName, $email, $cellPhone, $universityId, $universityName,
+				$command->bind_result($id, $name, $surnName, $secondSurName, $email, $password, $cellPhone, $universityId, $universityName,
 									$cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg,
 									$universityStatus, $controlNumber, $latitude, $longitude, $photo, $ctUnId, $ctUnName, $ctUnStts,
-									$stUniId, $stUniName, $stUnSta, $turn, $status, $idProfile, $profileName);
+									$stUniId, $stUniName, $stUnSta, $turn, $raiting, $status, $idProfile, $profileName);
 				//fetch data
 				$found = $command->fetch();
 				//close command
@@ -134,6 +143,7 @@
 					$this->surnName = $surnName;
 					$this->secondSurname = $secondSurName;
 					$this->email = $email;
+					$this->password = $password;
 					$this->cellPhone = $cellPhone;
 					$this->university = new University($universityId, $universityName, $universityLt, $universityLg, $universityStatus, $uCity);
 					$this->controlNumber = $controlNumber;
@@ -142,6 +152,7 @@
 					$this->photo = $photo;
 					$this->city = new City($cityId, $cityName, $cityStatus, $sState);
 					$this->turn = $turn;
+					$this->raiting = $raiting;
 					$this->status = $status;
 					$this->profile = new Profile($idProfile, $profileName);
 				} else {
@@ -149,27 +160,64 @@
 					throw new RecordNotFoundException();
 				}
 			}
+/*
+			//validation email and password
+			if (func_num_args() == 2)
+			{
+				//get id
+				$email = func_get_arg(0);
+				$pass = func_get_arg(1);
+				//get connection
+				$connection = MySQLConnection::getConnection();
+				//query
+				$query = 'select email, id, profile from students where email = ? AND password = ?';
+				$command = $connection->prepare($query);
+				$command->bind_param('ss', $email, $pass);
+				$command->execute();
+				$command->bind_result($em, $idu, $pro);
+				$found = $command->fetch();
+				mysqli_stmt_close($command);
+				$connection->close();
+				if ($found)
+				{
+
+					if ($pro == 'USE')
+					{
+						$this->email = $em;
+						$this->user = new Student($idu);
+					}
+					else
+					{
+						$this->email = $em;
+						$this->user = new Student($idu);
+					}
+				}
+				else
+					throw new InvalidUserException($email);
+				}*/
 
 			//object with data from arguments
-			if (func_num_args() == 15) {
+			if (func_num_args() == 17) {
 				//get arguments
 				$arguments = func_get_args();
 				//pass arguments to attributes
 				$this->id = $arguments[0];
 				$this->name = $arguments[1];
-				$this->surName = $arguments[2];
-				$this->secondSurName = $arguments[3];
+				$this->surnName = $arguments[2];
+				$this->secondSurname = $arguments[3];
 				$this->email = $arguments[4];
-				$this->cellPhone = $arguments[5];
-				$this->university = $arguments[6];
-				$this->controlNumber = $arguments[7];
-				$this->latitude = $arguments[8];
-				$this->longitude = $arguments[9];
-				$this->photo = $arguments[10];
-				$this->city = $arguments[11];
-				$this->turn = $arguments[12];
-				$this->status = $arguments[13];
-				$this->profile = $arguments[14];
+				$this->password = $arguments[5];
+				$this->cellPhone = $arguments[6];
+				$this->university = $arguments[7];
+				$this->controlNumber = $arguments[8];
+				$this->latitude = $arguments[9];
+				$this->longitude = $arguments[10];
+				$this->photo = $arguments[11];
+				$this->city = $arguments[12];
+				$this->turn = $arguments[13];
+				$this->raiting = $arguments[14];
+				$this->status = $arguments[15];
+				$this->profile = $arguments[16];
 			}
 		}
 
@@ -237,12 +285,14 @@
 				'surname' => $this->surnName,
 				'secondSurname' => $this->secondSurname,
 				'email' => $this->email,
+				'password' => $this->password,
 				'cellPhone' => $this->cellPhone,
 				'controlNumber' => $this->controlNumber,
 				'latitude' => $this->latitude,
 				'longitude' => $this->longitude,
 				'photo' => $this->photo,
 				'turn' => $this->turn,
+				'raiting' => $this->raiting,
 				'status' => $this->status,
 				'university' => json_decode($this->university->toJson()),
 				'city' => json_decode($this->city->toJson()),
@@ -259,11 +309,11 @@
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'SELECT s.id, s.name, s.surName, s.secondSurName, s.email, s.cellPhone, u.id universityId,
+			$query = 'Select s.id, s.name, s.surName, s.secondSurName, s.email, s.password, s.cellPhone, u.id universityId,
 					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
 					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
 					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
-					st.name stUniName, st.status stUnSta, s.turn, s.status, p.id idProfile, p.name profileName
+					st.name stUniName, st.status stUnSta, s.turn, s.raiting, s.status, p.id idProfile, p.name profileName
 					FROM students s JOIN universities_ctg u ON s.university = u.id JOIN cities_ctg c ON s.city = c.id
 					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id';
 			//command
@@ -271,10 +321,8 @@
 			//execute
 			$command->execute();
 			//bind results
-			$command->bind_result($id, $name, $surnName, $secondSurName, $email, $cellPhone, $universityId, $universityName,
-								$cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg,
-								$universityStatus, $controlNumber, $latitude, $longitude, $photo, $ctUnId, $ctUnName, $ctUnStts,
-								$stUniId, $stUniName, $stUnSta, $turn, $status, $idProfile, $profileName);
+			$command->bind_result($id, $name, $surnName, $secondSurName, $email, $password,$cellPhone, $universityId, $universityName, $cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg, $universityStatus, $controlNumber, $latitude, $longitude, $photo,
+														$ctUnId, $ctUnName, $ctUnStts, $stUniId, $stUniName, $stUnSta, $turn, $raiting, $status, $idProfile, $profileName);
 			//fetch data
 			while ($command->fetch()) {
 				$uState = new State($stUniId, $stUniName, $stUnSta);
@@ -285,7 +333,7 @@
 				$city = new City($cityId, $cityName, $cityStatus, $sState);
 				$profile = new Profile($idProfile, $profileName);
 				/*-------------------------------------------------------*/
-				array_push($list, new Student($id, $name, $surnName, $secondSurName, $email, $cellPhone, $university, $controlNumber, $latitude, $longitude, $photo, $city, $turn, $status, $profile));
+				array_push($list, new Student($id, $name, $surnName, $secondSurName, $email, $password, $cellPhone, $university, $controlNumber, $latitude, $longitude, $photo, $city, $turn, $raiting, $status, $profile));
 			}
 			//close command
 			mysqli_stmt_close($command);

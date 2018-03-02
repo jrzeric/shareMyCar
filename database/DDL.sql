@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS students
     surname varchar(30) not null,
 	secondSurname varchar(30),
 	email varchar(60) UNIQUE not null,
+    password varchar(26) not null,
 	cellPhone char(13) UNIQUE not null,
 	university char(4) not null,
 	controlNumber varchar(15) not null,
