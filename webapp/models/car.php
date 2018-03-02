@@ -16,7 +16,6 @@ class Car
   private $spaceCar;
   private $owner;
   private $status;
-
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
 
@@ -46,7 +45,6 @@ class Car
 
   public function getStatus(){ return $this->status; }
   public function setStatus($value){ $this->status = $value; }
-
   function __construct()
   {
     if (func_num_args()==0) {
@@ -61,7 +59,8 @@ class Car
       $this->owner = '';
       $this->status = 1;
     }
-    if (func_num_args()==1) {
+    if (func_num_args()==1)
+    {
       $id = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
       $query = 'SELECT id, driver, model, licencePlate, driverLicence,

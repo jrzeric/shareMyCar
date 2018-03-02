@@ -11,10 +11,8 @@
 		//setters and getters
 		public function setId($value) { $this->id = $value; }
 		public function getId() { return $this->id; }
-
 		public function setName($value) { $this->name = $value; }
 		public function getName() { return $this->name; }
-
 		public function setStatus($value) { $this->status = $value; }
 		public function getStatus() { return $this->status; }
 

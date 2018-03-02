@@ -224,5 +224,3 @@ class City
         'cities' => $list));
     }
 }
-
-?>

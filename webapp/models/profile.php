@@ -2,6 +2,7 @@
 
   require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
   require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+
   class Profile{
     // Attributes
     private $id;
@@ -123,3 +124,5 @@
       ));
     }
 }
+
+?>

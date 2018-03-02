@@ -1,6 +1,6 @@
 <?php
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'exceptions/recordnotfoundexception.php');
 
 class Spot{
 		private $id;

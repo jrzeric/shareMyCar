@@ -79,6 +79,7 @@ function showPopup(title, width, height) {
     textuser.className='userLogin';
     textuser.setAttribute('type','email');
     textuser.setAttribute('placeholder','Email');
+		textuser.setAttribute('id', 'textMail');
     popupContent.appendChild(textuser);
     /*
     labelpass = document.createElement('label');
@@ -90,11 +91,14 @@ function showPopup(title, width, height) {
     textpass.className='userPass';
     textpass.setAttribute('type','password');
     textpass.setAttribute('placeholder','Password');
+		textpass.setAttribute('id', 'textPassword');
     popupContent.appendChild(textpass);
 
   var buttonLogin = document.createElement('button');
 	buttonLogin.className = 'buttonlogin';
+	buttonLogin.setAttribute('id', 'loginButton');
 	buttonLogin.innerHTML = 'Login';
+	buttonLogin.setAttribute('onclick', 'showinfo()');
 	popupButtons.appendChild(buttonLogin);
 	popup.appendChild(popupButtons);
 
@@ -121,6 +125,13 @@ function closePopup(){
 	parentOfPopup.removeChild(popup);
 	var getbuttonloginpop = document.getElementById("buttonloginpop");
 	getbuttonloginpop.setAttribute('onclick', "showPopup('Login',400, 400)");
+}
+
+function showinfo()
+{
+	var text1 = document.getElementById('textMail').value;
+	var text2 = document.getElementById('textPassword').value;
+	alert(text1+' '+text2);
 }
 
 //var new Area= new Popupwindow('new area' , 500, 300);
