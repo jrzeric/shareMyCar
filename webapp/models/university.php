@@ -30,7 +30,7 @@
 		public function __construct() {
 			//empty object
 			if (func_num_args() == 0) {
-				$this->id = "";
+				$this->id = '';
 				$this->name = '';
 				$this->latitude = 0.0;
 				$this->longitude = 0.0;
@@ -105,7 +105,7 @@
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
-			$command->bind_param('ssidds', $this->id, $this->name, $this->city->getId(), $this->latitude, $this->longitude, $this->status);
+			$command->bind_param('ssiddi', $this->id, $this->name, $this->city->getId(), $this->latitude, $this->longitude, $this->status);
 			//execute
 			$result = $command->execute();
 			//close command

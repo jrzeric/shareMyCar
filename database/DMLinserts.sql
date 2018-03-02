@@ -23,11 +23,13 @@ insert into universities_ctg(id, name, city, latitude, longitude) values ('UTT',
 insert into profiles_ctg(id, name) values('ADM', 'Administrador'),('USE', 'User');
 
 /*insert into students*/
-insert into students(name, surname, secondSurname, email, cellPhone, university, controlNumber,latitude, longitude, photo, city,turn, profile)
-values('Fernando', 'Coronel', 'Salinas', '0316113444@miutt.edu.mx','664-123-45-67','UTT','0316113444','32.510902', '-116.922555',default,1,0,'USE'),
-('Alejandro', 'Angulo', 'Garcia', '0316113445@miutt.edu.mx', '664-123-45-68', 'UTT', '0316113445', '32.457411', '-116.872631',default,1,0,'USE'),
-('Eric', 'Juarez', 'Juarez', '0316113446@miutt.edu.mx','664-123-45-69','UTT','0316113446','32.497781', '-116.965114',default,1,0,'USE'),
-('Pablo', 'Alvarez', 'Lagarra', '0316113447@miutt.edu.mx','664-123-45-70','UTT','0316113447','32.495649', '-116.932146',default,1,0,'USE');
+insert into students(name, surname, secondSurname, email, password, cellPhone, university, controlNumber,latitude, longitude, photo, city,turn, profile)
+values('Fernando', 'Coronel', 'Salinas', '0316113444@miutt.edu.mx', 'aaaa','664-123-45-67','UTT','0316113444','32.510902', '-116.922555',default,1,0,'USE'),
+('Alejandro', 'Angulo', 'Garcia', '0316113445@miutt.edu.mx', 'bbbb', '664-123-45-68', 'UTT', '0316113445', '32.457411', '-116.872631',default,1,0,'USE'),
+('Eric', 'Juarez', 'Juarez', '0316113446@miutt.edu.mx', 'cccc','664-123-45-69','UTT','0316113446','32.497781', '-116.965114',default,1,0,'USE'),
+('Pablo', 'Alvarez', 'Lagarra', '0316113447@miutt.edu.mx', 'dddd','664-123-45-70','UTT','0316113447','32.495649', '-116.932146',default,1,0,'USE');
+
+select s.email, s.id, s.profile from students as s where s.email = '0316113444@miutt.edu.mx' AND s.password = 'aaaa';
 
 /*insert into brands*/
 insert into brands_ctg(name, image) values('FORD',default),('Honda',default),('Toyota',default);
@@ -60,3 +62,5 @@ insert into timeban(description) values('1 semana'),('3 semana'),('4 semanas'),(
 
 /*insert into banlist*/
 insert into banlist(reportman, timeban) values('4',1);
+
+
