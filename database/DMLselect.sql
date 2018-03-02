@@ -33,6 +33,8 @@ select id, name,surname, secondSurname, email, cellPhone, university, controlNum
 select s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.latitude, s.longitude, u.id, u.name, u.city, u.latitude, u.longitude, c.id, c.name, c.state, s.status from students as s join universities_ctg as u on s.university = u.id join cities_ctg as c on s.city = c.id join profiles_ctg as p on s.profile = p.id;
 select s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.latitude, s.longitude, u.id, u.name, u.city, u.latitude, u.longitude, c.id, c.name, c.state, s.status from students as s join universities_ctg as u on s.university = u.id join cities_ctg as c on s.city = c.id join profiles_ctg as p on s.profile = p.id where s.id = 1;
 
+select *from students;
+select *from cars where(select driver from cars) in (select id from students);
 /*select from brand*/
 select id, name, image, status from brands_ctg;
 select id, name, image, status from brands_ctg where id = 1;
