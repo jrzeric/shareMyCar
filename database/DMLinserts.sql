@@ -40,16 +40,16 @@ insert into models_ctg(name, brand) values('Focus', 1),('Fiesta', 1),('Fusion', 
 
 /*insert into cars*/
 insert into cars(driver, model, licencePlate, driverLicence, color, insurance,spaceCar, owner) 
-values(2,1,'1234567890','410041011','white','664-132-12-32',4,'Alejandro Angulo');
+values(2,1,'1234567890','410041011','white','664-132-12-32','4','Alejandro Angulo');
 
 /*Insert into spot*/
 insert into spots(driver,latitude, longitude, pay, hour, day) 
-values(2,'32.495647', '-116.932144',15,'06:45:00','Lunes'),(2,'32.495648', '-116.932145',10,'06:55:00','Lunes');
+values(2,'32.495647', '-116.932144',15,'06:45:00','Lunes'),(2,'32.495648', '-116.932145',10,'06:55:00','Martes');
 
 
 /*insert into ride*/
 insert into ride(spot, passenger, timeArrived, timeFinish,calificationPass,calificationDriv)
-values(1,1,'06:30:00','06:55:00',4,3),(1,2,'06:25:00','06:53:00',5,4);
+values(1,1,'06:30:00','06:55:00',4,3),(2,3,'06:25:00','06:53:00',5,4);
 
 /*insert into reportOption*/
 insert into reportOption(description) values('Llego tarde'),('Fue Grosero'),('Manejo imprudente');
