@@ -2,7 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
 
-	class State{
+	class State {
 		//attributes
 		private $id;
 		private $name;
@@ -17,16 +17,17 @@
 		public function getStatus() { return $this->status; }
 
 		//constructors
-		function __construct(){
-			if(func_num_args() == 0){
+		function __construct()
+    {
+			if(func_num_args() == 0) {
 				$this->id = '';
 				$this->name = '';
 				$this->status = 0;
 			}
-			if(func_num_args() == 1){
+			if(func_num_args() == 1) {
 				$id = func_get_arg(0);
 				$connection = MySQLConnection::getConnection();
-				$query = 'SELECT id, name, status FROM states_ctg WHERE id = ?;';
+				$query = 'Select id, name, status From states_ctg Where id = ?';
 				$command = $connection->prepare($query);
 				$command->bind_param('s', $id);
 				$command->execute();
@@ -37,12 +38,11 @@
 				//close connection
 				$connection->close();
 				//throw exception if record not found
-				if ($found){
+				if (!$found) {
 					$this->id = $id;
 					$this->name = $name;
 					$this->status = $status;
-				}
-				else {
+				} else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -59,7 +59,8 @@
 		}
 
 		//add
-		public function add() {
+		public function add()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -79,7 +80,8 @@
 		}
 
 		//represents the object in JSON format
-		public function toJson() {
+		public function toJson()
+    {
 			return json_encode(array(
 				'id' => $this->id,
 				'name' => $this->name,
@@ -88,7 +90,8 @@
 		}
 
 		//get all
-		public static function getAll() {
+		public static function getAll()
+    {
 			//list
 			$list = array();
 			//get connection
@@ -114,7 +117,8 @@
 		}
 
 		//get all in JSON format
-		public static function getAllJson() {
+		public static function getAllJson()
+    {
 			//list
 			$list = array();
 			//get all
@@ -127,4 +131,7 @@
 			));
 		}
 	}
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> 50b750d24c99d27ee28da640ef82e935cda34ac5

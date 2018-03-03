@@ -15,19 +15,25 @@
 		//getters and setters
 		public function getId() { return $this->id; }
 		public function setId($value) { $this->id = $value; }
+
 		public function getName() { return $this->name; }
 		public function setName($value) { $this->name = $value; }
+
 		public function getLatitude() { return $this->latitude; }
 		public function setLatitude($value) { $this->latitude = $value; }
+
 		public function getLongitude() { return $this->longitude; }
 		public function setLongitude($value) { $this->longitude = $value; }
+
 		public function getStatus() { return $this->status; }
 		public function setStatus($value) { $this->status = $value; }
+
 		public function getCity() { return $this->city; }
 		public function setCity($value) { $this->city = $value; }
 
 		//constructor
-		public function __construct() {
+		public function __construct()
+    {
 			//empty object
 			if (func_num_args() == 0) {
 				$this->id = '';
@@ -73,8 +79,7 @@
 					$this->longitude = $longitude;
 					$this->status = $status;
 					$this->city = new City($cityId, $city, $statusCity, $state);
-				}
-				else {
+				} else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -97,7 +102,8 @@
 		//instance methods
 
 		//add
-		public function add() {
+		public function add()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -105,7 +111,7 @@
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
-			$command->bind_param('ssidds', $this->id, $this->name, $this->city->getId(), $this->latitude, $this->longitude, $this->status);
+			$command->bind_param('ssiddi', $this->id, $this->name, $this->city->getId(), $this->latitude, $this->longitude, $this->status);
 			//execute
 			$result = $command->execute();
 			//close command
@@ -117,7 +123,8 @@
 		}
 
 		//delete
-		public function delete() {
+		public function delete()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -137,7 +144,8 @@
 		}
 
 		//represents the object in JSON format
-		public function toJson() {
+		public function toJson()
+    {
 			return json_encode(array(
 				'id' => $this->id,
 				'name' => $this->name,
@@ -149,7 +157,8 @@
 		}
 
 		//get all
-		public static function getAll() {
+		public static function getAll()
+    {
 			//list
 			$list = array();
 			//get connection
@@ -182,7 +191,8 @@
 		}
 
 		//get all in JSON format
-		public static function getAllJson() {
+		public static function getAllJson()
+    {
 			//list
 			$list = array();
 			//get all
@@ -195,4 +205,3 @@
 			));
 		}
 	}
-?>

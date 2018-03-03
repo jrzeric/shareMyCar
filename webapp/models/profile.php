@@ -15,12 +15,13 @@
     public function setName($value) { $this->name = $value; }
 
     //constructors
-    function __construct(){
+    function __construct()
+    {
       if(func_num_args() == 0){
         $this->id = '';
         $this->name = '';
       }
-      if(func_num_args() == 1){
+      if(func_num_args() == 1) {
         $id = func_get_arg(0);
         $connection = MySQLConnection::getConnection();
         $query = 'Select id, name from profiles_ctg Where id = ?';
@@ -33,11 +34,10 @@
         mysqli_stmt_close($command);
         //close connection
         $connection->close();
-        if ($found){
+        if ($found) {
           $this->id = $id;
           $this->name = $name;
-        }
-        else{
+        } else {
           //throw exception if record not found
           throw new RecordNotFoundException();
         }
@@ -53,7 +53,8 @@
     }
 
       //add
-    public function add() {
+    public function add()
+    {
       //get connection
       $connection = MySqlConnection::getConnection();
       //query
@@ -73,14 +74,16 @@
     }
 
     //represents the object in JSON format
-    public function toJson() {
+    public function toJson()
+    {
       return json_encode(array(
         'id' => $this->id,
         'name' => $this->name
       ));
     }
 
-    public static function getAll() {
+    public static function getAll()
+    {
       //list
       $list = array();
       //get connection
@@ -107,7 +110,8 @@
     }
 
     //get all in JSON format
-    public static function getAllJson() {
+    public static function getAllJson()
+    {
       //list
       $list = array();
       //get all
@@ -120,6 +124,5 @@
       ));
     }
 }
- $variable = new Profile('ADM');
- echo $variable->toJson();
+
 ?>

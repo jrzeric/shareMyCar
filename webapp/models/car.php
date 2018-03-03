@@ -1,6 +1,8 @@
 <?php
-require_once('mysqlconnection.php');
-require_once('exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/Student.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/model.php');
 
 class Car
 {
@@ -14,34 +16,40 @@ class Car
   private $spaceCar;
   private $owner;
   private $status;
-
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
+
   public function getDriver(){ return $this->driver; }
   public function setDriver($value){ $this->driver = $value; }
+
   public function getModel(){ return $this->model; }
   public function setModel($value){ $this->model = $value; }
+
   public function getLicensePlate(){ return $this->licensePlate; }
   public function setLicensePlate($value){ $this->licensePlate = $value; }
+
   public function getDriverLicense(){ return $this->driverLicense; }
   public function setDriverLicense($value){ $this->driverLicense = $value; }
+
   public function getColor(){ return $this->color; }
   public function setColor($value){ $this->color = $value; }
+
   public function getInsurance(){ return $this->insurance; }
   public function setInsurance($value){ $this->insurance = $value; }
+
   public function getSpaceCar(){ return $this->spaceCar; }
   public function setSpaceCar($value){ $this->spaceCar = $value; }
+
   public function getOwner(){ return $this->owner; }
   public function setOwner($value){ $this->owner = $value; }
+
   public function getStatus(){ return $this->status; }
   public function setStatus($value){ $this->status = $value; }
-
   function __construct()
   {
-    if (func_num_args()==0)
-    {
+    if (func_num_args()==0) {
       $this->id = 0 ;
-      $this->driver = new Driver();
+      $this->driver = new Student();
       $this->model = new Model();
       $this->licensePlate = '';
       $this->driverLicense = '';
@@ -51,23 +59,23 @@ class Car
       $this->owner = '';
       $this->status = 1;
     }
-
     if (func_num_args()==1)
     {
       $id = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
-      $query = 'SELECT id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status FROM cars WHERE id = ?;';
+      $query = 'SELECT id, driver, model, licencePlate, driverLicence,
+      color, insurance, spaceCar, owner, status from cars WHERE id = ?';
       $command = $connection->prepare($query);
       $command->bind_param('i',$id);
       $command->execute();
-      $command->bind_result($id,$driver,$model,$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status);
-      $found->fetch();
+      $command->bind_result($id, $driver, $model, $licensePlate,
+      $driverLicense, $color, $insurance, $spaceCar, $owner, $status);
+      $found = $command->fetch();
       mysqli_stmt_close($command);
       $connection->close();
-      if ($found)
-      {
+      if ($found) {
         $this->id = $id;
-        $this->driver = new Driver($driver);  // this variable is an object
+        $this->driver = new Student($driver);  // this variable is an object
         $this->model = new Model($model);
         $this->licensePlate = $licensePlate;
         $this->driverLicense = $driverLicense;
@@ -76,19 +84,16 @@ class Car
         $this->spaceCar = $spaceCar;
         $this->owner = $owner;
         $this->status = $status;
-      }
-      else
-      {
+      } else {
         throw new RecordNotFoundException();
       }
     }
 
-    if (func_num_args()==10)
-    {
+    if (func_num_args()==10) {
       $arguments = func_get_args();
       $this->id = $arguments[0];
-      $this->driver = new Driver($arguments[1]);  // this variable is an object
-      $this->model = new Model($arguments[2]);
+      $this->driver = $arguments[1];  // this variable is an object
+      $this->model = $arguments[2];
       $this->licensePlate = $arguments[3];
       $this->driverLicense = $arguments[4];
       $this->color = $arguments[5];
@@ -98,7 +103,6 @@ class Car
       $this->status = $arguments[9];
     }
   }
-
   /**
    * Adds a new car to the database
    *
@@ -107,15 +111,20 @@ class Car
   public function add()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "INSERT INTO cars(driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner) VALUES (?,?,?,?,?,?,?,?);";
+    $query = "INSERT into cars(driver, model, licencePlate,
+    driverLicence, color, insurance,spaceCar, owner)
+    values(?,?,?,?,?,?,?,?)";
+
     $command = $connection->prepare($query);
-    $command->bind_param('iissssis',$this->driver->getId(),$this->model->getId(),$this->licensePlate,$this->driverLicense,$this->color,$this->insurance,$this->spaceCar,$this->owner);
+    $command->bind_param('iissssis', $this->driver->getId(),
+    $this->model->getId(), $this->licensePlate, $this->driverLicense,
+    $this->color, $this->insurance, $this->spaceCar, $this->owner);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
+
     return $result;
   }
-
   /**
    * Edits a car in the database
    *
@@ -124,15 +133,19 @@ class Car
   public function put()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "UPDATE cars SET driver = ?, model = ?, licencePlate = ?, driverLicence = ?, color = ?, insurance = ?, spaceCar = ?, owner = ?, status = ? WHERE id = ?;";
+    $query = "UPDATE cars set driver = ?, model = ?,
+    licencePlate = ?, driverLicence = ?, color = ?,
+    insurance = ?, spaceCar = ?, owner = ? where id = ?";
     $command = $connection->prepare($query);
-    $command->bind_param('iissssisii',$this->driver->getId(),$this->model->getId(),$this->licensePlate,$this->driverLicense,$this->color,$this->insurance,$this->spaceCar,$this->owner,$this->status,$this->id);
+    $command->bind_param('iissssisi', $this->driver->getId(),
+    $this->model->getId(), $this->licensePlate, $this->driverLicense,
+    $this->color, $this->insurance, $this->spaceCar, $this->owner,
+    $this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
     return $result;
   }
-
   /**
    * Chages the status of a car
    *
@@ -141,15 +154,14 @@ class Car
   public function delete()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "UPDATE cars SET status = 0 WHERE id = ?;";
+    $query = "update cars set status = 0 where id = ?";
     $command = $connection->prepare($query);
-    $command->bind_param('i',$this->id);
+    $command->bind_param('i', $this->id);
     $result = $command->execute();
     mysqli_stmt_close($command);
     $connection->close();
     return $result;
   }
-
   /**
    *
    *
@@ -171,41 +183,47 @@ class Car
     ));
   }
 
-  /**
-   *
-   *
-   * @return ALL cars data
-   */
-  public static function getAll()
+  public static function getAllCars()
   {
+      //list
       $list = array();
       $connection = MySQLConnection::getConnection();
-      $query = 'SELECT id, driver, model, licencePlate, driverLicence, color, insurance, spaceCar, owner, status FROM cars;';
+      //query
+      $query = 'select id, driver, model, licencePlate, driverLicence,
+      color, insurance, spaceCar, owner, status from cars';
+      //command
       $command = $connection->prepare($query);
-      $command->execute();
-      $command->bind_result($id,$driver,$model,$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status);
-      while ($command->fetch())
-      {
-        array_push($list, new Car($id,new Driver($driver),new Model($model),$licensePlate,$driverLicense,$color,$insurance,$spaceCar,$owner,$status));
-      }
-      mysqli_stmt_close($command);
-      $connection->close();
-      return $list;
-  }
 
-  /**
-   *
-   *
-   * @return ALL car data in JSON format
-   */
-  public static function getAllJson()
-  {
-    $list = array();
-    foreach (self::getAll() as $item)
+      //execute
+      $command->execute();
+      //bind results
+      $command->bind_result($id, $driver, $model, $licencePlate,
+            $driverLicense, $color, $insurance, $spaceCar, $owner, $status);
+      //echo $found;
+      while ($command->fetch()) {
+        $d = new Student($driver);
+        $m = new Model($model);
+        array_push($list, new Car($id, $d, $m, $licencePlate,
+        $driverLicense, $color, $insurance, $spaceCar, $owner, $status));
+      }
+      //close statement
+      mysqli_stmt_close($command);
+      //close connection
+      $connection->close();
+      //return array
+      return $list;
+  }//getAll
+
+    public static function getAllJson()
     {
-      array_push($list, json_decode($item->toJson()));
+      //list
+      $list = array();
+      //encode to json
+      foreach (self::getAllCars() as $item) {
+        array_push($list, json_decode($item->toJson()));
+      }//foreach
+      return json_encode(array(
+        'status' => '1',
+        'Cars' => $list));
     }
-    return json_encode(array('cars' => $list));
-  }
 }
-?>

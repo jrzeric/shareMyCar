@@ -29,36 +29,59 @@
 		//setters and getters
 		public function getId() { return $this->id; }
 		public function setId($value) { $this->id = $value; }
+
 		public function getName() { return $this->name; }
 		public function setName($value) { $this->name = $value; }
+
 		public function getSurName() { return $this->surnName; }
 		public function setSurName($value) { $this->surnName = $value; }
+
 		public function getSecondSurname() { return $this->secondSurname; }
 		public function setSecondSurname($value) { $this->secondSurname = $value; }
+
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
+<<<<<<< HEAD
 		public function getPassword() { return $this->password; }
 		public function setPassword($value) { $this->password = $value; }
+=======
+
+		public function getPassword() { return $this->password; }
+		public function setPassword($value) { $this->password = $value; }
+
+>>>>>>> 50b750d24c99d27ee28da640ef82e935cda34ac5
 		public function getCellPhone() { return $this->cellPhone; }
 		public function setCellPhone($value) { $this->cellPhone = $value; }
+
 		public function getUniversity() { return $this->university; }
 		public function setUniversity($value) { $this->university = $value; }
+
 		public function getControlNumber() { return $this->controlNumber; }
 		public function setControlNumber($value) { $this->controlNumber = $value; }
+
 		public function getLatitude() { return $this->latitude; }
 		public function setLatitude($value) { $this->latitude = $value; }
+
 		public function getLongitude() { return $this->longitude; }
 		public function setLongitude($value) { $this->longitude = $value; }
+
 		public function getPhoto() { return $this->photo; }
 		public function setphoto($value) { $this->photo = $value; }
+
 		public function getCity() { return $this->city; }
 		public function setCity($value) { $this->city = $value; }
+
 		public function getTurn() { return $this->turn; }
 		public function setTurn($value) { $this->turn = $value; }
+
 		public function getStatus() { return $this->status; }
 		public function setStatus($value) { $this->status = $value; }
+
 		public function getProfile() { return $this->profile; }
 		public function setProfile($value) { $this->profile = $value; }
+		public function getRaiting() { return $this->raiting; }
+		public function setRaiting($value) { $this->raiting = $value; }
+
 		public function getRaiting() { return $this->raiting; }
 		public function setRaiting($value) { $this->raiting = $value; }
 
@@ -139,8 +162,7 @@
 					$this->raiting = $raiting;
 					$this->status = $status;
 					$this->profile = new Profile($idProfile, $profileName);
-				}
-				else {
+				} else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
 				}
@@ -207,7 +229,8 @@
 		}
 
 		//add
-		public function add() {
+		public function add()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -240,7 +263,8 @@
 		}
 
 		//delete
-		public function delete() {
+		public function delete()
+    {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -248,7 +272,7 @@
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
-			$command->bind_param('s', $this->id);
+			$command->bind_param('i', $this->id);
 			//execute
 			$result = $command->execute();
 			//close command
@@ -260,7 +284,8 @@
 		}
 
 		//represents the object in JSON format
-		public function toJson() {
+		public function toJson()
+    {
 			return json_encode(array(
 				'id' => $this->id,
 				'name' => $this->name,
@@ -284,7 +309,8 @@
 
 
 		//get all
-		public static function getAll() {
+		public static function getAll()
+    {
 			//list
 			$list = array();
 			//get connection
@@ -325,7 +351,8 @@
 		}
 
 		//get all in JSON format
-		public static function getAllJson() {
+		public static function getAllJson()
+    {
 			//list
 			$list = array();
 			//get all
@@ -338,4 +365,3 @@
 			));
 		}
 	}
-?>
