@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS students
     surname varchar(30) not null,
 	secondSurname varchar(30),
 	email varchar(60) UNIQUE not null,
+    password varchar(26) not null,
 	cellPhone char(13) UNIQUE not null,
 	university char(4) not null,
 	controlNumber varchar(15) not null,
@@ -237,7 +238,7 @@ CREATE TABLE IF NOT EXISTS ride /* table intermedia que llena los autos con los 
 	calificationDriv smallint null,
 	primary key(id,spot,passenger),
 	FOREIGN KEY (passenger) REFERENCES students(id),
-    FOREIGN KEY (spot) REFERENCES spots(id)
+  FOREIGN KEY (spot) REFERENCES spots(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
 

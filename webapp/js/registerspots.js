@@ -11,12 +11,12 @@ var priceTimeAndNumber = [];
 
 function init()
 {
-  	map = new google.maps.Map(document.getElementById('map'),
-  	{
-    	zoom: 10,
-    	center: new google.maps.LatLng(32.537063, -117.048211),
-    	mapTypeId: google.maps.MapTypeId.ROADMAP
-  	});
+    map = new google.maps.Map(document.getElementById('map'),
+    {
+      zoom: 10,
+      center: new google.maps.LatLng(32.537063, -117.048211),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event)
@@ -25,9 +25,9 @@ function init()
     });
 
 
-  	// Adds a marker at the center of the map.
-  	addHome();
-  	addUniversity();
+    // Adds a marker at the center of the map.
+    addHome();
+    addUniversity();
 }
 
 
@@ -35,12 +35,12 @@ function init()
 function addHome()
 {
   var location = new google.maps.LatLng(32.537063, -117.048211);
-	var marker = new google.maps.Marker(
-	{
-	    position: location,
-	     icon: '/images/iconhome.png',
-	    map: map
-	 });
+  var marker = new google.maps.Marker(
+  {
+      position: location,
+       icon: '/images/iconhome.png',
+      map: map
+   });
 
 }
 
@@ -62,18 +62,18 @@ function addUniversity()
 function addMarker(location)
 {
   valid++;
-	var marker = new google.maps.Marker(
-	{
-	  position: location,
+  var marker = new google.maps.Marker(
+  {
+    position: location,
     icon: '/images/iconspot.png',
-	  map: map
-	});
+    map: map
+  });
   var lat = location.lat();
   var lng = location.lng();
   console.log(contentString);
   var contentString = "<div align = 'center'><br><label>Time at you pass: </label><br><input id='time"+valid+"' type='time'><br><br><label>Price of this spot: </label><br><input id='price"+valid+"' type='number' min='10' max='200' step='any'><div class='buttons'><button id='buttonSave"+valid+"' class='buttons__addSpot'" + 'onClick="addTravel('+lat+', '+lng+', '+valid+')" >Save</button> <button class="buttons__removeSpot" onClick="removeSpot('+valid+')">Remove</button></div></div>';
     var infowindow = new google.maps.InfoWindow({
-          	content: contentString
+            content: contentString
         });
 
     marker.addListener('click', function() {
