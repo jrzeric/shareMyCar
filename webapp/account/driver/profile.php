@@ -5,42 +5,56 @@
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Profile</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="/css/footer.css">
+	<script src="js/menu.js"></script>
 	</head>
 	<body>
 		<header>
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_users.php"); ?>
 		</header>
+
 		<main>
-			<h1>Profile</h1>
-			<div class="box">
-				<div class="personalinfo">
-					<h3>Personal Information</h3>
-					<div class="img">
-						<img src="/images/eric.jpg">
-						<input type="button" name="change" value="Change">
-					</div>
-					<div class="uni">Name:</div><div class="r">Eric</div>
-					<div class="uni">Last Name:</div><div class="r">Juarez</div><br>
-					<div class="uni">E-mail:</div><div class="r">ericloco@yahoo.mx</div><br>
-					<dv class="uni">Cell phone:</dv><div class="r">6646969666</div>
-				</div>
-				<div class="universinfo">
-					<h3>Collage Information</h3>
-					<div class="uni">University:</div><div class="r">Universidad Tecnologica de Tijuana</div><br>
-					<div class="uni">State:</div><div class="r">Baja California</div>
-					<div class="uni">City:</div><div class="r">Tijuana</div><br>
-					<dv class="uni">Control #:</dv><div class="r">0316111961</div>
-					<div class="uni">Turn:</div><div class="r">Morning</div>
-				</div>
-				<div class="carinfo">
-					<h3>Car Information</h3>
-					<div class="uni">Color:</div><div class="r">Black</div>
-					<div class="uni">Brand:</div><div class="r">Aston Martin</div>
-					<div class="uni">Model:</div><div class="r">DB11 2017</div>
-					<dv class="uni">Plates:</dv><div class="r">123456</div>
-					<div class="uni">Licence Number:</div><div class="r">123456</div>
-				</div>
-			</div>
+
+			<div id="conteiner">
+			            <div class="pi">
+			                <h1>Personal Information</h1>
+			                <div class="photo">
+			                    <img src="images/noimg.png">
+			                </div>
+			                <label class="textinfopi" >Name:</label>
+			                <label class="textvaluepi">Nathaniel</label><br/>
+			                <label class="textinfopi">Last Name: </label>
+			                <label class="textvaluepi">Rodriguez</label><br/>
+			                <label  class="textinfopi" >Email:</label>
+			                <label class="textvaluepi">Example@example.com</label><br/>
+			                <label  class="textinfopi" >CellPhone:</label>
+			                <label class="textvaluepi">(XXX)XXX-XX-XX</label>
+			            </div>
+			            <div class="ci">
+			                <h1>Collage Infromation</h1>
+			                <label class="textinfoci" >University:</label>
+			                <label class="textvalueci">Instituto Tecnologico de Tijuana</label><br/>
+			                <label class="textinfoci">State:</label>
+			                <label class="textvalueci">Baja California</label>
+			                <label class="textinfoci" >City:</label>
+			                <label class="textvalueci">Tijuana</label><br/>
+			                <label class="textinfoci" >Control#:</label>
+			                <label class="textvalueci">031611922</label>
+			                <label class="textinfoci" >Turn:</label>
+			                <label class="textvalueci" >Morning</label>
+			            </div>
+			       <div class="cri">
+			                <h1>Collage Infromation</h1>
+			                <label class="textinfocri" >Color:</label>
+			                <label class="textvaluecri" >color</label>
+			                <label class="textinfocri" >Model:</label>
+			                <label class="textvaluecri" >Model</label>
+			                <label class="textinfocri" >Plates:</label>
+			                <label class="textvaluecri" >Plates</label>
+			                <label class="textinfocri" >Licence Number:</label>
+			                <label class="textvaluecri" >Licence Number</label>
+			        </div>
+			        </div>
+
 		</main>
 		  <footer class="footer footer--darkblue">
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_users.php"); ?>
