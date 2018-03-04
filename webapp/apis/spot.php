@@ -32,31 +32,42 @@
 				try {
 					echo Spot::getSpotUniversityJson($_GET['universityid']);
 					
-				} catch (Exception $e) {
+				} catch (Exception $ex) {
 					echo json_encode(array(
 						'status' => 1,
 						'errorMessage' => $ex->get_message()
 					));
 				}
 			}
-			else{
-				if(isset($_GET['driver'])){
+			else
+			{
+				if(isset($_GET['driver']) && isset($_GET['day'])){
 					try {
-						echo Spot::getSpotDriverJson($_GET['driver']);
-					} catch (Exception $e) {
+						echo Spot::getSpotDriverByDayJson($_GET['driver'], $_GET['day']);
+					} catch (Exception $ex) {
 						echo json_encode(array(
 							'status' => 1,
 							'errorMessage' => $ex->get_message()
 						));
 					}
 				}
-				else{
-					echo json_encode(array(
-					'status' => 2,
-					'errorMessage' => 'Missing parameters'
-				));
+				else
+				{
+					if ($_GET['getLastId']){
+						$lastSpot = Spot::getLastSpot();
+						echo $lastSpot->toJson();
+					}
+					else{
+						echo json_encode(array(
+						'status' => 2,
+						'errorMessage' => 'Missing parameters'
+					));
+					}
+
 				}
+
 			}
+			
 		}	
 	}
 	//POST
@@ -84,7 +95,6 @@
 				//create empty object
 				$s = new Spot();
 				//set values
-				$s->setId($_POST['id']);
 				$s->setDriver($st);
 				$s->setLocation(new Location($_POST['latitude'], $_POST['longitude']));
 				$s->setPay($_POST['pay']);
@@ -99,7 +109,7 @@
 				}else{
 					echo json_encode(array(
 						'status' => 3,
-						'errorMessage' => 'Could not add Spot'
+						'message' => 'Could not add Spot'
 					));
 				}
 			}
