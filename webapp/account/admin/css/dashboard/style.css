@@ -1,13 +1,13 @@
 * { margin: auto 0px; font-family: Arial, Verdana, Sans-serif; font-size: 15pt;}
 h1 { text-align: center; }
-header {
+/*header {
   position: relative;
   width: 100%;
   height: 86px;
   color: white;
   background-color: #080B43;
   text-align: left;
-}
+}*/
 main {
   position: relative;
   width: 100%;
@@ -50,7 +50,8 @@ main {
 
 .box{
 	width:23%;
-	margin: 10px 0px 0px 60px;
+  position: relative;
+	margin: 10px 0px 50px 70px;
 	background:#0040AA;
 }
 
@@ -58,7 +59,7 @@ main {
 {
 	width:23%;
 	float: right;
-  margin: 10px 60px 0px 0px;
+  margin: 10px 60px 50px 70px;
 	background:#0040AA;
 }
 
@@ -66,7 +67,7 @@ main {
 {
 	width:23%;
 	float: left;
-  margin: 10px 0px 0px 70px;
+  margin: 10px 70px 50px 50px;
 	background:#0040AA;
 }
 
@@ -180,6 +181,26 @@ svg { width: 100%; }
 
 @media only screen and (max-width:1024px)
 {
+    .box
+    {
+      font-size: 10pt;
+      width: 20%;
+      margin: 10px 40px 0px 130px;
+    }
+
+    .box1
+    {
+      font-size:  10pt;
+      width: 20%;
+      margin: 10px;
+    }
+
+    .box3
+    {
+      font-size:  10pt;
+      width: 20%;
+      margin: 10px;
+    }
 
 }
 
@@ -187,12 +208,40 @@ svg { width: 100%; }
   .header__download-app-icon { visibility: hidden; }
   #map { }
   .header__logo { margin: 15px -22px; }
-  .box1 { margin: 10px 0px 0px 0px; }
-  .box3 { margin: 10px 0px 0px 63px; }
+  .box
+  {
+    width:89%;
+    float: left;
+    margin: 10px 0px 0px 70px;
+    background:#0040AA;
+  }
+  .box1
+  {
+  	width:89%;
+  	float: left;
+    margin: 10px 0px 0px 70px;
+  	background:#0040AA;
+  }
+
+  .box3
+  {
+  	width:89%;
+  	float: left;
+    margin: 10px 0px 0px 70px;
+  	background:#0040AA;
+  }
 }
 
 @media only screen and (max-width:480px)
 {
+  .box
+  {
+    width:89%;
+    float: left;
+    margin: 10px 0px 0px 70px;
+    background:#0040AA;
+  }
+
   .box1
   {
   	width:89%;

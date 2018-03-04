@@ -1,9 +1,9 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/city.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/state.php');
 
 class City
 {
@@ -38,7 +38,7 @@ class City
     if (func_num_args() == 1) {
       $code = func_get_arg(0);
       $connection = MySQLConnection::getConnection();
-      $query = 'SELECT CODE, state, name, status FROM cities_ctg WHERE CODE = ?;';
+      $query = 'SELECT id, state, name, status FROM cities_ctg WHERE id = ?';
 
       $command = $connection->prepare($query);
       $command->bind_param('i', $code);
@@ -62,7 +62,7 @@ class City
     if (func_num_args() == 4) {
       $arguments = func_get_args();
       $this->code = $arguments[0];
-      $this->state = new State($arguments[1]);
+      $this->state = $arguments[1];
       $this->name = $arguments[2];
       $this->status = $arguments[3];
     }
@@ -76,7 +76,8 @@ class City
   public function add()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "INSERT INTO cities_ctg (code, state, name, status) values (?, ?, ?, ?);";
+    $query = "INSERT INTO cities_ctg (id, state, name, status)
+    values (?, ?, ?, ?)";
 
     $command = $connection->prepare($query);
     $command->bind_param('issi', $this->code, $this->state->getCode(), $this->name, $this->status);
@@ -96,7 +97,7 @@ class City
   public function put()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "UPDATE cities_ctg SET state = ?, name = ?, status = ? WHERE code = ?;";
+    $query = "UPDATE cities_ctg SET state = ?, name = ?, status = ? WHERE id = ?";
 
     $command = $connection->prepare($query);
     $command->bind_param('ssii', $this->state->getCode(), $this->name, $this->status, $this->code);
@@ -116,7 +117,7 @@ class City
   public function delete()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "UPDATE cities_ctg SET status = 0 WHERE code = ?;";
+    $query = "UPDATE cities_ctg SET status = 0 WHERE id = ?;";
 
     $command = $connection->prepare($query);
     $command->bind_param('s', $this->code);
@@ -137,7 +138,7 @@ class City
     return json_encode(array(
       'code' => $this->code,
       'name' => $this->name,
-      'state' => json_decode($this->state->toJson()),
+      'state' => $this->state,
       'status' => $this->status
       ));
   }//toJson
@@ -148,7 +149,7 @@ class City
     $list = array();
     $connection = MySQLConnection::getConnection();
     //query
-    $query = 'select code, name , status, state
+    $query = 'select id, name , status, state
           from cities_ctg';
     //command
     $command = $connection->prepare($query);
@@ -223,5 +224,3 @@ class City
         'cities' => $list));
     }
 }
-
-?>

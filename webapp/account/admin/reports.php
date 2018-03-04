@@ -9,6 +9,7 @@
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
     <link href="/css/footer.css" rel="stylesheet"></link>
 		<link href="css/style.css" rel="stylesheet"></link>
+			<link rel="stylesheet" href="css/style.css">
 		<!--scripts-->
 		<script src="/js/index.js"></script>
 	</head>
@@ -36,14 +37,16 @@
 
 
 			<div class="reports">
-				<div class="report" onclick="window.open('#openwindow');" style="cursor: pointer;">
+					<a href="#openwindow">
+				<div class="report" style="cursor: pointer;">
 				    <div class="reportImg"><img src="/images/default.png"></div>
 				    <div class="information">
 				        <div class="name">Maria Felix De La Olla</div>
 		                <div class="stars"><img src="/images/calification.png" width="128px"></div>
 				    </div>
+						<?php require_once($_SERVER['DOCUMENT_ROOT'].'/account/lib/popup.php'); ?>
 				</div>
-
+					</a>
 				<div class="report">
 				    <div class="reportImg"><img src="/images/default.png"></div>
 				    <div class="information">

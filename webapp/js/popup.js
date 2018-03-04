@@ -19,11 +19,13 @@ function centerPopup() {
 		//center popup
 		popup.style.top = ((clientHeight - popup.offsetHeight) / 2) + 'px';
 		popup.style.left = ((clientWidth - popup.offsetWidth) / 2) + 'px';
+
 	}
 }
 function showPopup(title, width, height) {
 	//popup visible
 	popupVisible = true;
+
 	//body
 	var body = document.getElementsByTagName('body')[0];
 	//get document height
@@ -77,6 +79,7 @@ function showPopup(title, width, height) {
     textuser.className='userLogin';
     textuser.setAttribute('type','email');
     textuser.setAttribute('placeholder','Email');
+		textuser.setAttribute('id', 'textMail');
     popupContent.appendChild(textuser);
     /*
     labelpass = document.createElement('label');
@@ -88,11 +91,14 @@ function showPopup(title, width, height) {
     textpass.className='userPass';
     textpass.setAttribute('type','password');
     textpass.setAttribute('placeholder','Password');
+		textpass.setAttribute('id', 'textPassword');
     popupContent.appendChild(textpass);
 
-    var buttonLogin = document.createElement('button');
+  var buttonLogin = document.createElement('button');
 	buttonLogin.className = 'buttonlogin';
+	buttonLogin.setAttribute('id', 'loginButton');
 	buttonLogin.innerHTML = 'Login';
+	buttonLogin.setAttribute('onclick', 'showinfo()');
 	popupButtons.appendChild(buttonLogin);
 	popup.appendChild(popupButtons);
 
@@ -101,6 +107,10 @@ function showPopup(title, width, height) {
 
 	//center popup
 	centerPopup();
+
+	var getbuttonloginpop = document.getElementById("buttonloginpop");
+	getbuttonloginpop.setAttribute('onclick', 'closePopup()');
+
 }
 
 function closePopup(){
@@ -113,7 +123,15 @@ function closePopup(){
 	//the parent kill their childen >:c
 	parentOfGlass.removeChild(glass);
 	parentOfPopup.removeChild(popup);
+	var getbuttonloginpop = document.getElementById("buttonloginpop");
+	getbuttonloginpop.setAttribute('onclick', "showPopup('Login',400, 400)");
+}
 
+function showinfo()
+{
+	var text1 = document.getElementById('textMail').value;
+	var text2 = document.getElementById('textPassword').value;
+	alert(text1+' '+text2);
 }
 
 //var new Area= new Popupwindow('new area' , 500, 300);

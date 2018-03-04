@@ -1,5 +1,5 @@
 * { margin: auto 0px; font-family: Tahoma, Verdana, Sans-serif; }
-h1 { text-align: center; 
+h1 { text-align: center;
 margin-bottom: 10px;}
 header {
   position: relative;
@@ -57,7 +57,7 @@ select{
    -webkit-padding-end: 20px;
    -webkit-padding-start: 2px;
    -webkit-user-select: none;
-   background-image: url(http://i62.tinypic.com/15xvbd5.png), 
+   background-image: url(http://i62.tinypic.com/15xvbd5.png),
    -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
    background-position: 97% center;
    background-repeat: no-repeat;
@@ -148,7 +148,7 @@ h3{
 
 }
 .personalinfo .r{
-  position:relative; 
+  position:relative;
   float: left;
 }
 .img {
@@ -192,7 +192,7 @@ h3{
   font-weight: 600;
 }
 .universinfo .r{
-  position:relative; 
+  position:relative;
   float: left;
 }
 .carinfo {
@@ -212,13 +212,135 @@ h3{
   font-weight: 600;
 }
 .carinfo .r{
-  position:relative; 
+  position:relative;
   float: left;
 }
+/*Login Natah*/
+body,.photo img,.textinfopi,.textvaluepi,.pi,.textinfoci,.textvalueci,.ci,.cri,#sidemenu{
+    position: relative;
+    float: left;
+}
+.pi h1,.ci h1,.cri h1{
+      border-radius: 15px;
+    background-color:#030427 ;
+    font-size: 23px;
+    text-align: center;
+    color: #fff;
+}
+body{
+    background: #F8F8F9;
+}
+
+.box{
+    display:block;
+    text-align: center;
+    width:100%;
+}
+.pi{
+    margin: 0px 5px 0px 40px;
+    width: 46%;
+   }
+
+.photo img {
+    float: left;
+    margin: 0px 0px;
+    width: 37%;
+}
+
+.textinfopi{
+    font-weight:bold;
+
+}
+.textinfopi,.textvaluepi{
+      font-size: 26px;
+    text-align: left;
+    margin: 7px 4px 12px 13px;
+
+}
+.ci{
+    margin: 0px 40px 0px 5px;
+    width: 46%;
+
+}
+.textinfoci{
+    font-weight: bolder;
+}
+.textinfoci,.textvalueci{
+     font-size: 26px;
+    text-align: left;
+    margin: 5px 4px 19px 18px;
+}
+
+.cri{
+    margin: 40px 0px 0px 30px;
+    width: 92%;
+
+
+}
+.textinfocri{
+    font-weight:bold;
+}
+.textvaluecri,.textinfocri{
+  font-size: 26px;
+  text-align: left;
+  margin: 10px 0px 12px 10px;
+  padding: 20px 0px 0px 0px;
+}
+
+/*Fin login natah*/
 @media only screen and (max-width:1024px) {
 
 }
-
+@media only screen and (max-width:720px) {
+  .pi {
+    margin: 0px 5px 0px 10;
+    width: 45%;
+}
+.ci {
+    margin: 0px 0px 0px 30px;
+    width: 45%;
+}
+.photo img {
+    float: left;
+    margin: 0px 0px;
+    width: 47%;
+}
+.textinfopi, .textvaluepi {
+  margin: 0px 4px 12px 13px;
+}
+.textinfoci, .textvalueci {
+    margin: 0px 4px 19px 18px;
+}
+textvaluecri, .textinfocri {
+    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 0px;
+}
+}
+@media only screen and (max-width:480px) {
+  .pi {
+    margin: 0px 5px 0px 10;
+    width: 45%;
+}
+.ci {
+    margin: 0px 0px 0px 30px;
+    width: 45%;
+}
+.photo img {
+    float: left;
+    margin: 0px 0px;
+    width: 47%;
+}
+.textinfopi, .textvaluepi {
+  margin: 0px 4px 12px 13px;
+}
+.textinfoci, .textvalueci {
+    margin: 0px 4px 19px 18px;
+}
+.textvaluecri, .textinfocri {
+    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 0px;
+}
+}
 @media only screen and (max-width:640px) {
   .header__download-app-icon { visibility: hidden; }
   .header__logo { margin: 15px -22px; }
@@ -237,7 +359,7 @@ h3{
   background-color: #45d11b;
   color: #FFF;
   border: none;
-  margin: 10px 10px 10px 10px; 
+  margin: 10px 10px 10px 10px;
 }
 
 .buttons__modifySpot
@@ -255,5 +377,5 @@ h3{
   background-color: #e50202;
   color: #FFF;
   border: none;
-  margin: 10px 10px 10px 10px; 
+  margin: 10px 10px 10px 10px;
 }

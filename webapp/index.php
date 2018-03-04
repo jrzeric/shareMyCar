@@ -12,7 +12,7 @@
 	</head>
 	<body>
     <header>
-      <?php require_once("/lib/header.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header.php"); ?>
     </header>
     <main>
       <div class="presentation">
@@ -56,7 +56,7 @@
       </div>
 		</main>
     <footer class="footer footer--darkblue">
-      <?php require_once('/lib/footer.php'); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/footer.php'); ?>
     </footer>
   </body>
 </html>

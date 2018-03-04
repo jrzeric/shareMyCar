@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard/style.css">
     <link rel="stylesheet" href="css/dashboard/footer.css">
-    <link rel="stylesheet" href="css/dashboard/menuStyle.css">
+    <!--<link rel="stylesheet" href="css/dashboard/menuStyle.css">-->
     <link href="css/dashboard/chart.css" rel="stylesheet"></link>
     <script src="js/dashboard/chart.js" charset="utf-8"></script>
     <script src="js/dashboard/svg.js" charset="utf-8"></script>
@@ -13,23 +13,22 @@
   </head>
   <body onload="init()">
     <header>
-        <input type="checkbox" id="abrir-cerrar" name="abrir-cerrar">
-        <label for="abrir-cerrar">&#9776;</label>
-        <div id="sidebar" class="sidebar">
-            <ul class="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Spots</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
-            </ul>
-        </div>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_admin.php"); ?>
     </header>
     <div class="box3">
       <div class="day">Active Users</div>
         <div class="now">
           <div class="value">
             85%
+          </div>
+        </div>
+          <div style="clear:both"></div>
+    </div>
+    <div class="box">
+      <div class="day">Registered Drivers</div>
+        <div class="now">
+          <div class="value">
+            190
           </div>
         </div>
           <div style="clear:both"></div>

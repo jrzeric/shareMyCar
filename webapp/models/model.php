@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/brand.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/brand.php');
 
 class Model
 {
@@ -101,7 +101,7 @@ class Model
   public function delete()
   {
     $connection = MySQLConnection::getConnection();
-    $query = "UPDATE models_ctg SET status = 0 WHERE id = ?;";
+    $query = "UPDATE models_ctg SET status = 0 WHERE id = ?";
     $command = $connection->prepare($query);
     $command->bind_param('i',$this->id);
     $result = $command->execute();
