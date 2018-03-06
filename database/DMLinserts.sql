@@ -28,8 +28,11 @@ values('Fernando', 'Coronel', 'Salinas', '0316113444@miutt.edu.mx', 'aaaa','664-
 ('Alejandro', 'Angulo', 'Garcia', '0316113445@miutt.edu.mx', 'bbbb', '664-123-45-68', 'UTT', '0316113445', '32.457411', '-116.872631',default,1,0,'USE'),
 ('Eric', 'Juarez', 'Juarez', '0316113446@miutt.edu.mx', 'cccc','664-123-45-69','UTT','0316113446','32.497781', '-116.965114',default,1,0,'USE'),
 ('Pablo', 'Alvarez', 'Lagarra', '0316113447@miutt.edu.mx', 'dddd','664-123-45-70','UTT','0316113447','32.495649', '-116.932146',default,1,0,'USE');
+<<<<<<< HEAD
+=======
 
 select s.email, s.id, s.profile from students as s where s.email = '0316113444@miutt.edu.mx' AND s.password = 'aaaa';
+>>>>>>> 50b750d24c99d27ee28da640ef82e935cda34ac5
 
 /*insert into brands*/
 insert into brands_ctg(name, image) values('FORD',default),('Honda',default),('Toyota',default);

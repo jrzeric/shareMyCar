@@ -31,9 +31,19 @@ select id, name from profiles_ctg;
 select id, name,surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, raiting, profile, status from students;
 select id, name,surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, raiting, profile, status from students where id = 1;
 select s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.latitude, s.longitude, u.id, u.name, u.city, u.latitude, u.longitude, c.id, c.name, c.state, s.status from students as s join universities_ctg as u on s.university = u.id join cities_ctg as c on s.city = c.id join profiles_ctg as p on s.profile = p.id;
-select s.id, s.name, s.surname, s.secondSurname, s.email, s.cellPhone, s.latitude, s.longitude, u.id, u.name, u.city, u.latitude, u.longitude, c.id, c.name, c.state, s.status from students as s join universities_ctg as u on s.university = u.id join cities_ctg as c on s.city = c.id join profiles_ctg as p on s.profile = p.id where s.id = 1;
+Select s.id, s.name, s.surName, s.secondSurName, s.email, s.password, s.cellPhone, u.id universityId,
+					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
+					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
+					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
+					st.name stUniName, st.status stUnSta, s.turn, s.raiting, s.status, p.id idProfile, p.name profileName
+					FROM students s JOIN universities_ctg u ON s.university = u.id JOIN cities_ctg c ON s.city = c.id
+					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id
+					WHERE s.id = 1;
 
-select *from students;
+select * from students;
+select u.id,u.name,c.name,c.state,u.latitude,u.longitude from universities_ctg as u inner join cities_ctg as c on u.city=c.id;
+select * from universities_ctg;
+
 select *from cars where(select driver from cars) in (select id from students);
 /*select from brand*/
 select id, name, image, status from brands_ctg;
