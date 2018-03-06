@@ -40,7 +40,10 @@ Select s.id, s.name, s.surName, s.secondSurName, s.email, s.password, s.cellPhon
 					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id
 					WHERE s.id = 1;
 
-select *from students;
+select * from students;
+select u.id,u.name,c.name,c.state,u.latitude,u.longitude from universities_ctg as u inner join cities_ctg as c on u.city=c.id;
+select * from universities_ctg;
+
 select *from cars where(select driver from cars) in (select id from students);
 /*select from brand*/
 select id, name, image, status from brands_ctg;

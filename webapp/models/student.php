@@ -41,15 +41,12 @@
 
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
-<<<<<<< HEAD
 		public function getPassword() { return $this->password; }
 		public function setPassword($value) { $this->password = $value; }
-=======
 
 		public function getPassword() { return $this->password; }
 		public function setPassword($value) { $this->password = $value; }
 
->>>>>>> 50b750d24c99d27ee28da640ef82e935cda34ac5
 		public function getCellPhone() { return $this->cellPhone; }
 		public function setCellPhone($value) { $this->cellPhone = $value; }
 
