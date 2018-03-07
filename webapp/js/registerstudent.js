@@ -4,7 +4,7 @@ function initComboBoxes()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost:8080/apis/state.php', true);
+	x.open('GET', 'http://sharemycar.local.net/apis/state.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -48,7 +48,7 @@ function fillCities()
   var idState = document.getElementById('stateSchool').value;
   console.log(idState);
   //prepare request
-  x.open('GET', 'http://localhost:8080/apis/city.php?state=' + idState, true);
+  x.open('GET', 'http://sharemycar.local.net/apis/city.php?state=' + idState, true);
   //send request
   x.send();
   //handle readyState change event
@@ -87,7 +87,7 @@ function fillUniversities()
   var x = new XMLHttpRequest();
   var idCity = document.getElementById('citySchool').value;
   //prepare request
-  x.open('GET', 'http://localhost:8080/apis/university.php?city=' + idCity, true);
+  x.open('GET', 'http://sharemycar.local.net/apis/university.php?city=' + idCity, true);
   //send request
   x.send();
   //handle readyState change event

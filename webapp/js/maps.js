@@ -199,7 +199,7 @@ function finish()
     //create request
     var x = new XMLHttpRequest();
     //prepare request
-    x.open('POST', 'http://localhost:8080/apis/student.php', true);
+    x.open('POST', 'http://sharemycar.local.net/apis/student.php', true);
     //form data
     var fd = new FormData();
     fd.append('name', document.getElementById('firtname').value);
