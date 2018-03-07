@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (isset($headers['email']) && isset($headers['password'])) {
     try{
       //create object
-      $user = new Users($headers['email'],$headers['password']);
+      $user = new Users($headers['email'], $headers['password']);
       $user->studentHasCar($headers['email']);
       //display
       if ($user->getDriver()) 
       {
         echo json_encode(array(
-          'status' => 0,
+          'status' => 1,
           'user' => json_decode($user->toJsonDriver())
           ));
       }

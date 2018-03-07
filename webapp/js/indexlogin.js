@@ -1,0 +1,72 @@
+function login()
+{
+	console.log('Getting token...');
+	var x = new XMLHttpRequest();
+	x.open('GET', 'http://sharemycar.local.net/apis/login.php', true);
+	var email = document.getElementById('textMail').value;
+	var pass = document.getElementById('textPassword').value;
+	console.log(pass);
+	console.log(email);
+	x.setRequestHeader('email', email);
+	x.setRequestHeader('password', pass);
+	x.send();
+	x.onreadystatechange = function() {
+		if (x.readyState == 4 && x.status == 200) {
+			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
+				sessionStorage.authenticated = true;
+				if (JSONdata.status == 0)
+				{
+					/*
+					sessionStorage.userId = JSONdata.user.id.id;
+					sessionStorage.userRole = JSONdata.user.id.role.name;
+					sessionStorage.userName = JSONdata.user.id.name;
+					sessionStorage.userLastName = JSONdata.user.id.lastName;
+					sessionStorage.userSecondLastName = JSONdata.user.id.secondLastName;
+					sessionStorage.userUniversity = JSONdata.user.id.university.name;
+					sessionStorage.userUniversityLat = JSONdata.user.id.university.location.latitude;
+					sessionStorage.userUniversityLon = JSONdata.user.id.university.location.longitude;
+					sessionStorage.userLocationLat = JSONdata.user.id.location.latitude;
+					sessionStorage.userCityId = JSONdata.user.id.city.id;
+					sessionStorage.userUniversityId = JSONdata.user.id.university.id;
+					sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
+					sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
+					sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
+					sessionStorage.userEmail = JSONdata.user.id.email;
+					sessionStorage.userPhoto = JSONdata.user.id.photo;
+					sessionStorage.token = JSONdata.token;
+					*/
+					alert("You are a passenger");
+				}
+				else
+					if (JSONdata.status == 1) 
+					{
+						/*
+						sessionStorage.userId = JSONdata.user.id.id;
+						sessionStorage.userRole = JSONdata.user.id.role.name;
+						sessionStorage.userName = JSONdata.user.id.name;
+						sessionStorage.userLastName = JSONdata.user.id.lastName;
+						sessionStorage.userSecondLastName = JSONdata.user.id.secondLastName;
+						sessionStorage.userUniversity = JSONdata.user.id.university.name;
+						sessionStorage.userUniversityLat = JSONdata.user.id.university.location.latitude;
+						sessionStorage.userUniversityLon = JSONdata.user.id.university.location.longitude;
+						sessionStorage.userLocationLat = JSONdata.user.id.location.latitude;
+						sessionStorage.userLocationLon = JSONdata.user.id.location.longitude;
+						sessionStorage.userControlNumber = JSONdata.user.id.controlNumber;
+						sessionStorage.userCarBrand = JSONdata.user.id.car.brand.name;
+						sessionStorage.carImage = JSONdata.user.id.car.brand.photo;
+						sessionStorage.userCarModel = JSONdata.user.id.car.model.name;
+						sessionStorage.userYear = JSONdata.user.id.car.year;
+						sessionStorage.userLicensePlate = JSONdata.user.id.car.licensePlate;
+						sessionStorage.userCellPhone = JSONdata.user.id.cellphone;
+						sessionStorage.userEmail = JSONdata.user.id.email;
+						sessionStorage.userPhoto = JSONdata.user.id.photo;
+						sessionStorage.token = JSONdata.token;
+						*/
+						alert("You are a driver");
+
+					}
+					else 
+						alert(JSONdata.errorMessage);
+		}
+	}
+}
