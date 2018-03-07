@@ -8,10 +8,11 @@
     <link href="/css/footer.css" rel="stylesheet"></link>
 		<link href="/css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
+	 <script src="js/maps.js" ></script>
 	<script src="js/globals.js"></script>
 	<script src="js/validatePass.js"></script>
 	</head>
-	<body >
+	<body>
     <header>
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_register.php"); ?>
     </header>
@@ -52,13 +53,16 @@
     <div class="form-section">
       <label class="form-section__title">Select your location</label>
       <div class="form-section-blank">
-        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d13462.926138912491!2d-116.94100998022462!3d32.47987175!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1517604683740" width="10" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <!--<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d13462.926138912491!2d-116.94100998022462!3d32.47987175!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1517604683740" width="10" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+				<div id="map" class="map"></div>
+				<input type="text" id="coords" />
       </div>
     </div>
-	<a href="index.php"><button class="next-page">FINISH</button></a>
+	<a href="#"><button class="next-page" onclick="finish()">FINISH</button></a>
   </main>
     <footer class="footer footer--darkblue">
     <?php require_once("/lib/footer.php"); ?>
   </footer>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap"></script>
 </body>
 </html>
