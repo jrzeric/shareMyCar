@@ -69,6 +69,7 @@
 			isset($_POST['photo']) &&
 			isset($_POST['city']) &&
 			isset($_POST['turn']) &&
+			isset($_POST['password']) &&
 			isset($_POST['profile'])) {
 			//error
 			$error = false;
@@ -85,12 +86,12 @@
 			}
 
 			try{
-				$c = new City($_POST['city']);
+				$c = City::getCityByName($_POST['city']);
 			}
 			catch(RecordNotFoundException $ex){
 				echo json_encode(array(
 					'status' => 2,
-					'errorMessage' => 'Invalid cityId'
+					'errorMessage' => 'Invalid city name'
 				));
 				$error = true; //found error
 			}
@@ -124,6 +125,7 @@
 				$s->setCity($c);
 				$s->setTurn($_POST['turn']);
 				$s->setProfile($p);
+				$s->setPassword($_POST['password']);
 				//add
 				if ($s->add()){
 					echo json_encode(array(

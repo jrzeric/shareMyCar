@@ -11,8 +11,9 @@
 	 <script src="js/maps.js" ></script>
 	<script src="js/globals.js"></script>
 	<script src="js/validatePass.js"></script>
+  <script src="js/registerstudent.js"></script>
 	</head>
-	<body>
+	<body onload="initComboBoxes()">
     <header>
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_register.php"); ?>
     </header>
@@ -39,13 +40,13 @@
       <label class="form-section__title">School Information</label>
       <div class="form-section-blank">
         <input id="controlnumber" class="form-section__blank--three-columns_school" type="text" name="" value="" placeholder="CONTROL NUMBER">
-        <select id="stateSchool" class="form-section__blank--three-columns_school" name="turn">
+        <select id="stateSchool" class="form-section__blank--three-columns_school" name="turn" onchange="centerState()">
           <option value="0">SELECT STATE</option>
         </select>
-        <select id="ampm" class="form-section__blank--three-columns_school" name="ampm">
+        <select id="citySchool" class="form-section__blank--three-columns_school" name="ampm" onchange="fillUniversities()">
           <option value="0">SELECT CITY</option>
         </select>
-				<select id="ampm" class="form-section__blank--three-columns_school" name="ampm">
+				<select id="university" class="form-section__blank--three-columns_school" name="ampm" >
           <option value="0">SELECT UNIVERSITY</option>
         </select>
       </div>

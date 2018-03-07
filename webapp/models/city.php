@@ -62,7 +62,7 @@ class City
     if (func_num_args() == 4) {
       $arguments = func_get_args();
       $this->code = $arguments[0];
-      $this->state = $arguments[1];
+      $this->state = new State($arguments[1]);
       $this->name = $arguments[2];
       $this->status = $arguments[3];
     }
@@ -138,7 +138,7 @@ class City
     return json_encode(array(
       'code' => $this->code,
       'name' => $this->name,
-      'state' => $this->state,
+      'state' => json_decode($this->state->toJson()),
       'status' => $this->status
       ));
   }//toJson
@@ -189,7 +189,7 @@ class City
       $list = array();
       $connection = MySQLConnection::getConnection();
       //query
-      $query = 'select code, name , status, state
+      $query = 'select id, name , status, state
             from cities_ctg
             where state = ?';
       //command
@@ -223,4 +223,38 @@ class City
         'status' => '3',
         'cities' => $list));
     }
+
+
+      public static function getCityByName($cityName)
+      {
+        $connection = MySQLConnection::getConnection();
+        //query
+        $query = 'select id, name , status, state
+              from cities_ctg
+              where name = ?';
+        //command
+        $command = $connection->prepare($query);
+        $command->bind_param('s', $cityName);
+        //execute
+        $command->execute();
+        //bind results
+        $command->bind_result($code, $name, $status, $state);
+        //echo $found;
+        $found = $command->fetch();
+        if ($found) {
+          $city = new City($code,  $state, $name, $status);
+        } 
+        else {
+          throw new RecordNotFoundException();
+        }
+        //close statement
+        mysqli_stmt_close($command);
+        //close connection
+        $connection->close();
+
+        return $city;
+      }//getAll
+
+
+
 }

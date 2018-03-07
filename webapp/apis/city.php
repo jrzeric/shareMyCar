@@ -28,7 +28,20 @@
 			}
 		}
 		else {
-			echo City::getAllJson();
+			if (isset($_GET['state'])) {
+				try
+				{
+					echo City::getAllCitiesByStateJson($_GET['state']);
+				}//try
+				catch (RecordNotFoundException $ex) {
+					echo json_encode(array(
+						'status' => 1,
+						'errorMessage' => $ex->get_message()
+					));
+				}//catch
+			}//if
+			else
+				echo City::getAllJson();
 		}
 	}
 ?>

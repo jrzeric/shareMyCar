@@ -27,6 +27,10 @@
 			}
 		}
 		else {
+			if (isset($_GET['city'])) {
+				echo University::getAllByCityJson($_GET['city']);
+			}
+			else
 			echo University::getAllJson();
 		}
 	}
