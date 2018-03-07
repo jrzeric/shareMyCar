@@ -38,7 +38,7 @@
 				//close connection
 				$connection->close();
 				//throw exception if record not found
-				if (!$found) {
+				if ($found) {
 					$this->id = $id;
 					$this->name = $name;
 					$this->status = $status;
@@ -127,7 +127,7 @@
 			}
 			//return json encoded array
 			return json_encode(array(
-				'State' => $list
+				'States' => $list
 			));
 		}
 	}

@@ -104,7 +104,7 @@ class Spot{
 		    return $result;
 	  	}
 	  	public function delete()
-      {
+      	{
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -124,7 +124,7 @@ class Spot{
 		}
 
 		public function toJson()
-    {
+    	{
 			return json_encode(array(
 				'id' => $this->id,
 				'driver'=> json_decode($this->driver->toJson()),
@@ -137,7 +137,7 @@ class Spot{
 		}
 		//get all the stops that go to the same university
 		public static function getSpotUniversity($universityid)
-    {
+    	{
 			$list = array();
 			$connection = MySqlConnection::getConnection();
 			$query = 'SELECT s.id, s.latitude, s.longitude, s.pay, s.hour, s.day,s.status, st.id,  st.name,  st.surname,  st.secondSurname, st.email, st.cellPhone, st.controlNumber, st.latitude, st.longitude, st.photo, st.turn,st.raiting, st.status,c.id,c.name,c.status,se.id,se.name,se.status,p.id,p.name from spots AS s JOIN students AS st ON s.driver = st.id JOIN cities_ctg AS c ON c.id = st.city JOIN states_ctg AS se ON se.id = c.state JOIN profiles_ctg AS p ON p.id = st.profile WHERE st.university = ?';
@@ -163,7 +163,7 @@ class Spot{
 		}
 
 		public static function getSpotUniversityJson($university)
-    {
+    	{
 			//list
 			$list = array();
 			//get all
@@ -176,7 +176,7 @@ class Spot{
 		}
 		//get all the stops that belong to the chosen driver
 		public static function getSpotDriver($driver)
-    {
+    	{
 			$list = array();
 			$connection = MySqlConnection::getConnection();
 			$query = 'SELECT s.id, s.latitude, s.longitude, s.pay, s.hour, s.day,s.status from spots AS s WHERE s.driver = ?';
@@ -193,8 +193,9 @@ class Spot{
 			$connection->close();
 			return $list;
 		}
+
 		public static function getSpotDriverJson($driver)
-    {
+    	{
 			//list
 			$list = array();
 			//get all
@@ -259,4 +260,5 @@ class Spot{
 				throw new RecordNotFoundException();
 			return $lastSpot;
 		}
+
 	}

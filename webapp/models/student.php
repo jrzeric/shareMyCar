@@ -227,11 +227,11 @@
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'Insert Into students (name, surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, profile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$query = 'Insert Into students (name, surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, profile, password, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 2)';
 			//command
 			$command = $connection->prepare($query);
 			//bind parameters
-			$command->bind_param('ssssssssssiis',
+			$command->bind_param('ssssssssssiiss',
 				$this->name,
 				$this->surnName,
 				$this->secondSurname,
@@ -242,9 +242,11 @@
 				$this->latitude,
 				$this->longitude,
 				$this->photo,
-				$this->city->getId(),
+				$this->city->getCode(),
 				$this->turn,
-				$this->profile->getCode());
+				$this->profile->getCode(),
+				$this->password
+				);
 			//execute
 			$result = $command->execute();
 			//close command

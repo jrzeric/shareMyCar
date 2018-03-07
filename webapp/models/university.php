@@ -78,7 +78,7 @@
 					$this->latitude = $latitude;
 					$this->longitude = $longitude;
 					$this->status = $status;
-					$this->city = new City($cityId, $city, $statusCity, $state);
+					$this->city = new City($cityId, $stateId ,$city, $statusCity);
 				} else {
 					//throw exception if record not found
 					throw new RecordNotFoundException();
@@ -178,8 +178,8 @@
 			$command->bind_result($id, $name, $latitude, $longitude, $status, $cityId, $city, $statusCity, $stateId, $stateName, $stateStatus);
 			//fetch data
 			while ($command->fetch()) {
-				$state = new State($stateId, $stateName, $stateStatus);
-				$city = new City($cityId, $city, $statusCity, $state);
+				//$state = new State($stateId, $stateName, $stateStatus);
+				$city = new City($cityId, $stateId,$city, $statusCity);
 				array_push($list, new University($id, $name, $latitude, $longitude, $status, $city));
 			}
 			//close command
@@ -192,7 +192,7 @@
 
 		//get all in JSON format
 		public static function getAllJson()
-    {
+    	{
 			//list
 			$list = array();
 			//get all
@@ -201,7 +201,62 @@
 			}
 			//return json encoded array
 			return json_encode(array(
-				'University' => $list
+				'Universities' => $list
 			));
 		}
+
+				//get all
+		public static function getAllByCity($city)
+    	{
+			//list
+			$list = array();
+			//get connection
+			$connection = MySqlConnection::getConnection();
+			//query
+			$query = 'Select u.id, u.name, u.latitude, u.longitude, u.status, c.id cityId,
+					c.name cityName, c.status cityStatus, c.state cityStateId,
+                    s.name as stateName, s.status as stateStatus
+					FROM universities_ctg u
+                    JOIN cities_ctg c ON u.city = c.id
+                    Inner join states_ctg s on s.id = c.state
+                    where c.id = ?';
+			//command
+			$command = $connection->prepare($query);
+			$command->bind_param('i', $city);
+			//execute
+			$command->execute();
+			//bind results
+			$command->bind_result($id, $name, $latitude, $longitude, $status, $cityId, $city, $statusCity, $stateId, $stateName, $stateStatus);
+			//fetch data
+			while ($command->fetch()) {
+				//$state = new State($stateId, $stateName, $stateStatus);
+				$city = new City($cityId, $stateId,$city, $statusCity);
+				array_push($list, new University($id, $name, $latitude, $longitude, $status, $city));
+			}
+			//close command
+			mysqli_stmt_close($command);
+			//close connection
+			$connection->close();
+			//return list
+			return $list;
+		}
+
+		//get all in JSON format
+		public static function getAllByCityJson($city)
+    	{
+			//list
+			$list = array();
+			//get all
+			foreach(self::getAllByCity($city) as $item) {
+				array_push($list, json_decode($item->toJson()));
+			}
+			//return json encoded array
+			return json_encode(array(
+				'Universities' => $list
+			));
+		}
+
+
+
+
 	}

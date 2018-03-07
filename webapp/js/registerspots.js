@@ -121,15 +121,14 @@ function addMarker(location)
 function addTravel(latitude, longitude, number)
 {
   var spotTime = 'time'+number;
-<<<<<<< HEAD
-  var spotPrice = 'price'+number;
-  var spotButton = 'buttonSave'+number;
-=======
   var spotMessage = 'message'+number;
   var spotPrice = 'price'+number;
   var spotButton = 'buttonSave'+number;
   var spotButtonRemove = 'buttonRemove'+number;
->>>>>>> origin/registerSpots
+  var spotMessage = 'message'+number;
+  var spotPrice = 'price'+number;
+  var spotButton = 'buttonSave'+number;
+  var spotButtonRemove = 'buttonRemove'+number;
   var time = document.getElementById(spotTime).value;
   //Reasign the style and function to the boton
   document.getElementById(spotButton).innerHTML = "Modify";
