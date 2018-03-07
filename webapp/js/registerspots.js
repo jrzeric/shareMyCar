@@ -28,7 +28,7 @@ function init()
 
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('GET', 'http://localhost:8080/apis/spot.php?driver='+id+'&day=Monday', true);//ONLY FOR TEST CHANGE THIS AFTER FOR ID REGISTERED IN SESION
+  x.open('GET', 'http://sharemycar.local.net/apis/spot.php?driver='+id+'&day=Monday', true);//ONLY FOR TEST CHANGE THIS AFTER FOR ID REGISTERED IN SESION
   x.send();
   //handle readyState change event
   x.onreadystatechange = function()
