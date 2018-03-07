@@ -41,8 +41,6 @@
 
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
-		public function getPassword() { return $this->password; }
-		public function setPassword($value) { $this->password = $value; }
 
 		public function getPassword() { return $this->password; }
 		public function setPassword($value) { $this->password = $value; }
@@ -76,8 +74,6 @@
 
 		public function getProfile() { return $this->profile; }
 		public function setProfile($value) { $this->profile = $value; }
-		public function getRaiting() { return $this->raiting; }
-		public function setRaiting($value) { $this->raiting = $value; }
 
 		public function getRaiting() { return $this->raiting; }
 		public function setRaiting($value) { $this->raiting = $value; }

@@ -286,6 +286,56 @@ body{
   margin: 10px 0px 12px 10px;
   padding: 20px 0px 0px 0px;
 }
+.pi{
+    margin: 0px 5px 0px 40px;
+    width: 46%;
+   }
+
+.photo img {
+    float: left;
+    margin: 0px 0px;
+    width: 37%;
+}
+
+.textinfopi{
+    font-weight:bold;
+
+}
+.textinfopi,.textvaluepi{
+      font-size: 26px;
+    text-align: left;
+    margin: 7px 4px 12px 13px;
+
+}
+.ci{
+    margin: 0px 40px 0px 5px;
+    width: 46%;
+
+}
+.textinfoci{
+    font-weight: bolder;
+}
+.textinfoci,.textvalueci{
+     font-size: 26px;
+    text-align: left;
+    margin: 5px 4px 19px 18px;
+}
+
+.cri{
+    margin: 40px 0px 0px 30px;
+    width: 92%;
+
+
+}
+.textinfocri{
+    font-weight:bold;
+}
+.textvaluecri,.textinfocri{
+  font-size: 26px;
+  text-align: left;
+  margin: 10px 0px 12px 10px;
+  padding: 20px 0px 0px 0px;
+}
 
 /*Fin login natah*/
 @media only screen and (max-width:1024px) {
@@ -357,6 +407,15 @@ textvaluecri, .textinfocri {
 {
   padding: 10px;
   background-color: #45d11b;
+  color: #FFF;
+  border: none;
+  margin: 10px 10px 10px 10px;
+}
+
+.buttons__modifySpot
+{
+  padding: 10px;
+  background-color: #0056e0;
   color: #FFF;
   border: none;
   margin: 10px 10px 10px 10px;

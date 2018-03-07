@@ -205,4 +205,58 @@ class Spot{
 				'Spots' => $list
 			));
 		}
+
+		public static function getSpotDriverByDay($driver, $day)
+    	{
+			$list = array();
+			$connection = MySqlConnection::getConnection();
+			$query = 'SELECT s.id, s.latitude, s.longitude, s.pay, s.hour, s.day,s.status from spots AS s WHERE s.driver = ? AND s.day = ? AND s.status = 1';
+			$command = $connection->prepare($query);
+			$command->bind_param('ds', $driver, $day);
+			$command->execute();
+			$command->bind_result($id,$latitude,$longitude,$pay,$hour,$day,$status);
+			$driver = new Student($driver);
+			while ($command->fetch()) {
+				$location = new Location($latitude, $longitude);
+				array_push($list,new Spot($id,$driver,$location,$pay,$hour,$day,$status));
+			}
+			mysqli_stmt_close($command);
+			$connection->close();
+			return $list;
+		}
+
+		public static function getSpotDriverByDayJson($driver, $day)
+    	{
+			//list
+			$list = array();
+			//get all
+			foreach(self::getSpotDriverByDay($driver, $day) as $item) {
+				array_push($list, json_decode($item->toJson()));
+			}
+			return json_encode(array(
+				'Spots' => $list
+			));
+		}
+
+		public static function getLastSpot()
+    	{
+			$list = array();
+			$connection = MySqlConnection::getConnection();
+			$query = 'SELECT s.id, s.driver, s.latitude, s.longitude, s.pay, s.hour, s.day,s.status from spots AS s ORDER by s.id desc WHERE s.status = 1';
+			$command = $connection->prepare($query);
+			$command->execute();
+			$command->bind_result($id,$driver,$latitude,$longitude,$pay,$hour,$day,$status);
+			$found = $command->fetch();
+			mysqli_stmt_close($command);
+			$connection->close();
+			if ($found)
+			{
+				$driver = new Student($driver);
+				$location = new Location($latitude,$longitude);
+				$lastSpot = new Spot($id,$driver,$location,$pay,$hour,$day,$status);
+			}
+			else
+				throw new RecordNotFoundException();
+			return $lastSpot;
+		}
 	}

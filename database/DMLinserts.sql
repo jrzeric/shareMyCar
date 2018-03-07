@@ -28,11 +28,12 @@ values('Fernando', 'Coronel', 'Salinas', '0316113444@miutt.edu.mx', 'aaaa','664-
 ('Alejandro', 'Angulo', 'Garcia', '0316113445@miutt.edu.mx', 'bbbb', '664-123-45-68', 'UTT', '0316113445', '32.457411', '-116.872631',default,1,0,'USE'),
 ('Eric', 'Juarez', 'Juarez', '0316113446@miutt.edu.mx', 'cccc','664-123-45-69','UTT','0316113446','32.497781', '-116.965114',default,1,0,'USE'),
 ('Pablo', 'Alvarez', 'Lagarra', '0316113447@miutt.edu.mx', 'dddd','664-123-45-70','UTT','0316113447','32.495649', '-116.932146',default,1,0,'USE');
-<<<<<<< HEAD
+
+select s.email, s.id, s.profile from students as s where s.email = '0316113444@miutt.edu.mx' AND s.password = 'aaaa';
 =======
 
 select s.email, s.id, s.profile from students as s where s.email = '0316113444@miutt.edu.mx' AND s.password = 'aaaa';
->>>>>>> 50b750d24c99d27ee28da640ef82e935cda34ac5
+>>>>>>> origin/registerSpots
 
 /*insert into brands*/
 insert into brands_ctg(name, image) values('FORD',default),('Honda',default),('Toyota',default);
@@ -42,11 +43,11 @@ insert into models_ctg(name, brand) values('Focus', 1),('Fiesta', 1),('Fusion', 
 ('Corolla', 3),('Tacoma', 3),('Celica', 3);
 
 /*insert into cars*/
-insert into cars(driver, model, licencePlate, driverLicence, color, insurance,spaceCar, owner) 
+insert into cars(driver, model, licencePlate, driverLicence, color, insurance,spaceCar, owner)
 values(2,1,'1234567890','410041011','white','664-132-12-32','4','Alejandro Angulo');
 
 /*Insert into spot*/
-insert into spots(driver,latitude, longitude, pay, hour, day) 
+insert into spots(driver,latitude, longitude, pay, hour, day)
 values(2,'32.495647', '-116.932144',15,'06:45:00','Lunes'),(2,'32.495648', '-116.932145',10,'06:55:00','Martes');
 
 
@@ -65,5 +66,3 @@ insert into timeban(description) values('1 semana'),('3 semana'),('4 semanas'),(
 
 /*insert into banlist*/
 insert into banlist(reportman, timeban) values('4',1);
-
-

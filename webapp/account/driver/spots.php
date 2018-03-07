@@ -18,20 +18,14 @@
       <h1 class="title">Spots</h1>
   	  <div class="box">
     	  <h2>Select day:</h2>
-    		<select>
-    			<option>Monday</option>
-    			<option>Tuesday</option>
-    			<option>Wednesday</option>
-    			<option>Thursday</option>
-    			<option>Friday</option>
-    			<option>Saturday</option>
+    		<select id="days" onchange="changeDay()">
+    			<option value="Monday">Monday</option>
+    			<option value="Tuesday">Tuesday</option>
+    			<option value="Wednesday">Wednesday</option>
+    			<option value="Thursday">Thursday</option>
+    			<option value="Friday">Friday</option>
+    			<option value="Saturday">Saturday</option>
     		</select>
-    		<div class="switch">
-    		  <input type="radio" name="turn" value="M" id="TM" class="switch-input" checked>
-    		  <label for="TM" class="switch-label">Morning</label>
-    		  <input type="radio" name="turn" value="V" id="TV" class="switch-input">
-    		  <label for="TV" class="switch-label">Evening</label>
-    		</div>
   	  </div>
   		<div id="map" style="width: 80%; height: 600px;"></div>
     </main>
