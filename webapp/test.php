@@ -1,10 +1,10 @@
 <?php
 
 	//require_once('equestadistica.php');
-	//require_once($_SERVER['DOCUMENT_ROOT'].'/models/profile.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/student.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/location.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
+	//require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/profile.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/location.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
 
 	/*
 	$u = new profile('USE');

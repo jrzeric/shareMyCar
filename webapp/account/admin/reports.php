@@ -3,7 +3,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Reports</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Reports</title>
 		<!--style sheets-->
 		<link href="../css/admin/header.css" rel="stylesheet"></link>
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
@@ -44,7 +44,7 @@
 				        <div class="name">Maria Felix De La Olla</div>
 		                <div class="stars"><img src="/images/calification.png" width="128px"></div>
 				    </div>
-						<?php require_once($_SERVER['DOCUMENT_ROOT'].'/account/lib/popup.php'); ?>
+						<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/account/lib/popup.php'); ?>
 				</div>
 					</a>
 				<div class="report">

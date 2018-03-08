@@ -1,6 +1,6 @@
 <?php
-  require_once($_SERVER['DOCUMENT_ROOT'].'/models/student.php');
-  require_once($_SERVER['DOCUMENT_ROOT'].'/models/car.php');
+  require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
+  require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
 
   // constructor recibe 2 parametros USER Y PASSWORD
   //si es conductor, traigo datos del carro que tenga activo

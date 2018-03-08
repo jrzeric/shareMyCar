@@ -6,10 +6,10 @@
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 <<<<<<< HEAD
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/car.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
 
 =======
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/car.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
 >>>>>>> origin/windowAfterValidate
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {

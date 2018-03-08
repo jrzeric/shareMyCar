@@ -5,7 +5,7 @@
 	//allow methods
 	header('Access-Control-Allow-Methods: GET');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/reports.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/models/reports.php');
 	
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -1,0 +1,12 @@
+.nav {
+  position: relative;
+  background-color: red;
+  min-height: -webkit-calc(100vh - 251px);
+  min-height: -moz-calc(100vh - 251px);
+  min-height: calc(100vh - 251px);
+  float: left;
+}
+.nav__link {
+  position: relative;
+  margin-left: 40px;
+}

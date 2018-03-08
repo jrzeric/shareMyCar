@@ -1,0 +1,50 @@
+* { margin: 0px auto; }
+body { font-size: 12pt; background-color: #F8F8F9; }
+.title { font-size: 20pt; margin: 15px; }
+.title__hr { width: calc(100% - 60px); }
+.section__title { font-size: 14pt; }
+.title, .section__title { text-align: center; }
+.main {
+  position: relative;
+  width: 100%;
+  height: auto;
+  float: left;
+}
+.section {
+  position: relative;
+  width: 100%;
+  float: left;
+  min-height: -webkit-calc(100vh - 251px);
+  min-height: -moz-calc(100vh - 251px);
+  min-height: calc(100vh - 251px);
+}
+.section__two-columns {
+  position: relative;
+  width: calc(50% - 40px);
+  margin: 15px 5px 0px 5px;
+  padding: 15px;
+  float: left;
+}
+.section__image {
+  position: relative;
+  max-width: 150px;
+  margin: 15px;
+  float: left;
+}
+.form__input {
+  position: relative;
+  font-size: 12pt;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+}
+.section__label-input {
+  position: relative;
+  margin: 15px 10px 0px 10px;
+  float: left;
+}
+.section__label-input--sma { width: calc(50% - 115px); }
+.section__label-input--med { width: calc(50% - 20px); }
+.section__label-input--lar { width: calc(100% - 20px); }
+.section__label { margin: 15px; }

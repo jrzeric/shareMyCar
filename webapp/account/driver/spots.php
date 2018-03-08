@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Spots</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Spots</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="/css/footer.css">
     <!-- Register spots (thunder011) -->

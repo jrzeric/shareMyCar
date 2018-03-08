@@ -1,9 +1,9 @@
 <?php
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/reportOption.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/models/mysqlconnection.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/models/reportOption.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/models/student.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
 
 	class Report{
 		

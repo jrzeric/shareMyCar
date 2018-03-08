@@ -141,6 +141,7 @@ button {
   margin: 15px auto;
 }
 
+/* POTENCIAL A ELIMINAR, SI NO AFECTA NADA
 ul li{
   color: #000;
   display: block;
@@ -216,6 +217,6 @@ input[type=radio]:checked ~ .check::before{
 input[type=radio]:checked ~ label{
   color: #000c60;
 }
-
+*/
 #map { }
 #coords{width: 500px;}

@@ -1,8 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/Student.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/model.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/Student.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
 
 class Car
 {

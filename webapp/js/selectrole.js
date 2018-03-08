@@ -4,7 +4,7 @@ function init()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://sharemycar.local.net/apis/brand.php', true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -72,7 +72,7 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://sharemycar.local.net/apis/model.php?idBrand=' + idBrand, true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idBrand=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -117,7 +117,7 @@ function registerCar()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://sharemycar.local.net/apis/car.php', true);
+	x.open('POST', 'http://localhost/sharemycar/webapp/apis/car.php', true);
 	//form data
 	var fd = new FormData();
 	//values

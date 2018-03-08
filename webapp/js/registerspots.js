@@ -28,7 +28,7 @@ function init()
 
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('GET', 'http://sharemycar.local.net/apis/spot.php?driver='+id+'&day=Monday', true);//ONLY FOR TEST CHANGE THIS AFTER FOR ID REGISTERED IN SESION
+  x.open('GET', 'http://localhost/sharemycar/webapp/apis/spot.php?driver='+id+'&day=Monday', true);//ONLY FOR TEST CHANGE THIS AFTER FOR ID REGISTERED IN SESION
   x.send();
   //handle readyState change event
   x.onreadystatechange = function()
@@ -144,7 +144,7 @@ function addTravel(latitude, longitude, number)
     //create request
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('POST', 'http://sharemycar.local.net/apis/spot.php', true);
+  x.open('POST', 'http://localhost/sharemycar/webapp/apis/spot.php', true);
   //form data
   var fd = new FormData();
   fd.append('driver', id);//ONLY FOR TEST CHANGE THIS AFTER FOR ID REGISTERED IN SESION
@@ -174,7 +174,7 @@ function addTravel(latitude, longitude, number)
   //create request
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('GET', 'http://sharemycar.local.net/apis/spot.php?getLastId=1', true);
+  x.open('GET', 'http://localhost/sharemycar/webapp/apis/spot.php?getLastId=1', true);
   x.onreadystatechange = function()
   {
     if (x.status == 200 && x.readyState == 4)
@@ -220,7 +220,7 @@ function modifySpot(number)
   //create request
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('PUT', 'http://sharemycar.local.net/apis/spot.php', true);
+  x.open('PUT', 'http://localhost/sharemycar/webapp/apis/spot.php', true);
   //form data
   var fd = new FormData();
   fd.append('id', number);
@@ -255,7 +255,7 @@ function removeSpot(number)
     //create request
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('DELETE', 'http://sharemycar.local.net/apis/spot.php', true);
+  x.open('DELETE', 'http://localhost/sharemycar/webapp/apis/spot.php', true);
   var data = {
     id: number,
     driver: id
@@ -330,7 +330,7 @@ function changeDay()
 
   var x = new XMLHttpRequest();
   //prepare request
-  x.open('GET', 'http://sharemycar.local.net/apis/spot.php?driver='+id+'&day='+day, true);
+  x.open('GET', 'http://localhost/sharemycar/webapp/apis/spot.php?driver='+id+'&day='+day, true);
   x.send();
   //handle readyState change event
   x.onreadystatechange = function()
