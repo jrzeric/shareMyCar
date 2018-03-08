@@ -64,13 +64,13 @@
 		public function toJsonPassenger() 
 		{ 
 			return json_encode(array
-				('usuario' => json_decode($this->user->toJson())));
+				('user' => json_decode($this->user->toJson())));
 		}
 
 		public function toJsonDriver() 
 		{ 
 			return json_encode(array
-				('usuario' => json_decode($this->user->toJson()),
+				('user' => json_decode($this->user->toJson()),
 					'car' => json_decode($this->car->toJson())));
 		}
 
@@ -91,7 +91,8 @@
 			$connection->close();
 			if ($found) 
 			{
-				$this->car = new Car($carID, $studentID, $idModel, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
+				$model = new Model($idModel);
+				$this->car = new Car($carID, $this->user, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
 				$this->driver = true;
 			}
 			else {
