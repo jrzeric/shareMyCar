@@ -3,7 +3,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Home</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Home</title>
 		<link href="/css/style.css" rel="stylesheet"></link>
 		<link href="/css/footer.css" rel="stylesheet"></link>
 		<link href="/css/popup.css" rel="stylesheet"></link>
@@ -57,7 +57,7 @@
       </div>
 		</main>
     <footer class="footer footer--darkblue">
-      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/footer.php'); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer.php'); ?>
     </footer>
   </body>
 </html>

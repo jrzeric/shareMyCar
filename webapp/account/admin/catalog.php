@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Catalog</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Catalog</title>
     <!-- style-->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/catalog.css">
@@ -12,7 +12,7 @@
   <link href="/css/footer.css" rel="stylesheet"></link>
   <!--scripts-->
   <script src="/js/index.js"></script>
-  <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?></title>
+  <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?></title>
   </head>
   <body onLoad="init()">
     <header id="nav">

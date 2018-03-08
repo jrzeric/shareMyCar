@@ -3,7 +3,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Blacklist</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Blacklist</title>
 		<!--style sheets-->
     <link href="../css/admin/header.css" rel="stylesheet"></link>
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
@@ -41,7 +41,7 @@
 		                <div class="unBanAt">2 days to unban</div>
 				    </div>
 				</div>
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/account/sharemycar/webapp/lib/popup.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/account/lib/popup.php'); ?>
 			</a>
 
 				<div class="badPerson">

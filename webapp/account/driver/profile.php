@@ -2,7 +2,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Profile</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Profile</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="/css/footer.css">
 	<script src="js/menu.js"></script>
