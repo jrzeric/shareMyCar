@@ -3,7 +3,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Reports</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Reports</title>
 		<!--style sheets-->
 		<link href="../css/admin/header.css" rel="stylesheet"></link>
 		<link href="../css/admin/style.css" rel="stylesheet"></link>
@@ -15,7 +15,7 @@
 	</head>
 	<body onLoad="init()">
 		<header id="nav">
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_admin.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header_admin.php"); ?>
 		</header>
 		<div id="sidemenu">
 			<a href="#"><img class="iconSideMenu" src="/images/home.png">  Home</a>
@@ -44,7 +44,7 @@
 				        <div class="name">Maria Felix De La Olla</div>
 		                <div class="stars"><img src="/images/calification.png" width="128px"></div>
 				    </div>
-						<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/account/lib/popup.php'); ?>
+						<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/account/sharemycar/webapp/lib/popup.php'); ?>
 				</div>
 					</a>
 				<div class="report">
@@ -96,7 +96,7 @@
 
 		</div>
     <footer class="footer footer--black">
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_admin.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/footer_admin.php"); ?>
     </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Spots</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/sharemycar/webapp/lib/title.php'); ?> Spots</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="/css/footer.css">
     <!-- Register spots (thunder011) -->
@@ -12,7 +12,7 @@
   </head>
   <body onload="init()">
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_users.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header_users.php"); ?>
     </header>
     <main>
       <h1 class="title">Spots</h1>
@@ -30,7 +30,7 @@
   		<div id="map" style="width: 80%; height: 600px;"></div>
     </main>
     <footer class="footer footer--darkblue">
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/footer_users.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/footer_users.php"); ?>
     </footer>
   </body>
 </html>
