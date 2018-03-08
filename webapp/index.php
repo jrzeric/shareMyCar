@@ -9,6 +9,7 @@
 		<link href="/css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
 	<script src="js/globals.js"></script>
+  <script src="js/indexlogin.js"></script>
 	</head>
 	<body>
     <header>

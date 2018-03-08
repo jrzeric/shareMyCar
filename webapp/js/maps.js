@@ -9,7 +9,7 @@ var state;
 var city;
 
 
-function initMap ()
+function initMap()
 {
       //Se crea una nueva instancia del objeto mapa
       map = new google.maps.Map(document.getElementById('map'),

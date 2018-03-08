@@ -16,6 +16,7 @@ class Car
   private $spaceCar;
   private $owner;
   private $status;
+  
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
 

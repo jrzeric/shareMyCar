@@ -197,7 +197,9 @@
 				}*/
 
 			//object with data from arguments
-			if (func_num_args() == 17) {
+
+
+			if (func_num_args() == 16) {
 				//get arguments
 				$arguments = func_get_args();
 				//pass arguments to attributes
@@ -206,18 +208,17 @@
 				$this->surnName = $arguments[2];
 				$this->secondSurname = $arguments[3];
 				$this->email = $arguments[4];
-				$this->password = $arguments[5];
-				$this->cellPhone = $arguments[6];
-				$this->university = $arguments[7];
-				$this->controlNumber = $arguments[8];
-				$this->latitude = $arguments[9];
-				$this->longitude = $arguments[10];
-				$this->photo = $arguments[11];
-				$this->city = $arguments[12];
-				$this->turn = $arguments[13];
-				$this->raiting = $arguments[14];
-				$this->status = $arguments[15];
-				$this->profile = $arguments[16];
+				$this->cellPhone = $arguments[5];
+				$this->university = $arguments[6];
+				$this->controlNumber = $arguments[7];
+				$this->latitude = $arguments[8];
+				$this->longitude = $arguments[9];
+				$this->photo = $arguments[10];
+				$this->city = $arguments[11];
+				$this->turn = $arguments[12];
+				$this->status = $arguments[13];
+				$this->profile = $arguments[14];
+				$this->raiting = $arguments[15];
 			}
 		}
 
