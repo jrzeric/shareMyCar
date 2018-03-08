@@ -19,6 +19,9 @@ function initComboBoxes()
 			fillStates(x.responseText);
 		}
 	}
+
+  initMap();
+
 }
 
 
