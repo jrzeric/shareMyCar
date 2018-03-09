@@ -4,7 +4,7 @@
 	header('Access-Control-Allow-Origin: *');
 	//allow methods
 	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/university.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
 
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {

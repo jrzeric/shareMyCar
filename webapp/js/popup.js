@@ -98,7 +98,7 @@ function showPopup(title, width, height) {
 	buttonLogin.className = 'buttonlogin';
 	buttonLogin.setAttribute('id', 'loginButton');
 	buttonLogin.innerHTML = 'Login';
-	buttonLogin.setAttribute('onclick', 'showinfo()');
+	buttonLogin.setAttribute('onclick', 'login()');
 	popupButtons.appendChild(buttonLogin);
 	popup.appendChild(popupButtons);
 

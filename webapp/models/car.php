@@ -1,8 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/Student.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/model.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/Student.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/model.php');
 
 class Car
 {
@@ -16,6 +16,7 @@ class Car
   private $spaceCar;
   private $owner;
   private $status;
+
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
 
@@ -116,8 +117,10 @@ class Car
     values(?,?,?,?,?,?,?,?)";
 
     $command = $connection->prepare($query);
-    $command->bind_param('iissssis', $this->driver->getId(),
-    $this->model->getId(), $this->licensePlate, $this->driverLicense,
+    $driverId = $this->driver->getId();
+    $modelId = $this->model->getId();
+    $command->bind_param('iissssis', $driverId,
+    $modelId, $this->licensePlate, $this->driverLicense,
     $this->color, $this->insurance, $this->spaceCar, $this->owner);
     $result = $command->execute();
     mysqli_stmt_close($command);

@@ -3,19 +3,21 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Register</title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Register</title>
 		<link href="css/register.css" rel="stylesheet"></link>
-    <link href="/css/footer.css" rel="stylesheet"></link>
-		<link href="/css/popup.css" rel="stylesheet"></link>
+    <link href="css/footer.css" rel="stylesheet"></link>
+		<link href="css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
 	 <script src="js/maps.js" ></script>
 	<script src="js/globals.js"></script>
 	<script src="js/validatePass.js"></script>
   <script src="js/registerstudent.js"></script>
+  <script src="js/indexlogin.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE"></script>
 	</head>
 	<body onload="initComboBoxes()">
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_register.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header_register.php"); ?>
     </header>
     <h1>Registration</h1>
     <div class="form-section">
@@ -62,8 +64,7 @@
 	<a href="#"><button class="next-page" onclick="finish()">FINISH</button></a>
   </main>
     <footer class="footer footer--darkblue">
-    <?php require_once("/lib/footer.php"); ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/footer.php"); ?>
   </footer>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap"></script>
 </body>
 </html>

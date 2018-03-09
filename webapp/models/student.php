@@ -1,10 +1,10 @@
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/mysqlconnection.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/exceptions/recordnotfoundexception.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/city.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/state.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/university.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/profile.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/mysqlconnection.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/exceptions/recordnotfoundexception.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/city.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/profile.php');
 
 	class Student{
 		//attributes
@@ -25,59 +25,41 @@
 		private $status;
 		private $profile;
 		private $raiting;
-
 		//setters and getters
 		public function getId() { return $this->id; }
 		public function setId($value) { $this->id = $value; }
-
 		public function getName() { return $this->name; }
 		public function setName($value) { $this->name = $value; }
-
 		public function getSurName() { return $this->surnName; }
 		public function setSurName($value) { $this->surnName = $value; }
-
 		public function getSecondSurname() { return $this->secondSurname; }
 		public function setSecondSurname($value) { $this->secondSurname = $value; }
-
 		public function getEmail() { return $this->email; }
 		public function setEmail($value) { $this->email = $value; }
-
 		public function getPassword() { return $this->password; }
 		public function setPassword($value) { $this->password = $value; }
-
 		public function getCellPhone() { return $this->cellPhone; }
 		public function setCellPhone($value) { $this->cellPhone = $value; }
-
 		public function getUniversity() { return $this->university; }
 		public function setUniversity($value) { $this->university = $value; }
-
 		public function getControlNumber() { return $this->controlNumber; }
 		public function setControlNumber($value) { $this->controlNumber = $value; }
-
 		public function getLatitude() { return $this->latitude; }
 		public function setLatitude($value) { $this->latitude = $value; }
-
 		public function getLongitude() { return $this->longitude; }
 		public function setLongitude($value) { $this->longitude = $value; }
-
 		public function getPhoto() { return $this->photo; }
 		public function setphoto($value) { $this->photo = $value; }
-
 		public function getCity() { return $this->city; }
 		public function setCity($value) { $this->city = $value; }
-
 		public function getTurn() { return $this->turn; }
 		public function setTurn($value) { $this->turn = $value; }
-
 		public function getStatus() { return $this->status; }
 		public function setStatus($value) { $this->status = $value; }
-
 		public function getProfile() { return $this->profile; }
 		public function setProfile($value) { $this->profile = $value; }
-
 		public function getRaiting() { return $this->raiting; }
 		public function setRaiting($value) { $this->raiting = $value; }
-
 		//constructor
 		public function __construct() {
 			//empty object
@@ -118,7 +100,7 @@
 				//command
 				$command = $connection->prepare($query);
 				//bind parameters
-				$command->bind_param('i', $id);
+				$command->bind_param('d', $id);
 				//execute
 				$command->execute();
 				//bind results
@@ -134,9 +116,9 @@
 				$connection->close();
 				//pass values to the attributes
 				if ($found) {
-					$uState = new State($stUniId, $stUniName, $stUnSta);
-					$uCity = new City($ctUnId, $ctUnName, $ctUnStts, $uState);
-					$sState = new State($stateId, $stateName, $stateStatus);
+					//$uState = new State($stUniId, $stUniName, $stUnSta);
+					//$uCity = new City($ctUnId, $ctUnName, $ctUnStts, $uState);
+					//$sState = new State($stateId, $stateName, $stateStatus);
 					/*-------------------------*/
 					$this->id = $id;
 					$this->name = $name;
@@ -145,12 +127,12 @@
 					$this->email = $email;
 					$this->password = $password;
 					$this->cellPhone = $cellPhone;
-					$this->university = new University($universityId, $universityName, $universityLt, $universityLg, $universityStatus, $uCity);
+					$this->university = new University($universityId);
 					$this->controlNumber = $controlNumber;
 					$this->latitude = $latitude;
 					$this->longitude = $longitude;
 					$this->photo = $photo;
-					$this->city = new City($cityId, $cityName, $cityStatus, $sState);
+					$this->city = new City($cityId);
 					$this->turn = $turn;
 					$this->raiting = $raiting;
 					$this->status = $status;
@@ -180,7 +162,6 @@
 				$connection->close();
 				if ($found)
 				{
-
 					if ($pro == 'USE')
 					{
 						$this->email = $em;
@@ -195,9 +176,8 @@
 				else
 					throw new InvalidUserException($email);
 				}*/
-
 			//object with data from arguments
-			if (func_num_args() == 17) {
+			if (func_num_args() == 16) {
 				//get arguments
 				$arguments = func_get_args();
 				//pass arguments to attributes
@@ -206,30 +186,31 @@
 				$this->surnName = $arguments[2];
 				$this->secondSurname = $arguments[3];
 				$this->email = $arguments[4];
-				$this->password = $arguments[5];
-				$this->cellPhone = $arguments[6];
-				$this->university = $arguments[7];
-				$this->controlNumber = $arguments[8];
-				$this->latitude = $arguments[9];
-				$this->longitude = $arguments[10];
-				$this->photo = $arguments[11];
-				$this->city = $arguments[12];
-				$this->turn = $arguments[13];
-				$this->raiting = $arguments[14];
-				$this->status = $arguments[15];
-				$this->profile = $arguments[16];
+				$this->cellPhone = $arguments[5];
+				$this->university = $arguments[6];
+				$this->controlNumber = $arguments[7];
+				$this->latitude = $arguments[8];
+				$this->longitude = $arguments[9];
+				$this->photo = $arguments[10];
+				$this->city = $arguments[11];
+				$this->turn = $arguments[12];
+				$this->status = $arguments[13];
+				$this->profile = $arguments[14];
+				$this->raiting = $arguments[15];
 			}
 		}
-
 		//add
 		public function add()
     {
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
-			$query = 'Insert Into students (name, surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, profile, password, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 2)';
+			$query = 'Insert Into students (name, surname, secondSurname, email, cellPhone, university, controlNumber, latitude, longitude, photo, city, turn, profile, password, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 3);';
 			//command
 			$command = $connection->prepare($query);
+			$universityId = $this->university->getId();
+			$cityId = $this->city->getCode();
+			$profileId = $this->profile->getCode();
 			//bind parameters
 			$command->bind_param('ssssssssssiiss',
 				$this->name,
@@ -237,14 +218,14 @@
 				$this->secondSurname,
 				$this->email,
 				$this->cellPhone,
-				$this->university->getId(),
+				$universityId,
 				$this->controlNumber,
 				$this->latitude,
 				$this->longitude,
 				$this->photo,
-				$this->city->getCode(),
+				$cityId,
 				$this->turn,
-				$this->profile->getCode(),
+				$profileId,
 				$this->password
 				);
 			//execute
@@ -256,10 +237,9 @@
 			//return result
 			return $result;
 		}
-
 		//delete
 		public function delete()
-    {
+    	{
 			//get connection
 			$connection = MySqlConnection::getConnection();
 			//query
@@ -278,9 +258,30 @@
 			return $result;
 		}
 
+		public static function updateStatus($id)
+		{
+			//get connection
+			$connection = MySqlConnection::getConnection();
+			//query
+			$query = 'update students set status = 1 where id = ?';
+			//command
+			$command = $connection->prepare($query);
+			//bind parameters
+			$command->bind_param('i', $id);
+			//execute
+			$result = $command->execute();
+			//close command
+			mysqli_stmt_close($command);
+			//close connection
+			$connection->close();
+			//return result
+			return $result;
+		}
+
+
 		//represents the object in JSON format
 		public function toJson()
-    {
+    	{
 			return json_encode(array(
 				'id' => $this->id,
 				'name' => $this->name,
@@ -301,11 +302,9 @@
 				'profile' => json_decode($this->profile->toJson())
 			));
 		}
-
-
 		//get all
 		public static function getAll()
-    {
+    	{
 			//list
 			$list = array();
 			//get connection
@@ -344,7 +343,6 @@
 			//return list
 			return $list;
 		}
-
 		//get all in JSON format
 		public static function getAllJson()
     {

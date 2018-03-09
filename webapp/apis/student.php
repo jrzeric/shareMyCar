@@ -9,7 +9,7 @@
 	//read headers
 	$headers = getallheaders();*/
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/models/student.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
 
 	//GET (Read)
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -31,26 +31,21 @@
 				));
 			}
 		}
-		/*elseif (isset($headers['email']) && isset($headers['password'])) {
-			//authenticate user
-			try {
-				//create user
-				$user = new Student($headers['email'], $headers['password']);
-				//diplay
-				echo json_encode(array(
-					'status' => 0,
-					'user' => json_decode($user->toJson()),
-					'token' => Security::generateToken($headers['email'])
-				));
+		else {
+			if (isset($_GET['idStatus'])) 
+			{
+				if (Student::updateStatus($_GET['idStatus'])) 
+				{
+					echo json_encode(array(
+						'status' => 1,
+						'message' => 'You will be a driver'
+					));
+				}
+				else
+				{
+					echo Student::getAllJson();
+				}
 			}
-			catch (InvalidUserException $ex) {
-				echo json_encode(array(
-				'status' => 2,
-				'errorMessage' => $ex->get_message()
-			));
-			}
-		}*/	else {
-			echo Student::getAllJson();
 		}
 	}
 

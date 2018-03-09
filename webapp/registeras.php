@@ -12,7 +12,7 @@
   </head>
   <body onload="init()">
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header_admin.php");?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header_admin.php");?>
 		</header>
 
     <form class="form-center">

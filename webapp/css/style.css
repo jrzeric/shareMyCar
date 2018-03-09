@@ -55,7 +55,7 @@ background: #ccc;
 .presentation {
   position: relative;
   height: 380px;
-  background-image: url(../images/presentation.jpg);
+  background-image: url(/sharemycar/webapp/images/presentation.jpg);
   background-position: 50% -75px;
   background-attachment: fixed;
   text-align: center;

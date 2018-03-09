@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Passenger Spots </title>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Passenger Spots </title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/sharemycar/webapp/css/footer.css">
   </head>
   <body>
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/header_users.php'); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/header_users.php'); ?>
     </header>
     <main>
       <h1 class="title">Spots</h1>
@@ -23,12 +23,6 @@
 			<option>Friday</option>
 			<option>Saturday</option>
 		</select>
-		<div class="switch">
-		  <input type="radio" name="turn" value="M" id="TM" class="switch-input" checked>
-		  <label for="TM" class="switch-label">Morning</label>
-		  <input type="radio" name="turn" value="V" id="TV" class="switch-input">
-		  <label for="TV" class="switch-label">Evening</label>
-		</div>
 	  </div>
 		<div id="map" class="map">
 		</div>
@@ -46,11 +40,11 @@
 			  }
 			</script>
 			<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap">
+			src="https://maps.googleapis.com/maps/api/sharemycar/webapp/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap">
 			</script>
     </main>
     <footer class="footer footer--darkblue">
-      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/footer.php'); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer.php'); ?>
     </footer>
   </body>
 </html>

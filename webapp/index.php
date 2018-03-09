@@ -3,16 +3,17 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/title.php'); ?> Home</title>
-		<link href="/css/style.css" rel="stylesheet"></link>
-		<link href="/css/footer.css" rel="stylesheet"></link>
-		<link href="/css/popup.css" rel="stylesheet"></link>
+    <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Home</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<link href="css/footer.css" rel="stylesheet"></link>
+		<link href="css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
 	<script src="js/globals.js"></script>
+   <script src="js/indexlogin.js"></script>
 	</head>
-	<body>
+	<body onload="init()">
     <header>
-      <?php require_once($_SERVER['DOCUMENT_ROOT']."/lib/header.php"); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header.php"); ?>
     </header>
     <main>
       <div class="presentation">
@@ -23,12 +24,12 @@
           </p>
         </div>
         <div class="image-box">
-          <img class="image-box__university-logo" src="/images/utt.png" alt="">
-          <img class="image-box__university-logo" src="/images/itt.png" alt="">
-          <img class="image-box__university-logo" src="/images/uabc.png" alt="">
-          <img class="image-box__university-logo" src="/images/cetys.png" alt="">
-          <img class="image-box__university-logo" src="/images/xochi.png" alt="">
-          <img class="image-box__university-logo" src="/images/unidep.png" alt="">
+          <img class="image-box__university-logo" src="images/utt.png" alt="">
+          <img class="image-box__university-logo" src="images/itt.png" alt="">
+          <img class="image-box__university-logo" src="images/uabc.png" alt="">
+          <img class="image-box__university-logo" src="images/cetys.png" alt="">
+          <img class="image-box__university-logo" src="images/xochi.png" alt="">
+          <img class="image-box__university-logo" src="images/unidep.png" alt="">
         </div>
       </div>
       <div class="information">
@@ -56,7 +57,7 @@
       </div>
 		</main>
     <footer class="footer footer--darkblue">
-      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/lib/footer.php'); ?>
+      <?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer.php'); ?>
     </footer>
   </body>
 </html>
