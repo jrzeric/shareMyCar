@@ -65,7 +65,7 @@ function addMarker(location)
 
     var x = new XMLHttpRequest();
     // Prepare request
-    x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ', ' + lng +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+    x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?latlng=' + lat + ', ' + lng +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
     // Send request
     x.send();
     // Handle readyState change event
@@ -126,7 +126,7 @@ function centerState()
   // Create request
   var x = new XMLHttpRequest();
   // Prepare request
-  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + selectedStateText + '&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?address=' + selectedStateText + '&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
   // Send request
   x.send();
   // Handle readyState change event
@@ -158,7 +158,7 @@ function centerCity()
   // Create request
   var x = new XMLHttpRequest();
   // Prepare request
-  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + state + ' ' + selectedCityText +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?address=' + state + ' ' + selectedCityText +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
   // Send request
   x.send();
   // Handle readyState change event

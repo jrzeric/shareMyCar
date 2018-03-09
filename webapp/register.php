@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Register</title>
 		<link href="css/register.css" rel="stylesheet"></link>
-    <link href="/css/footer.css" rel="stylesheet"></link>
-		<link href="/css/popup.css" rel="stylesheet"></link>
+    <link href="/sharemycar/webapp/css/footer.css" rel="stylesheet"></link>
+		<link href="/sharemycar/webapp/css/popup.css" rel="stylesheet"></link>
     <script src="js/popup.js"></script>
     <script src="js/maps.js" ></script>
   	<script src="js/globals.js"></script>
@@ -64,6 +64,6 @@
     <footer class="footer footer--darkblue">
     <?php require_once("/sharemycar/webapp/lib/footer.php"); ?>
   </footer>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/sharemycar/webapp/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap"></script>
 </body>
 </html>

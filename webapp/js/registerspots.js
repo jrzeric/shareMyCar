@@ -65,7 +65,7 @@ function addHome()
   var marker = new google.maps.Marker(
   {
       position: location,
-       icon: '/images/iconhome.png',
+       icon: '/sharemycar/webapp/images/iconhome.png',
       map: map
    });
 
@@ -78,7 +78,7 @@ function addUniversity()
   var marker = new google.maps.Marker(
   {
     position: location,
-     icon: '/images/iconschool.png',
+     icon: '/sharemycar/webapp/images/iconschool.png',
     map: map
   });
 }
@@ -94,7 +94,7 @@ function addMarker(location)
     var marker = new google.maps.Marker(
     {
       position: location,
-      icon: '/images/iconspot.png',
+      icon: '/sharemycar/webapp/images/iconspot.png',
       map: map
     });
     var lat = location.lat();
@@ -306,7 +306,7 @@ function addMarkerWithInfo(lat, lng, price, time, number)
   var marker = new google.maps.Marker(
   {
     position: location,
-    icon: '/images/iconspot.png',
+    icon: '/sharemycar/webapp/images/iconspot.png',
     map: map
   });
   console.log(contentString);

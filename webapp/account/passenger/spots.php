@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Passenger Spots </title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/sharemycar/webapp/css/footer.css">
   </head>
   <body>
     <header>
@@ -46,7 +46,7 @@
 			  }
 			</script>
 			<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap">
+			src="https://maps.googleapis.com/maps/api/sharemycar/webapp/js?key=AIzaSyB4PiTd6ZW7-qZIvMXGbZ0IBtAg82ylKgE&callback=initMap">
 			</script>
     </main>
     <footer class="footer footer--darkblue">

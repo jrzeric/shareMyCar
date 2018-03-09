@@ -4,14 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Catalog</title>
     <!-- style-->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../sharemycar/webapp/css/style.css">
     <link rel="stylesheet" href="css/catalog.css">
-	<link rel="stylesheet" href="../../css/footer.css">
-	<link href="../css/admin/header.css" rel="stylesheet"></link>
-	<link href="/css/catalog.css" rel="stylesheet"></link>
-  <link href="/css/footer.css" rel="stylesheet"></link>
+	<link rel="stylesheet" href="../../sharemycar/webapp/css/footer.css">
+	<link href="../sharemycar/webapp/css/admin/header.css" rel="stylesheet"></link>
+	<link href="/sharemycar/webapp/css/catalog.css" rel="stylesheet"></link>
+  <link href="/sharemycar/webapp/css/footer.css" rel="stylesheet"></link>
   <!--scripts-->
-  <script src="/js/index.js"></script>
+  <script src="/sharemycar/webapp/js/index.js"></script>
   <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?></title>
   </head>
   <body onLoad="init()">
@@ -48,96 +48,96 @@
             <td>FORD GT</td>
             <td>Ford</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Civic</td>
             <td>Honda</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Sentra</td>
             <td>Nissan</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>1</td>
             <td>FORD GT</td>
             <td>Ford</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Civic</td>
             <td>Honda</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Sentra</td>
             <td>Nissan</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>1</td>
             <td>FORD GT</td>
             <td>Ford</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Civic</td>
             <td>Honda</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Sentra</td>
             <td>Nissan</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>1</td>
             <td>FORD GT</td>
             <td>Ford</td>
             <td>Active</td>
-            <td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Civic</td>
             <td>Honda</td>
             <td>Active</td>
-			<td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+			<td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Sentra</td>
             <td>Nissan</td>
             <td>Active</td>
-			<td class="cellIcon"><img src="/images/icono_edit.png"></td>
-            <td class="cellIcon"><img src="/images/icono_delete.png"></td>
+			<td class="cellIcon"><img src="/sharemycar/webapp/images/icono_edit.png"></td>
+            <td class="cellIcon"><img src="/sharemycar/webapp/images/icono_delete.png"></td>
           </tr>
         </table>
       </div>

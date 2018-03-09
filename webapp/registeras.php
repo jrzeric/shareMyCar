@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Estilos-->
     <link href="css/register.css" rel="stylesheet"></link>
-    <link href="/css/footer.css" rel="stylesheet"></link>
-    <link href="/css/popup.css" rel="stylesheet"></link>
-    <script src="js/selectrole.js"></script> 
+    <link href="/sharemycar/webapp/css/footer.css" rel="stylesheet"></link>
+    <link href="/sharemycar/webapp/css/popup.css" rel="stylesheet"></link>
+    <script src="js/selectrole.js"></script>
     <title> Select your role </title>
   </head>
   <body onload="init()">
@@ -21,17 +21,17 @@
       <li>
         <input type="radio" id="f-option" name="selector" onclick="showOptions(this.value)" value="Passenger">
         <label for="f-option">Passenger</label>
-        
+
         <div class="check"></div>
       </li>
-      
+
       <li>
         <input type="radio" id="s-option" name="selector" onclick="showOptions(this.value)" value="Driver">
         <label for="s-option">Driver</label>
-        
+
         <div class="check"><div class="inside"></div></div>
       </li>
-    </ul>  
+    </ul>
     </form>
 
     <div id="driver" class="form-center" style="visibility: hidden;">

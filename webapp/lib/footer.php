@@ -14,7 +14,7 @@
   </div>
   <div class = "footer footer__block">
     <label class="footer footer__block__label">Find us</label>
-    <img class="footer footer__block_img" src = "/images/icono_facebook.png">
-    <img class="footer footer__block_img" src = "/images/icono_twitter.png">
+    <img class="footer footer__block_img" src = "/sharemycar/webapp/images/icono_facebook.png">
+    <img class="footer footer__block_img" src = "/sharemycar/webapp/images/icono_twitter.png">
   </div>
     <p class = "footer footer__copiright">©2018 | Todos los derechos reservados</p>

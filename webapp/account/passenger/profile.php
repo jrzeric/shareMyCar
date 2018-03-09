@@ -3,11 +3,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Passenger Spots </title>
-		<link rel="stylesheet" href="/css/header_users.css">
-		<link rel="stylesheet" href="/css/nav_users.css">
-		<link rel="stylesheet" href="/css/profile.css">
-		<link rel="stylesheet" href="/css/footer.css">
-    <script src="/js/menu.js"></script>
+		<link rel="stylesheet" href="/sharemycar/webapp/css/header_users.css">
+		<link rel="stylesheet" href="/sharemycar/webapp/css/nav_users.css">
+		<link rel="stylesheet" href="/sharemycar/webapp/css/profile.css">
+		<link rel="stylesheet" href="/sharemycar/webapp/css/footer.css">
+    <script src="/sharemycar/webapp/js/menu.js"></script>
 	</head>
 	<body>
 		<header>
@@ -22,7 +22,7 @@
         <hr class="title__hr">
         <div class="section__two-columns">
           <h3 class="section__title">Personal Information</h3>
-          <img class="section__image" src="/images/eric.jpg">
+          <img class="section__image" src="/sharemycar/webapp/images/eric.jpg">
           <div class="section__label-input section__label-input--sma">
             <label class="section__label" for="name">Name</label><br>
             <input id="name" class="form__input" type="text" name="name" value="Eric" readonly>

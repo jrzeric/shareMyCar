@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Spots</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/sharemycar/webapp/css/footer.css">
     <!-- Register spots (thunder011) -->
-    <script src="/js/registerspots.js"></script>
-  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
+    <script src="/sharemycar/webapp/js/registerspots.js"></script>
+  	<script src="https://maps.googleapis.com/maps/api/sharemycar/webapp/js?key=AIzaSyBpSKM1HkrXvYq98gLOY2s9FHMUYLfvfX0" type="text/javascript"></script>
   </head>
   <body onload="init()">
     <header>

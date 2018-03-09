@@ -7,13 +7,13 @@
           <a href="#close" class="close"> X </a>
           <div class="divint__popup1">
             <div class="divimg">
-              <img src="/images/noimg.png" class="noimg">
+              <img src="/sharemycar/webapp/images/noimg.png" class="noimg">
             </div>
               <h1 class="div__popuph1">Dates</h1>
               <br>
               <h3 class="div__popuphd">Full Name: </h3>
               <h3 class="div__popuphd">Score: </h3>
-              <img src="/images/calification.png" class="score">
+              <img src="/sharemycar/webapp/images/calification.png" class="score">
               <h1 class="div__popuphc">Comments</h1>
           </div>
           <div class="divint2__popup">
