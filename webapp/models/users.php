@@ -58,14 +58,15 @@
 		public function toJsonPassenger() 
 		{ 
 			return json_encode(array
-				('user' => json_decode($this->user->toJson())));
+				('user' => json_decode($this->user->toJsonPassenger())));
 		}
 		public function toJsonDriver() 
 		{ 
 			return json_encode(array
-				('user' => json_decode($this->user->toJson()),
+				('user' => json_decode($this->user->toJsonPassenger()),
 					'car' => json_decode($this->car->toJson())));
 		}
+		
 		public function studentHasCar($id)
 		{
 			$connection = MySqlConnection::getConnection();
@@ -84,7 +85,7 @@
 			if ($found) 
 			{
 				$model = new Model($idModel);
-				$this->car = new Car($carID, $this->user, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
+				$this->car = new Car($carID, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
 				$this->driver = true;
 			}
 			else {

@@ -18,11 +18,24 @@
 			try{
 				//object
 				$s = new Student($_GET['id']);
-				//display
-				echo json_encode(array(
-					'status' => 0,
-					'student' => json_decode($s->toJson())
-				));
+				$s->studentHasCar($_GET['id']);
+				//
+				if ($s->getDriver()) 
+				{
+					echo json_encode(array(
+						'status' => 0,
+						'student' => json_decode($s->toJsonDriver())
+					));
+				}
+				//
+				else
+				{
+					echo json_encode(array(
+						'status' => 0,
+						'student' => json_decode($s->toJsonPassenger())
+					));
+				}
+
 			}
 			catch (RecordNotFoundException $ex) {
 				echo json_encode(array(

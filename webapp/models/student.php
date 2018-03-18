@@ -5,6 +5,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/state.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/university.php');
 	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/profile.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
 
 	class Student{
 		//attributes
@@ -25,6 +26,10 @@
 		private $status;
 		private $profile;
 		private $raiting;
+		private $car;
+		private $driver;
+
+
 		//setters and getters
 		public function getId() { return $this->id; }
 		public function setId($value) { $this->id = $value; }
@@ -60,6 +65,12 @@
 		public function setProfile($value) { $this->profile = $value; }
 		public function getRaiting() { return $this->raiting; }
 		public function setRaiting($value) { $this->raiting = $value; }
+
+		public function setCar($value) { $this->car = $value; }
+		public function getCar() { return $this->car; }
+
+		public function getDriver() { return $this->driver; }
+
 		//constructor
 		public function __construct() {
 			//empty object
@@ -93,7 +104,7 @@
 					u.name universityName, c.id cityId, c.name cityName, c.status cityStatus, st.id stateId, st.name stateName,
 					st.status stateStatus, u.latitude universityLt, u.longitude universityLg, u.status universityStatus,
 					s.controlNumber, s.latitude, s.longitude, s.photo, c.id ctUnId, c.name ctUnName, c.status ctUnStts, st.id stUniId,
-					st.name stUniName, st.status stUnSta, s.turn, s.raiting, s.status, p.id idProfile, p.name profileName
+					st.name stUniName, st.status stUnSta, s.turn, s.raiting, s.status, p.id idProfile, p.name profileName, u.city, c.state
 					FROM students s JOIN universities_ctg u ON s.university = u.id JOIN cities_ctg c ON s.city = c.id
 					JOIN states_ctg st ON c.state = st.id JOIN profiles_ctg p ON s.profile = p.id JOIN cities_ctg ci ON u.city = ci.id
 					WHERE s.id = ?';
@@ -107,7 +118,7 @@
 				$command->bind_result($id, $name, $surnName, $secondSurName, $email, $password, $cellPhone, $universityId, $universityName,
 									$cityId, $cityName, $cityStatus, $stateId, $stateName, $stateStatus, $universityLt, $universityLg,
 									$universityStatus, $controlNumber, $latitude, $longitude, $photo, $ctUnId, $ctUnName, $ctUnStts,
-									$stUniId, $stUniName, $stUnSta, $turn, $raiting, $status, $idProfile, $profileName);
+									$stUniId, $stUniName, $stUnSta, $turn, $raiting, $status, $idProfile, $profileName, $universityCity, $stateCity);
 				//fetch data
 				$found = $command->fetch();
 				//close command
@@ -117,7 +128,7 @@
 				//pass values to the attributes
 				if ($found) {
 					//$uState = new State($stUniId, $stUniName, $stUnSta);
-					//$uCity = new City($ctUnId, $ctUnName, $ctUnStts, $uState);
+					$uCity = new City($universityCity);
 					//$sState = new State($stateId, $stateName, $stateStatus);
 					/*-------------------------*/
 					$this->id = $id;
@@ -127,12 +138,12 @@
 					$this->email = $email;
 					$this->password = $password;
 					$this->cellPhone = $cellPhone;
-					$this->university = new University($universityId);
+					$this->university = new University($universityId, $universityName, $universityLt, $universityLg, $universityStatus, $uCity);
 					$this->controlNumber = $controlNumber;
 					$this->latitude = $latitude;
 					$this->longitude = $longitude;
 					$this->photo = $photo;
-					$this->city = new City($cityId);
+					$this->city = new City($cityId, $stateCity, $cityName, $cityStatus);
 					$this->turn = $turn;
 					$this->raiting = $raiting;
 					$this->status = $status;
@@ -280,7 +291,7 @@
 
 
 		//represents the object in JSON format
-		public function toJson()
+		public function toJsonPassenger()
     	{
 			return json_encode(array(
 				'id' => $this->id,
@@ -288,7 +299,6 @@
 				'surname' => $this->surnName,
 				'secondSurname' => $this->secondSurname,
 				'email' => $this->email,
-				'password' => $this->password,
 				'cellPhone' => $this->cellPhone,
 				'controlNumber' => $this->controlNumber,
 				'latitude' => $this->latitude,
@@ -302,6 +312,62 @@
 				'profile' => json_decode($this->profile->toJson())
 			));
 		}
+
+
+		public function toJsonDriver()
+    	{
+			return json_encode(array(
+				'id' => $this->id,
+				'name' => $this->name,
+				'surname' => $this->surnName,
+				'secondSurname' => $this->secondSurname,
+				'email' => $this->email,
+				'cellPhone' => $this->cellPhone,
+				'controlNumber' => $this->controlNumber,
+				'latitude' => $this->latitude,
+				'longitude' => $this->longitude,
+				'photo' => $this->photo,
+				'turn' => $this->turn,
+				'raiting' => $this->raiting,
+				'status' => $this->status,
+				'university' => json_decode($this->university->toJson()),
+				'city' => json_decode($this->city->toJson()),
+				'profile' => json_decode($this->profile->toJson()),
+				'car' => json_decode($this->car->toJson())
+			));
+		}
+
+		public function studentHasCar($id)
+		{
+			$connection = MySqlConnection::getConnection();
+			$query = 'select c.id, c.model, c.licencePlate, c.driverLicence, c.color, c.insurance, c.spaceCar, c.owner, c.status as carStatus, s.id
+				from students as s
+				inner join cars as c on s.id = c.driver
+				inner join models_ctg m on m.id = c.model
+				where c.driver = ?';
+			$command = $connection->prepare($query);
+			$command->bind_param('i', $id);
+			$command->execute();
+			$command->bind_result($carID, $idModel, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus, $studentID);
+			$found = $command->fetch();
+			mysqli_stmt_close($command);
+			$connection->close();
+			if ($found) 
+			{
+				//$driver = new Student($id);
+				$model = new Model($idModel);
+				$this->car = new Car($carID, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
+				$this->driver = true;
+			}
+			else {
+				$this->driver = false;
+			}
+		}
+
+
+
+
+
 		//get all
 		public static function getAll()
     	{
@@ -345,7 +411,7 @@
 		}
 		//get all in JSON format
 		public static function getAllJson()
-    {
+    	{
 			//list
 			$list = array();
 			//get all
