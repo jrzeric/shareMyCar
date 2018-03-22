@@ -1,6 +1,6 @@
 {
 	"server" : "localhost",
-	"database" : "sharemycar3",
+	"database" : "sharemycar",
 	"user" : "root",
-	"password" : "toor"
+	"password" : ""
 }

@@ -21,7 +21,7 @@ function login()
 {
 	console.log('Getting token...');
 	var x = new XMLHttpRequest();
-	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/login.php', true);
+	x.open('GET', 'http://localhost/sharemycar/webapp/apis/login.php', true);
 	var email = document.getElementById('textMail').value;
 	var pass = document.getElementById('textPassword').value;
 	x.setRequestHeader('email', email);
@@ -71,7 +71,7 @@ function login()
 						}
 						else
 						{
-							//window.location = 'registeras.php';
+							window.location = 'registeras.php';
 						}
 					}
 

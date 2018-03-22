@@ -124,6 +124,9 @@ CREATE TABLE IF NOT EXISTS students
 	FOREIGN KEY (city) REFERENCES cities_ctg(id)
 )engine = InnoDB  character set utf8 collate utf8_spanish_ci;
 
+insert into students(name,surname,secondSurname,email,password,cellPhone,university,controlNumber,
+						latitude,longitude,photo,city,turn,profile) 
+	   values('tilo','papi','wolf','tiloanne96@gmail.com','123456','6647885331','UTT','0316113581','32.510902', '-116.922555',default,1,0,'USE');
 /*brand documentation
 
 	@param id:			identifier of the table brands_ctg

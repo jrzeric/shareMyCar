@@ -65,7 +65,7 @@ function addMarker(location)
 
     var x = new XMLHttpRequest();
     // Prepare request
-    x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?latlng=' + lat + ', ' + lng +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+    x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ', ' + lng +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
     // Send request
     x.send();
     // Handle readyState change event
@@ -126,7 +126,7 @@ function centerState()
   // Create request
   var x = new XMLHttpRequest();
   // Prepare request
-  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?address=' + selectedStateText + '&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + selectedStateText + '&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
   // Send request
   x.send();
   // Handle readyState change event
@@ -158,7 +158,7 @@ function centerCity()
   // Create request
   var x = new XMLHttpRequest();
   // Prepare request
-  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/sharemycar/webapp/json?address=' + state + ' ' + selectedCityText +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
+  x.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + state + ' ' + selectedCityText +'&key=AIzaSyDqZh2WxuTHlURSXiJBNi_5MhrS8M4iVJM', true);
   // Send request
   x.send();
   // Handle readyState change event
@@ -191,7 +191,8 @@ function finish()
   var txtControlNumber = document.getElementById('controlnumber').value;
   var comboStateSchool = document.getElementById('stateSchool').value;
   //var comboAmpm = document.getElementById('ampm').value;
-  if (txtPassword === txtRePassword) {
+  if (txtPassword === txtRePassword)
+  {
     var photo = "../../images/default.png";
     var profile = "USE";
     var turn = 0;
@@ -203,7 +204,7 @@ function finish()
       //create request
       var x = new XMLHttpRequest();
       //prepare request
-      x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/student.php', true);
+      x.open('POST', 'http://localhost/sharemycar/webapp/apis/student.php', true);
       //form data
       var fd = new FormData();
 
@@ -237,8 +238,9 @@ function finish()
           console.log(x.responseText);
         }//if
         else
+        {
           alert(JSONdata.errorMessage);
-
+        }
       }//x.onreadystatechange
       /**********************End to Register Student xD************************/
     }
