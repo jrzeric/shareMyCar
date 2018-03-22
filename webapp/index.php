@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/title.php'); ?> Home</title>
-		<link href="/sharemycar/webapp/css/style.css" rel="stylesheet"></link>
-		<link href="/sharemycar/webapp/css/footer.css" rel="stylesheet"></link>
-		<link href="/sharemycar/webapp/css/popup.css" rel="stylesheet"></link>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<link href="css/footer.css" rel="stylesheet"></link>
+		<link href="css/popup.css" rel="stylesheet"></link>
    <script src="js/popup.js"></script>
 	<script src="js/globals.js"></script>
-  <script src="js/indexlogin.js"></script>
+   <script src="js/indexlogin.js"></script>
 	</head>
-	<body>
+	<body onload="init()">
     <header>
       <?php require_once($_SERVER['DOCUMENT_ROOT']."/sharemycar/webapp/lib/header.php"); ?>
     </header>
@@ -24,12 +24,12 @@
           </p>
         </div>
         <div class="image-box">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/utt.png" alt="">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/itt.png" alt="">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/uabc.png" alt="">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/cetys.png" alt="">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/xochi.png" alt="">
-          <img class="image-box__university-logo" src="/sharemycar/webapp/images/unidep.png" alt="">
+          <img class="image-box__university-logo" src="images/utt.png" alt="">
+          <img class="image-box__university-logo" src="images/itt.png" alt="">
+          <img class="image-box__university-logo" src="images/uabc.png" alt="">
+          <img class="image-box__university-logo" src="images/cetys.png" alt="">
+          <img class="image-box__university-logo" src="images/xochi.png" alt="">
+          <img class="image-box__university-logo" src="images/unidep.png" alt="">
         </div>
       </div>
       <div class="information">

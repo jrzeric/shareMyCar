@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS students
 	city smallint not null,
     turn bit default 0,
 	raiting smallint default 5, /* 0 for matutino 1 for vespertino*/
-	status bit default 1 not null,
+	status smallint default 1 not null,
     profile char(3) not null,
 	PRIMARY KEY (id),
 	FOREIGN KEY (profile) REFERENCES profiles_ctg(id),

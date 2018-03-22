@@ -4,7 +4,7 @@ function init()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/brand.php', true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/brand.php', true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -72,7 +72,7 @@ function fillModels()
 	var x = new XMLHttpRequest();
 	var idBrand = document.getElementById('brands').value;
 	//prepare request
-	x.open('GET', 'http://localhost/sharemycar/webapp/apis/model.php?idBrand=' + idBrand, true);
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/model.php?idBrand=' + idBrand, true);
 	//send request
 	x.send();
 	//handle readyState change event
@@ -107,7 +107,6 @@ function fillModels()
 			}//for
 		}
 	}
-
 }
 
 
@@ -117,11 +116,12 @@ function registerCar()
 	//create request
 	var x = new XMLHttpRequest();
 	//prepare request
-	x.open('POST', 'http://localhost/sharemycar/webapp/apis/car.php', true);
+	x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/car.php', true);
 	//form data
 	var fd = new FormData();
 	//values
-	fd.append('driver', 17);
+	console.log(sessionStorage.userId);
+	fd.append('driver', sessionStorage.userId);
 	fd.append('model', document.getElementById('models').value);
 	fd.append('licensePlate', document.getElementById('licenseplate').value);
 	fd.append('driverLicense', document.getElementById('driverlicense').value);
@@ -130,9 +130,6 @@ function registerCar()
 	fd.append('spaceCar', document.getElementById('space').value);
 	fd.append('owner', document.getElementById('owner').value);
 
-	console.log(document.getElementById('models').value);
-
-	console.log(fd);
 	//send
 	x.send(fd);
 	console.log(fd);
@@ -147,7 +144,8 @@ function registerCar()
 			if(JSONdata.status == 0)
 			{
 				alert(JSONdata.message);
-				alert("You'll be a driver");
+				window.location = 'account/driver/spots.php';
+				passenger();
 			}
 			else
 			{
@@ -157,12 +155,38 @@ function registerCar()
 			console.log(x.responseText);
 		}
 	}
-
 }
 
 
 function passenger()
 {
+	console.log('POSTING car...');
+	//create request
+	var x = new XMLHttpRequest();
+	//prepare request
+	x.open('GET', 'http://localhost:8080/sharemycar/webapp/apis/student.php?idStatus='+sessionStorage.userId, true);
+	console.log(sessionStorage.userId);
+	//send
+	x.send();
+	//handle readyState change event
+	x.onreadystatechange = function() {
+		// check status
+		// status : 200=OK, 404=Page not found, 500=server denied access
+		// readyState : 4=Back with data
+		if (x.status == 200 && x.readyState == 4)
+		{
+			var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
+			if(JSONdata.status == 0)
+			{
+				alert(JSONdata.message);
+			}
+			else
+			{
+				alert(JSONdata.errorMessage);
+			}
+			//show buildings
+			console.log(x.responseText);
+		}
+	}
 	alert("You'll be a passenger");
 }
-

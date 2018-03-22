@@ -16,7 +16,7 @@ class Car
   private $spaceCar;
   private $owner;
   private $status;
-  
+
   public function getId(){ return $this->id; }
   public function setId($value){ $this->id = $value; }
 
@@ -90,18 +90,18 @@ class Car
       }
     }
 
-    if (func_num_args()==10) {
+    if (func_num_args()==9) {
       $arguments = func_get_args();
       $this->id = $arguments[0];
-      $this->driver = $arguments[1];  // this variable is an object
-      $this->model = $arguments[2];
-      $this->licensePlate = $arguments[3];
-      $this->driverLicense = $arguments[4];
-      $this->color = $arguments[5];
-      $this->insurance = $arguments[6];
-      $this->spaceCar = $arguments[7];
-      $this->owner = $arguments[8];
-      $this->status = $arguments[9];
+      //$this->driver = $arguments[1];  // this variable is an object
+      $this->model = $arguments[1];
+      $this->licensePlate = $arguments[2];
+      $this->driverLicense = $arguments[3];
+      $this->color = $arguments[4];
+      $this->insurance = $arguments[5];
+      $this->spaceCar = $arguments[6];
+      $this->owner = $arguments[7];
+      $this->status = $arguments[8];
     }
   }
   /**
@@ -117,8 +117,10 @@ class Car
     values(?,?,?,?,?,?,?,?)";
 
     $command = $connection->prepare($query);
-    $command->bind_param('iissssis', $this->driver->getId(),
-    $this->model->getId(), $this->licensePlate, $this->driverLicense,
+    $driverId = $this->driver->getId();
+    $modelId = $this->model->getId();
+    $command->bind_param('iissssis', $driverId,
+    $modelId, $this->licensePlate, $this->driverLicense,
     $this->color, $this->insurance, $this->spaceCar, $this->owner);
     $result = $command->execute();
     mysqli_stmt_close($command);
@@ -172,7 +174,6 @@ class Car
   {
     return json_encode(array(
       'id' => $this->id,
-      'driver' => json_decode($this->driver->toJson()),  // this variable is an object
       'model' => json_decode($this->model->toJson()),
       'licensePlate' => $this->licensePlate,
       'driverLicense' => $this->driverLicense,

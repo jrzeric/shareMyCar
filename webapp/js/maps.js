@@ -51,7 +51,7 @@ function initMap()
 // Adds a marker to the map and push to the array.
 function addMarker(location)
 {
-  if (count == 0) 
+  if (count == 0)
   {
     var marker = new google.maps.Marker(
     {
@@ -118,7 +118,7 @@ function toggleBounce() {
 
 
 
-function centerState() 
+function centerState()
 {
   var comboState = document.getElementById("stateSchool");
   var selectedStateText = comboState.options[comboState.selectedIndex].text;
@@ -149,7 +149,7 @@ function centerState()
 }
 
 
-function centerCity() 
+function centerCity()
 {
   var comboCity = document.getElementById("citySchool");
   var selectedCityText = comboCity.options[comboCity.selectedIndex].text;
@@ -192,52 +192,60 @@ function finish()
   var comboStateSchool = document.getElementById('stateSchool').value;
   //var comboAmpm = document.getElementById('ampm').value;
   if (txtPassword === txtRePassword) {
-    var photo = "images/default.png";
+    var photo = "../../images/default.png";
     var profile = "USE";
     var turn = 0;
-    /*********************Begins to REGISTER Student*********************************/
-    //create request
-    var x = new XMLHttpRequest();
-    //prepare request
-    x.open('POST', 'http://localhost/sharemycar/webapp/apis/student.php', true);
-    //form data
-    var fd = new FormData();
-    fd.append('name', document.getElementById('firtname').value);
-    fd.append('surname', document.getElementById('lastname').value);
-    fd.append('secondSurname', document.getElementById('surname').value);
-    fd.append('email', document.getElementById('email').value);
-    fd.append('cellPhone', document.getElementById('cellphone').value);
-    fd.append('university', document.getElementById('university').value);
-    fd.append('controlNumber', document.getElementById('controlnumber').value);
-    fd.append('latitude', lat);
-    fd.append('longitude', lng);
-    fd.append('photo', photo);
-    fd.append('city', city);
-    fd.append('turn', turn);
-    fd.append('profile', profile);
-    fd.append('password', txtPassword);
-    x.send(fd);
-    console.log(fd);
-    x.onreadystatechange = function() 
+    console.log(lat);
+    console.log(lng);
+    if (lat !== 'undefined' || lng !== 'undefined')
     {
-      if (x.status == 200 && x.readyState == 4) 
+      /*********************Begins to REGISTER Student*********************************/
+      //create request
+      var x = new XMLHttpRequest();
+      //prepare request
+      x.open('POST', 'http://localhost:8080/sharemycar/webapp/apis/student.php', true);
+      //form data
+      var fd = new FormData();
+
+      fd.append('name', document.getElementById('firtname').value);
+      fd.append('surname', document.getElementById('lastname').value);
+      fd.append('secondSurname', document.getElementById('surname').value);
+      fd.append('email', document.getElementById('email').value);
+      fd.append('cellPhone', document.getElementById('cellphone').value);
+      fd.append('university', document.getElementById('university').value);
+      fd.append('controlNumber', document.getElementById('controlnumber').value);
+      fd.append('latitude', lat);
+      fd.append('longitude', lng);
+      fd.append('photo', photo);
+      fd.append('city', city);
+      fd.append('turn', turn);
+      fd.append('profile', profile);
+      fd.append('password', txtPassword);
+      x.send(fd);
+      console.log(fd);
+      x.onreadystatechange = function()
       {
-        var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
-        
-        //var message = document.getElementById(spotMessage);
-        console.log(JSONdata.message);
-        alert(JSONdata.message);
-        //alert(JSONdata.errorMessage);
-        //show buildings
-        console.log(x.responseText);
-      }//if
-      else
-        alert(JSONdata.errorMessage);
+        if (x.status == 200 && x.readyState == 4)
+        {
+          var JSONdata = JSON.parse(x.responseText); console.log(JSONdata);
 
-    }//x.onreadystatechange
-    /**********************End to Register Student xD************************/
+          //var message = document.getElementById(spotMessage);
+          console.log(JSONdata.message);
+          alert(JSONdata.message);
+          //alert(JSONdata.errorMessage);
+          //show buildings
+          console.log(x.responseText);
+        }//if
+        else
+          alert(JSONdata.errorMessage);
 
-
+      }//x.onreadystatechange
+      /**********************End to Register Student xD************************/
+    }
+    else
+    {
+      alert("Please choose where you live");
+    }
   }
   else {
     alert("PASSWORD ISN'T THE SAME");

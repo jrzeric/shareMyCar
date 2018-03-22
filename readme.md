@@ -5,7 +5,7 @@ Proyecto universitario de 4to y 5to cuatrimestre de la UTT, tipo Carpool, que co
 
 ## Instalación
 Clonar el repositorio en la raíz del servidor local. Configurar un Virtual Host y llamarlo *localhost/sharemycar/webapp* que apunte a la carpeta raíz del proyecto clonado del repositorio.
-![Ruta de instalación](https://github.com/JCKrack/shareMyCar/tree/master/images/instalation_path.png)
+![Ruta de instalación](https://github.com/JCKrack/shareMyCar/tree/master/sharemycar/webapp/images/instalation_path.png)
 
 ## Créditos
 * [Eric Juárez](https://github.com/JCKrack)

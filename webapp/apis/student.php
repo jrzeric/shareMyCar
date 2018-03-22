@@ -18,11 +18,24 @@
 			try{
 				//object
 				$s = new Student($_GET['id']);
-				//display
-				echo json_encode(array(
-					'status' => 0,
-					'student' => json_decode($s->toJson())
-				));
+				$s->studentHasCar($_GET['id']);
+				//
+				if ($s->getDriver()) 
+				{
+					echo json_encode(array(
+						'status' => 0,
+						'student' => json_decode($s->toJsonDriver())
+					));
+				}
+				//
+				else
+				{
+					echo json_encode(array(
+						'status' => 0,
+						'student' => json_decode($s->toJsonPassenger())
+					));
+				}
+
 			}
 			catch (RecordNotFoundException $ex) {
 				echo json_encode(array(
@@ -31,26 +44,21 @@
 				));
 			}
 		}
-		/*elseif (isset($headers['email']) && isset($headers['password'])) {
-			//authenticate user
-			try {
-				//create user
-				$user = new Student($headers['email'], $headers['password']);
-				//diplay
-				echo json_encode(array(
-					'status' => 0,
-					'user' => json_decode($user->toJson()),
-					'token' => Security::generateToken($headers['email'])
-				));
+		else {
+			if (isset($_GET['idStatus'])) 
+			{
+				if (Student::updateStatus($_GET['idStatus'])) 
+				{
+					echo json_encode(array(
+						'status' => 1,
+						'message' => 'You will be a driver'
+					));
+				}
+				else
+				{
+					echo Student::getAllJson();
+				}
 			}
-			catch (InvalidUserException $ex) {
-				echo json_encode(array(
-				'status' => 2,
-				'errorMessage' => $ex->get_message()
-			));
-			}
-		}*/	else {
-			echo Student::getAllJson();
 		}
 	}
 

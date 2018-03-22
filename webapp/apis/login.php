@@ -1,14 +1,11 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
-
   //allow headers
   header('Access-Control-Allow-Headers: email, password');
   //read headers
   $headers = getallheaders();
-
 require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/users.php');
-
 //GET (Read)
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   //parameters
@@ -18,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $user = new Users($headers['email'], $headers['password']);
       $user->studentHasCar($headers['email']);
       //display
-      if ($user->getDriver()) 
+      if ($user->getDriver())
       {
         echo json_encode(array(
           'status' => 1,
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           'user' => json_decode($user->toJsonPassenger())
           ));
       }
-
     }
     catch(RecordNotFoundException $ex) {
       echo json_encode(array(
@@ -42,5 +38,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
   }
 }
-
 ?>

@@ -1,12 +1,63 @@
 .nav {
-  position: relative;
-  background-color: red;
-  min-height: -webkit-calc(100vh - 251px);
-  min-height: -moz-calc(100vh - 251px);
-  min-height: calc(100vh - 251px);
-  float: left;
+	text-align: center;
+	position: relative;
+  	min-height: -webkit-calc(100vh - 251px);
+  	min-height: -moz-calc(100vh - 251px);
+  	min-height: calc(100vh - 251px);
+  	float: left;
+  	background: #00ff00;
+  	background-repeat: no-repeat;
+  	background-size: 100%;
+  	background-image: url("../images/backh.jpg");
 }
 .nav__link {
   position: relative;
   margin-left: 40px;
+}
+
+.nav ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.nav ul li {
+	display: block;
+	width: 100%;
+	font-size: 10pt;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+  color: #fff;
+	text-decoration: none;
+}
+.nav ul li a{
+	display: block;
+	width: 100%;
+	font-size: 10pt;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+  color: #fff;
+	text-decoration: none;
+  cursor: pointer;
+}
+.nav ul li a:hover {
+	 text-decoration: underline;
+	color: #FFF;
+}
+.nav ul li a .icon{
+  margin-right: 5px;
+}
+
+.imagen{
+  width: 100px;
+  height: 100px;
+  background-image: url("../images/default.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+  background-color: #000;
+  position: relative;
+  border-radius: 250px;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-left: 80px;
+  border: 1px solid #fff;
 }

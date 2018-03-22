@@ -1,7 +1,6 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/student.php');
   require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/models/car.php');
-
   // constructor recibe 2 parametros USER Y PASSWORD
   //si es conductor, traigo datos del carro que tenga activo
   //si solo es estudiante traigo datos
@@ -11,17 +10,15 @@
 		private $user;
 		private $car;
 		private $driver;
-
 		public function getUser(){return $this->user;}
 		public function setUser($value){ $this->user = $value;}
 		public function getCar(){return $this->car;}
 		public function setCar($value){ $this->car = $value;}
 		public function getDriver(){ return $this->driver;}
-
 		function __construct()
 		{
 			//object with data from database
-			if (func_num_args() == 2) 
+			if (func_num_args() == 2)
 			{
 				$arguments = func_get_args();
 				//get id
@@ -52,7 +49,6 @@
 
 					/*-------------------------*/
 					$this->user = new Student($id,$name,$surnName,$secondSurName,$email,$cellPhone,$university,$controlNumber, $latitude,$longitude,$photo,$city,$turn,$status,$profile, $raiting);
-
 				}
 				else {
 					//throw exception if record not found
@@ -60,17 +56,15 @@
 				}
 			}
 		}
-
-		public function toJsonPassenger() 
-		{ 
+		public function toJsonPassenger()
+		{
 			return json_encode(array
-				('user' => json_decode($this->user->toJson())));
+				('user' => json_decode($this->user->toJsonPassenger())));
 		}
-
-		public function toJsonDriver() 
-		{ 
+		public function toJsonDriver()
+		{
 			return json_encode(array
-				('user' => json_decode($this->user->toJson()),
+				('user' => json_decode($this->user->toJsonPassenger()),
 					'car' => json_decode($this->car->toJson())));
 		}
 
@@ -89,16 +83,15 @@
 			$found = $command->fetch();
 			mysqli_stmt_close($command);
 			$connection->close();
-			if ($found) 
+			if ($found)
 			{
 				$model = new Model($idModel);
-				$this->car = new Car($carID, $this->user, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
+				$this->car = new Car($carID, $model, $licensePlate, $driverLicense, $color, $insurance, $spaceCar, $owner, $carStatus);
 				$this->driver = true;
 			}
 			else {
 				$this->driver = false;
 			}
-
 		}
 	}
 ?>

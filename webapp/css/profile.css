@@ -36,9 +36,14 @@ body { font-size: 12pt; background-color: #F8F8F9; }
   font-size: 12pt;
   text-align: center;
   width: 100%;
-  height: 30px;
+  height: 35px;
   margin-top: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid gray;
 }
+.form__input:hover { border: 2px solid black; }
 .section__label-input {
   position: relative;
   margin: 15px 10px 0px 10px;

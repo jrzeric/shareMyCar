@@ -6,7 +6,8 @@
 		<link rel="stylesheet" href="/sharemycar/webapp/css/header_users.css">
 		<link rel="stylesheet" href="/sharemycar/webapp/css/nav_users.css">
 		<link rel="stylesheet" href="/sharemycar/webapp/css/profile.css">
-		<link rel="stylesheet" href="/sharemycar/webapp/css/footer.css">
+		<link rel="stylesheet" href="/sharemycar/webapp/css/footer_users.css">
+		<link rel="stylesheet" href="/sharemycar/webapp/css/octicons.css">
     <script src="/sharemycar/webapp/js/menu.js"></script>
 	</head>
 	<body>
@@ -22,7 +23,7 @@
         <hr class="title__hr">
         <div class="section__two-columns">
           <h3 class="section__title">Personal Information</h3>
-          <img class="section__image" src="/sharemycar/webapp/images/eric.jpg">
+          <img class="section__image" src="/sharemycar/webapp/images/profile.png">
           <div class="section__label-input section__label-input--sma">
             <label class="section__label" for="name">Name</label><br>
             <input id="name" class="form__input" type="text" name="name" value="Eric" readonly>
@@ -62,7 +63,7 @@
       </section>
     </main>
 		<footer class="footer footer--darkblue">
-      		<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer.php'); ?>
+      		<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer_users.php'); ?>
    		</footer>
 	</body>
 </html>
