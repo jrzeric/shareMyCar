@@ -60,10 +60,13 @@
             <input id="stateInput" class="form__input" type="text" name="state" value="" readonly>
           </div>
         </div>
+
+					<input type="button" class="button_switch" value="Edit info"/>
+
       </section>
     </main>
-		<footer class="footer footer--darkblue">
+<!--		<footer class="footer footer--darkblue">
       		<?php require_once($_SERVER['DOCUMENT_ROOT'].'/sharemycar/webapp/lib/footer.php'); ?>
-   		</footer>
+   		</footer> -->
 	</body>
 </html>

@@ -9,8 +9,6 @@ function initProfilePassenger()
 	document.getElementById("controlNumberInput").value = sessionStorage.userControlNumber;
 	document.getElementById("cityInput").value = sessionStorage.userCityName;
 	document.getElementById("stateInput").value = sessionStorage.userStateName;
-
 	var image = document.getElementById("imgProfile");
-
 	image.setAttribute("src", sessionStorage.userPhoto);
 }

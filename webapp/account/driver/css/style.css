@@ -1,10 +1,6 @@
 
-select{
-   /* margin-left:10px;
-  width:200px;
-  font-size:14pt;
-  border: 2px solid #292D76;
-  background:#C5CEE4;*/
+select
+{
 	position:relative;
   -webkit-appearance: button;
    -webkit-border-radius: 2px;

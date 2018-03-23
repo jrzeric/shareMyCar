@@ -1,8 +1,8 @@
-* { margin: 0px auto; }
+* { margin: 0px auto; font-family: Tahoma, Verdana, Sans-serif;}
 body { font-size: 12pt; background-color: #F8F8F9; }
 .title { font-size: 20pt; margin: 15px; }
 .title__hr { width: calc(100% - 60px); }
-.section__title { font-size: 14pt; }
+.section__title { font-size: 19pt; }
 .title, .section__title { text-align: center; }
 .main {
   position: relative;
@@ -53,3 +53,19 @@ body { font-size: 12pt; background-color: #F8F8F9; }
 .section__label-input--med { width: calc(50% - 20px); }
 .section__label-input--lar { width: calc(100% - 20px); }
 .section__label { margin: 15px; }
+/*tilo was here*/
+.button_switch
+{
+  border: 1px solid dodgerblue;
+  border-color: dodgerblue;
+  background-color: inherit;
+  color: dodgerblue;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: inline-block;
+  float: right;
+  margin: 10px 20px 0px 0px;
+}
+.button_switch:hover {background: #eee;}
