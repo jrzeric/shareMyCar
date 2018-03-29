@@ -86,6 +86,7 @@ function showPopup(title, width, height) {
     popupContent.appendChild(labelpass);
 
 
+
   var buttonYes = document.createElement('button');
 	buttonYes.className = 'buttonYes';
 	buttonYes.setAttribute('id', 'butonyes');

@@ -61,6 +61,7 @@
             <input id="state" class="form__input" type="text" name="state" placeholder="State" readonly>
           </div>
         </div>
+				
 				<div class="button_edit">
 					<input id="Edit_Button" type="submit" onclick="Edit()" Value="Edit">
 					<input id="Save_Button" type="submit" value="Save" onclick="showPopup('Save changes',400, 200)">
