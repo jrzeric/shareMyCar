@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background-color:   #efefef;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+ .input-container {
+   position: relative;
+   height: 3rem;
+   width: 22rem;
+   margin: 2.5rem;
+}
+      .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .radio-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #150061;
+        background:#6b92ff;
+      border-radius: 5px;
+      padding: 1rem;
+      transition: transform 300ms ease;
+    }
+
+    .radio-tile-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+         color: #FFFF;
+
+    }
+
+    .radio-button:checked + .radio-tile {
+      background:#002e7a;
+       color: #FFFF;
+      border: 2px solid #150061;
+
+      transform: scale(1.1, 1.1);
+
+}
+
+.form-section-blank input, .form-section-blank select {
+	font-size: 16pt;
+	padding: 15px;
+	background: #FFF;
+	border: 3px solid #666;
+	color: #212121;
+}
+.form-section__blank--three-columns, .form-section__blank--two-columns {
+  position: relative;
+  height: auto;
+  margin: 5px 2%;
+  border-radius: 5px;
+}
+.form-section__blank--three-columns {
+  width: 28%;
+  height: 40px;
+      margin: 10px 0px 0px 0px; }
+
+.form-section__blank--two-columns {
+  height: 40px;
+  margin: 6px 0px 0px 0px;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  color: #555;
+  -webkit-appearance: button;
+  font-size: 12pt;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+  background-position: 97% center;
+}
+   }
+.form-section__blank--three-columns_school{
+  margin: 6px 0px;
+  border-radius: 15px;
+  width: 22%;
+
+}
+.form-center
+{
+  position: static;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin: 15px auto;
+}
+
+.finish{
+     border: 0px;
+    height: 40px;
+    width: 100px;
+    margin-left: 0px;
+    color: #FFF;
+    background: #002e7a;
+    border-radius: 5px;
+    font-size: 12pt;
+    cursor: pointer;
+    float: right;
+    margin: 34px 36px 29px auto;
+
+}
+.finish:hover{
+    background: #030427;
+}
+.finish:active{
+   transform: scale(0.95);
+}

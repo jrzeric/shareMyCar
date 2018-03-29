@@ -53,3 +53,114 @@ body { font-size: 12pt; background-color: #F8F8F9; }
 .section__label-input--med { width: calc(50% - 20px); }
 .section__label-input--lar { width: calc(100% - 20px); }
 .section__label { margin: 15px; }
+.button_edit{
+  float: left;
+  position: absolute;
+  margin: 255px 30px;
+}
+#Edit_Button,#Save_Button,#Cancel_Button{
+  height: 46px;
+  width: 111px;
+  border-radius: 10px;
+  font-size: 19px;
+}
+#Save_Button,#Cancel_Button{
+
+}
+
+#Edit_Button{
+  background: #238cba;
+
+}
+#Save_Button{
+  background: #00ff00;
+  display: none;
+}
+#Cancel_Button{
+  background: #fb1818;
+    display: none;
+}
+/*popup de Aceptar cambios*/
+#glass {
+	position:absolute;
+	top:0px; left:0px;
+	width:100%;
+	background:rgba(150, 150, 150, .5);
+}
+#popup {
+	position:fixed;
+	background:#f7f7f7;
+	border:1px solid #030427;
+	box-shadow:0px 0px 20px #000;
+}
+#popuptitle {
+	position:absolute;
+	top:0px; left:0px;
+	height:40px; width:100%;
+	background:#fcfcff;
+
+}
+#popuptitle h1 {
+	margin:10px auto auto 10px;
+	padding:0px;
+	font-size:14pt;
+	color:#000;
+}
+#popupclose{
+	position:absolute;
+	top:5px; right:5px;
+	background: #F44339;
+	font-size: 12pt;
+	color:#FFF;
+	padding:5px 10px 5px 10px;
+	cursor:pointer;
+}
+#popupclose:hover{
+    background: #f95c57;
+}
+#popupclose:active{
+   transform: scale(0.95);
+}
+
+
+.userLogin:hover{
+	background: #fff;
+    }
+		.userPass:hover{
+			background: #fff;
+		}
+
+
+
+#popupcontent {
+	position:absolute;
+  text-align: center;
+	top:40px; left:0px;
+	width:100%;
+}
+
+#popupbuttons {
+	position:absolute;
+	bottom:50px;
+   left:0px;
+	width:100%;
+	text-align:center;
+}
+.buttonYes{
+  background: #238cba;
+}
+.buttonNo{
+background: #fb1818;
+  }
+
+.buttonNo,.buttonYes{
+  height: 46px;
+  width: 111px;
+  border-radius: 10px;
+  font-size: 19px;
+  margin: 10px;
+
+}
+#loginlabelp{
+  font-size: 14px;
+}
